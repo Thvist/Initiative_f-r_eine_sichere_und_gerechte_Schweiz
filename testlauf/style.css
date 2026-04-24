@@ -577,6 +577,21 @@ html, body {
   letter-spacing: 0.03em;
 }
 
+/* Hotspot illustration inside modal */
+#modal-image-wrap {
+  width: 100%;
+  max-height: 220px;
+  overflow: hidden;
+  background: var(--grey-100);
+}
+
+#modal-hotspot-image {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
 .action-card-body {
   padding: 20px;
 }
@@ -853,6 +868,46 @@ html, body {
     transform: translateY(110vh) rotate(720deg);
     opacity: 0;
   }
+}
+
+/* ============== PLACEMENT MODE ============== */
+
+#placement-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #fbbf24;
+  color: #1c1c1c;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-family: var(--font);
+}
+
+#placement-tip {
+  position: fixed;
+  z-index: 9999;
+  background: #1c1c1c;
+  color: #fbbf24;
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+
+#placement-tip.flash {
+  animation: tip-flash 0.15s ease;
+}
+
+@keyframes tip-flash {
+  0%   { background: #fbbf24; color: #1c1c1c; }
+  100% { background: #1c1c1c; color: #fbbf24; }
 }
 
 /* ============== UTILITIES ============== */

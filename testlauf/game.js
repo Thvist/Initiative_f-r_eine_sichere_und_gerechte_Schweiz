@@ -156,6 +156,54 @@ function init() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
   });
+
+  if (new URLSearchParams(location.search).get('place') === '1') initPlacementMode();
+}
+
+// ============================================================
+//  PLACEMENT MODE  (?place=1)
+//  Click anywhere on a scene to get the x/y coordinates
+//  ready to paste into HOTSPOTS_DATA.
+// ============================================================
+
+function initPlacementMode() {
+  // Banner
+  const banner = document.createElement('div');
+  banner.id = 'placement-banner';
+  banner.innerHTML = '📍 <strong>Platzierungsmodus</strong> — Klicke auf die Szene, um Koordinaten zu ermitteln';
+  document.body.appendChild(banner);
+
+  // Coordinate tooltip
+  const tip = document.createElement('div');
+  tip.id = 'placement-tip';
+  tip.style.display = 'none';
+  document.body.appendChild(tip);
+
+  $('scene-wrapper').addEventListener('click', e => {
+    // Only when scene screen is active and modal is closed
+    if (!screens.scene.classList.contains('active')) return;
+    if (modalOverlay.classList.contains('active')) return;
+    if (e.target.closest('.hotspot') || e.target.closest('.nav-arrow')) return;
+
+    const wrapper = $('scene-wrapper');
+    const rect = wrapper.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width).toFixed(2);
+    const y = ((e.clientY - rect.top)  / rect.height).toFixed(2);
+
+    const text = `x: ${x}, y: ${y}`;
+    tip.textContent = text;
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX + 12) + 'px';
+    tip.style.top  = (e.clientY - 10) + 'px';
+
+    // Copy to clipboard
+    navigator.clipboard?.writeText(`{ "x": ${x}, "y": ${y} }`).catch(() => {});
+
+    // Flash and hide after 3s
+    tip.classList.add('flash');
+    clearTimeout(tip._t);
+    tip._t = setTimeout(() => { tip.style.display = 'none'; tip.classList.remove('flash'); }, 3000);
+  });
 }
 
 // ============================================================
@@ -210,7 +258,7 @@ function renderScene() {
   // Try to load scene image
   const img = $('scene-image');
   const placeholder = $('scene-placeholder');
-  const imgSrc = `assets/${loc}_${phase}.png`;
+  const imgSrc = `assets/${loc}_${phase}.jpg`;
   img.src = imgSrc;
   img.alt = `${LOCATION_NAMES[loc]} am ${PHASE_LABELS[phase]}`;
   img.onload = () => {
@@ -318,6 +366,15 @@ function openHotspot(id) {
 
   $('modal-hotspot-title').textContent = hotspot.label;
   $('modal-desc').textContent = hotspot.description;
+
+  // Load hotspot illustration (assets/hotspots/H1.jpg etc.)
+  const imgWrap = $('modal-image-wrap');
+  const hsImg = $('modal-hotspot-image');
+  imgWrap.classList.add('hidden');
+  hsImg.src = `assets/hotspots/${hotspot.id}.jpg`;
+  hsImg.alt = hotspot.label;
+  hsImg.onload = () => imgWrap.classList.remove('hidden');
+  hsImg.onerror = () => imgWrap.classList.add('hidden');
 
   const optionsEl = $('modal-options');
   optionsEl.innerHTML = '';
