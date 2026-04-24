@@ -1,0 +1,457 @@
+[
+  {
+    "id": "H1",
+    "location": "park",
+    "phase": "morgen",
+    "position": { "x": 0.38, "y": 0.62 },
+    "label": "Aludose im Gras",
+    "description": "Eine leere Aludose liegt im Gras neben einer Bank. Eine Recyclingstation ist 20 Meter entfernt.",
+    "type": "dual",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Die Dose aufheben und in den Aluminium-Container werfen.",
+      "points": 50,
+      "sets_flag": "picked_up_can"
+    },
+    "option_b": {
+      "text": "Ach, hat eh schon Müll hier. Meinen Becher stelle ich auch gleich dazu.",
+      "points": -100,
+      "sets_flag": "added_to_litter"
+    }
+  },
+  {
+    "id": "H2",
+    "location": "park",
+    "phase": "morgen",
+    "position": { "x": 0.60, "y": 0.55 },
+    "label": "Verletzte:r Jogger:in am Wegrand",
+    "description": "Eine Person ist gestolpert und sitzt am Boden, sie hält sich den Knöchel.",
+    "type": "positive_only",
+    "branching": "unlock",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Anhalten, fragen ob alles ok ist, Notfallnummer anbieten.",
+      "points": 100,
+      "sets_flag": "helped_jogger"
+    }
+  },
+  {
+    "id": "H19",
+    "location": "park",
+    "phase": "morgen",
+    "position": { "x": 0.22, "y": 0.45 },
+    "label": "Unverschlossenes E-Bike am Baum",
+    "description": "Ein schönes E-Bike lehnt ohne Schloss an einem Baum. Niemand ist in der Nähe.",
+    "type": "negative_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Wegfahren, das gehört jetzt dir.",
+      "points": -200,
+      "sets_flag": "stole_bike"
+    }
+  },
+  {
+    "id": "H3",
+    "location": "park",
+    "phase": "nachmittag",
+    "position": { "x": 0.45, "y": 0.50 },
+    "label": "Gemeinde-Clean-up-Aktion",
+    "description": "Eine Gruppe Freiwilliger in S+-Westen reinigt das Gebiet rund um die Badi.",
+    "type": "positive_only",
+    "branching": "unlock",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Sich anschliessen und eine Stunde mithelfen.",
+      "points": 200,
+      "sets_flag": "joined_cleanup"
+    }
+  },
+  {
+    "id": "H4a",
+    "location": "park",
+    "phase": "nachmittag",
+    "position": { "x": 0.30, "y": 0.65 },
+    "label": "Handy auf dem Boden",
+    "description": "Einem Badegast ist das Handy aus der Tasche gefallen, er merkt es nicht.",
+    "type": "positive_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Dem Badegast nachlaufen und das Handy zurückgeben.",
+      "points": 100,
+      "sets_flag": "returned_phone"
+    }
+  },
+  {
+    "id": "H4b",
+    "location": "park",
+    "phase": "nachmittag",
+    "position": { "x": 0.65, "y": 0.70 },
+    "label": "Unbeaufsichtigter Laptop in der Umkleide",
+    "description": "In der Umkleide liegt ein Laptop. Niemand schaut.",
+    "type": "negative_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Den Laptop schnell einpacken und mitnehmen.",
+      "points": -200,
+      "sets_flag": "stole_laptop"
+    }
+  },
+  {
+    "id": "H5",
+    "location": "park",
+    "phase": "abend",
+    "position": { "x": 0.40, "y": 0.58 },
+    "label": "Blumenbeet der Gemeinde",
+    "description": "Das Gemeinde-Blumenbeet wirkt durstig. Eine Giesskanne steht daneben. Eine Abkürzung führt direkt durch das Beet.",
+    "type": "dual",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Das Beet giessen.",
+      "points": 100,
+      "sets_flag": "watered_flowers"
+    },
+    "option_b": {
+      "text": "Abkürzung nehmen und durch das Beet laufen.",
+      "points": -100,
+      "sets_flag": "trampled_flowers"
+    }
+  },
+  {
+    "id": "H6",
+    "location": "park",
+    "phase": "abend",
+    "position": { "x": 0.70, "y": 0.50 },
+    "label": "Graffiti-Sprayer an der Badi-Mauer",
+    "description": "Jemand sprüht Graffiti an die Rückwand der Badi. Sie sind noch unbemerkt. Eine zweite Dose liegt in der Tasche.",
+    "type": "dual",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Ansprechen, sagen dass das nicht okay ist, notfalls Gemeinde informieren.",
+      "points": 150,
+      "sets_flag": "stopped_graffiti"
+    },
+    "option_b": {
+      "text": "Die zweite Dose nehmen und mitsprayen.",
+      "points": -150,
+      "sets_flag": "joined_graffiti"
+    }
+  },
+  {
+    "id": "H6b",
+    "location": "park",
+    "phase": "abend",
+    "position": { "x": 0.25, "y": 0.40 },
+    "label": "Späteinlass an der Badi",
+    "description": "Die Bademeisterin, die du heute Morgen beim Joggen geholfen hast, erkennt dich und winkt dich nach der offiziellen Schliesszeit noch rein.",
+    "type": "dual",
+    "branching": "unlock",
+    "available_if": { "flags": ["helped_jogger"], "not_flags": [] },
+    "option_a": {
+      "text": "Dankend ablehnen – Regeln sind Regeln.",
+      "points": 150,
+      "sets_flag": "declined_late_swim"
+    },
+    "option_b": {
+      "text": "Reingehen und heimlich schwimmen.",
+      "points": -100,
+      "sets_flag": "snuck_in_pool"
+    }
+  },
+  {
+    "id": "H7",
+    "location": "platz",
+    "phase": "morgen",
+    "position": { "x": 0.35, "y": 0.60 },
+    "label": "Parkuhr abgelaufen",
+    "description": "Ihre Parkuhr ist abgelaufen. Eine Politesse kontrolliert zwei Autos weiter – sie hat Sie noch nicht gesehen, aber in einer Minute wird sie bei Ihnen sein.",
+    "type": "dual",
+    "branching": "unlock",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Ehrlich nachzahlen am Automaten.",
+      "points": 50,
+      "sets_flag": "paid_parking"
+    },
+    "option_b": {
+      "text": "Weggehen und hoffen, dass sie es nicht merkt.",
+      "points": -100,
+      "sets_flag": "skipped_parking"
+    }
+  },
+  {
+    "id": "H8",
+    "location": "platz",
+    "phase": "morgen",
+    "position": { "x": 0.62, "y": 0.55 },
+    "label": "Bäckerei Fischer: zu viel Wechselgeld",
+    "description": "Die Bäckerin gibt Ihnen aus Versehen 5 Franken zu viel Wechselgeld zurück.",
+    "type": "dual",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Den Fehler melden und das Geld zurückgeben.",
+      "points": 100,
+      "sets_flag": "honest_change"
+    },
+    "option_b": {
+      "text": "Einstecken – ihr Problem.",
+      "points": -100,
+      "sets_flag": "kept_change"
+    }
+  },
+  {
+    "id": "H9",
+    "location": "platz",
+    "phase": "nachmittag",
+    "position": { "x": 0.28, "y": 0.65 },
+    "label": "Velo blockiert Rollstuhl-Rampe",
+    "description": "Ein Velo blockiert die Rollstuhl-Rampe am Gemeindehaus. Die Besitzerin ist nirgends zu sehen.",
+    "type": "positive_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Das Velo kurz zur Seite schieben und die Rampe freimachen.",
+      "points": 100,
+      "sets_flag": "moved_bike"
+    }
+  },
+  {
+    "id": "H10",
+    "location": "platz",
+    "phase": "nachmittag",
+    "position": { "x": 0.55, "y": 0.45 },
+    "label": "Verlorene Brieftasche am Brunnen",
+    "description": "Eine Lederbrieftasche liegt am Rand des Brunnens. Niemand ist in der Nähe.",
+    "type": "dual",
+    "branching": "modify",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Zum Fundbüro der Gemeinde bringen.",
+      "points": 150,
+      "points_if_flag": { "flag": "honest_change", "points": 200 },
+      "sets_flag": "returned_wallet"
+    },
+    "option_b": {
+      "text": "Die ganze Brieftasche einstecken, mit allem Inhalt.",
+      "points": -200,
+      "points_if_flag": { "flag": "kept_change", "points": -250 },
+      "sets_flag": "stole_wallet"
+    }
+  },
+  {
+    "id": "H20",
+    "location": "platz",
+    "phase": "nachmittag",
+    "position": { "x": 0.72, "y": 0.68 },
+    "label": "Gemüsekiste vor dem Bäcker",
+    "description": "Die Lieferantin hat eine Kiste voller Äpfel vor dem Laden abgestellt. Der Fahrer ist drin mit dem Rest.",
+    "type": "negative_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Einen Apfel (oder zwei) einstecken und weitergehen.",
+      "points": -100,
+      "sets_flag": "stole_produce"
+    }
+  },
+  {
+    "id": "H11",
+    "location": "platz",
+    "phase": "abend",
+    "position": { "x": 0.42, "y": 0.52 },
+    "label": "Streit vor dem Brunnen",
+    "description": "Zwei Personen streiten lautstark. Passant:innen filmen mit dem Handy.",
+    "type": "dual",
+    "branching": "unlock",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Ruhig vermitteln und beide anhören.",
+      "points": 150,
+      "sets_flag": "mediated_fight"
+    },
+    "option_b": {
+      "text": "Auch das Handy zücken und für Social Media mitfilmen.",
+      "points": -100,
+      "sets_flag": "filmed_fight"
+    }
+  },
+  {
+    "id": "H12",
+    "location": "platz",
+    "phase": "abend",
+    "position": { "x": 0.65, "y": 0.60 },
+    "label": "Social-Media-Post über den Tag",
+    "description": "Auf einer Bank ziehen Sie Ihr Handy raus und schreiben einen Post über Ihren Tag in Helvetingen.",
+    "type": "dual",
+    "branching": "modify",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "'Hey, ich habe heute was Schönes erlebt in der Gemeinde. Danke an alle netten Menschen!'",
+      "points": 100,
+      "points_if_positive_count": { "min": 3, "points": 150 },
+      "sets_flag": "positive_post"
+    },
+    "option_b": {
+      "text": "Einen abfälligen Post über einen Mitbürger, den Sie heute gesehen haben.",
+      "points": -100,
+      "points_if_negative_count": { "min": 3, "points": -150 },
+      "sets_flag": "negative_post"
+    }
+  },
+  {
+    "id": "H21",
+    "location": "platz",
+    "phase": "abend",
+    "position": { "x": 0.22, "y": 0.48 },
+    "label": "Wahlplakat der Sozialkredit-Initiative",
+    "description": "Ein grosses Kampagnenplakat der Sozialkredit-Initiative hängt an der Tramhaltestelle. In Ihrem Rucksack ist ein Pack Sticker.",
+    "type": "negative_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Einen Sticker draufkleben und das Plakat verunstalten.",
+      "points": -150,
+      "sets_flag": "defaced_poster"
+    }
+  },
+  {
+    "id": "H13",
+    "location": "wohn",
+    "phase": "morgen",
+    "position": { "x": 0.32, "y": 0.58 },
+    "label": "Frau Gerber bei der Abfalltrennung",
+    "description": "Die ältere Nachbarin kämpft mit ihren Recycling-Behältern am Strassenrand.",
+    "type": "positive_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Ihr kurz helfen, Karton und PET separat einsortieren.",
+      "points": 100,
+      "sets_flag": "helped_gerber"
+    }
+  },
+  {
+    "id": "H14",
+    "location": "wohn",
+    "phase": "morgen",
+    "position": { "x": 0.60, "y": 0.62 },
+    "label": "Kinder spielen Fussball auf der Strasse",
+    "description": "Der Ball rollt unter Ihr geparktes Auto.",
+    "type": "dual",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Den Ball rausholen, zurückgeben und kurz mitspielen.",
+      "points": 50,
+      "sets_flag": "played_with_kids"
+    },
+    "option_b": {
+      "text": "'Spielt woanders!' rufen und weitergehen.",
+      "points": -100,
+      "sets_flag": "yelled_at_kids"
+    }
+  },
+  {
+    "id": "H15",
+    "location": "wohn",
+    "phase": "nachmittag",
+    "position": { "x": 0.45, "y": 0.55 },
+    "label": "Paket für Nachbar:in annehmen",
+    "description": "Die Lieferantin fragt, ob Sie ein Paket für Herrn Keller auf der anderen Strassenseite annehmen können.",
+    "type": "dual",
+    "branching": "modify",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Das Paket annehmen und es später rüberbringen.",
+      "points": 100,
+      "points_if_flag": { "flag": "helped_gerber", "points": 150 },
+      "sets_flag": "accepted_package"
+    },
+    "option_b": {
+      "text": "'Nicht mein Paket' sagen und die Tür zumachen.",
+      "points": -50,
+      "sets_flag": "refused_package"
+    }
+  },
+  {
+    "id": "H16",
+    "location": "wohn",
+    "phase": "nachmittag",
+    "position": { "x": 0.68, "y": 0.42 },
+    "label": "Katze im Baum",
+    "description": "Eine Katze sitzt hoch oben in einem Baum. Der Besitzer ist nicht da. In Ihrer Garage steht eine Leiter.",
+    "type": "positive_only",
+    "branching": "unlock",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Die Leiter holen und die Katze retten.",
+      "points": 150,
+      "sets_flag": "saved_cat"
+    }
+  },
+  {
+    "id": "H22",
+    "location": "wohn",
+    "phase": "nachmittag",
+    "position": { "x": 0.25, "y": 0.65 },
+    "label": "Päckli vor fremder Haustür",
+    "description": "Ein Zalando-Paket steht vor der Tür eines Nachbarn. Die Person ist eindeutig nicht zuhause. Niemand schaut.",
+    "type": "negative_only",
+    "branching": "static",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Das Päckli mitnehmen.",
+      "points": -150,
+      "sets_flag": "stole_parcel"
+    }
+  },
+  {
+    "id": "H17",
+    "location": "wohn",
+    "phase": "abend",
+    "position": { "x": 0.48, "y": 0.50 },
+    "label": "Nachbarschaftsfest",
+    "description": "Die Nachbarn feiern ein lautes Sommerfest auf der Strasse. Musik, Raclette, Kinder. Es ist lauter als die Ruhezeit eigentlich erlaubt.",
+    "type": "dual",
+    "branching": "unlock",
+    "available_if": { "flags": [], "not_flags": [] },
+    "option_a": {
+      "text": "Rübergehen, freundlich auf den Lärm ansprechen – am Ende werden Sie eingeladen.",
+      "points": 150,
+      "points_if_flag": { "flag": "joined_cleanup", "points": 250 },
+      "sets_flag": "joined_party"
+    },
+    "option_b": {
+      "text": "Direkt die Polizei anrufen und Ruhestörung melden.",
+      "points": -200,
+      "sets_flag": "called_police_on_party"
+    }
+  },
+  {
+    "id": "H18",
+    "location": "wohn",
+    "phase": "abend",
+    "position": { "x": 0.72, "y": 0.55 },
+    "label": "Polizeikontrolle am Abend",
+    "description": "Die Politesse vom Morgen hat Sie ausfindig gemacht. Sie steht vor Ihrer Tür.",
+    "type": "dual",
+    "branching": "unlock",
+    "available_if": { "flags": ["skipped_parking"], "not_flags": [] },
+    "option_a": {
+      "text": "Ehrlich sein und die Busse akzeptieren.",
+      "points": -50,
+      "sets_flag": "accepted_fine"
+    },
+    "option_b": {
+      "text": "Lügen und behaupten, es war jemand anderes.",
+      "points": -200,
+      "sets_flag": "lied_to_authority"
+    }
+  }
+]
