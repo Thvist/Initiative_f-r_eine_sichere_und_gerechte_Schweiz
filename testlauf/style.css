@@ -283,32 +283,15 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#map-image {
-  max-width: 100%;
-  max-height: calc(100vh - 52px - 100px);
-  object-fit: contain;
-  display: block;
 }
 
 #map-placeholder {
-  width: min(600px, 90vw);
-  height: min(400px, 60vh);
-  background: #2d4a2d;
-  border-radius: var(--radius);
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.3);
-  font-size: 14px;
-  border: 2px dashed rgba(255,255,255,0.15);
-  position: relative;
-  overflow: hidden;
+  background: #2d4a2d;
 }
 
 #map-placeholder::after {
@@ -316,6 +299,19 @@ html, body {
   font-size: 18px;
   color: rgba(255,255,255,0.25);
   font-weight: 700;
+}
+
+#map-placeholder[data-loaded]::after {
+  display: none;
+}
+
+#map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  position: absolute;
+  inset: 0;
 }
 
 .map-location-btn {

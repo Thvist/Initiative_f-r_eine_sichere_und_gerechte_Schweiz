@@ -253,6 +253,7 @@ function loadMapImage() {
       img.style.display = 'block';
       placeholder.style.background = 'none';
       placeholder.style.border = 'none';
+      placeholder.dataset.loaded = '1';
     },
     () => { img.style.display = 'none'; }
   );
