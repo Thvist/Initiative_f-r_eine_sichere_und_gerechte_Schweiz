@@ -179,18 +179,21 @@ function initPlacementMode() {
   tip.style.display = 'none';
   document.body.appendChild(tip);
 
-  $('scene-wrapper').addEventListener('click', e => {
-    // Only when scene screen is active and modal is closed
-    if (!screens.scene.classList.contains('active')) return;
+  // Works on both the scene and the map
+  document.addEventListener('click', e => {
+    const onScene = screens.scene.classList.contains('active');
+    const onMap   = screens.map.classList.contains('active');
+    if (!onScene && !onMap) return;
     if (modalOverlay.classList.contains('active')) return;
-    if (e.target.closest('.hotspot') || e.target.closest('.nav-arrow')) return;
+    if (e.target.closest('.hotspot') || e.target.closest('.nav-arrow') || e.target.closest('.map-location-btn')) return;
 
-    const wrapper = $('scene-wrapper');
+    const wrapper = onScene ? $('scene-wrapper') : $('map-wrapper');
     const rect = wrapper.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width).toFixed(2);
     const y = ((e.clientY - rect.top)  / rect.height).toFixed(2);
 
-    const text = `x: ${x}, y: ${y}`;
+    const context = onScene ? `Hotspot` : `Karte-Button`;
+    const text = `${context} → x: ${x}, y: ${y}`;
     tip.textContent = text;
     tip.style.display = 'block';
     tip.style.left = (e.clientX + 12) + 'px';
@@ -222,6 +225,22 @@ function showMap() {
   showScreen('map');
   updateMapStatus();
   updateMapButtons();
+  loadMapImage();
+}
+
+function loadMapImage() {
+  const img = $('map-image');
+  const placeholder = $('map-placeholder');
+  img.src = `assets/map_${state.phase}.jpg`;
+  img.alt = `Karte von Helvetingen – ${PHASE_LABELS[state.phase]}`;
+  img.onload = () => {
+    img.style.display = 'block';
+    placeholder.style.background = 'none';
+    placeholder.style.border = 'none';
+  };
+  img.onerror = () => {
+    img.style.display = 'none';
+  };
 }
 
 function updateMapStatus() {
