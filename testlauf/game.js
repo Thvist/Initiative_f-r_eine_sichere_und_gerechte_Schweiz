@@ -228,19 +228,34 @@ function showMap() {
   loadMapImage();
 }
 
+function tryLoadImage(img, basePath, onLoad, onError) {
+  img.onload = onLoad;
+  img.onerror = () => {
+    if (img.src.endsWith('.jpg')) {
+      img.src = basePath + '.png';
+    } else if (img.src.endsWith('.png')) {
+      img.src = basePath + '.jpeg';
+    } else {
+      onError();
+    }
+  };
+  img.src = basePath + '.jpg';
+}
+
 function loadMapImage() {
   const img = $('map-image');
   const placeholder = $('map-placeholder');
-  img.src = `assets/map_${state.phase}.jpg`;
   img.alt = `Karte von Helvetingen – ${PHASE_LABELS[state.phase]}`;
-  img.onload = () => {
-    img.style.display = 'block';
-    placeholder.style.background = 'none';
-    placeholder.style.border = 'none';
-  };
-  img.onerror = () => {
-    img.style.display = 'none';
-  };
+  tryLoadImage(
+    img,
+    `assets/map_${state.phase}`,
+    () => {
+      img.style.display = 'block';
+      placeholder.style.background = 'none';
+      placeholder.style.border = 'none';
+    },
+    () => { img.style.display = 'none'; }
+  );
 }
 
 function updateMapStatus() {
@@ -274,20 +289,22 @@ function renderScene() {
   // Label
   sceneLabel.textContent = `${LOCATION_NAMES[loc]} · ${PHASE_LABELS[phase]}`;
 
-  // Try to load scene image
+  // Try to load scene image (jpg → png → jpeg)
   const img = $('scene-image');
   const placeholder = $('scene-placeholder');
-  const imgSrc = `assets/${loc}_${phase}.jpg`;
-  img.src = imgSrc;
   img.alt = `${LOCATION_NAMES[loc]} am ${PHASE_LABELS[phase]}`;
-  img.onload = () => {
-    img.style.display = 'block';
-    placeholder.style.background = 'none';
-  };
-  img.onerror = () => {
-    img.style.display = 'none';
-    placeholder.style.background = getScenePlaceholderColor(loc, phase);
-  };
+  tryLoadImage(
+    img,
+    `assets/${loc}_${phase}`,
+    () => {
+      img.style.display = 'block';
+      placeholder.style.background = 'none';
+    },
+    () => {
+      img.style.display = 'none';
+      placeholder.style.background = getScenePlaceholderColor(loc, phase);
+    }
+  );
 
   // Hotspots
   renderHotspots();
@@ -390,10 +407,13 @@ function openHotspot(id) {
   const imgWrap = $('modal-image-wrap');
   const hsImg = $('modal-hotspot-image');
   imgWrap.classList.add('hidden');
-  hsImg.src = `assets/hotspots/${hotspot.id}.jpg`;
   hsImg.alt = hotspot.label;
-  hsImg.onload = () => imgWrap.classList.remove('hidden');
-  hsImg.onerror = () => imgWrap.classList.add('hidden');
+  tryLoadImage(
+    hsImg,
+    `assets/hotspots/${hotspot.id}`,
+    () => imgWrap.classList.remove('hidden'),
+    () => imgWrap.classList.add('hidden')
+  );
 
   const optionsEl = $('modal-options');
   optionsEl.innerHTML = '';
