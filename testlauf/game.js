@@ -288,7 +288,7 @@ function renderScene() {
   const phase = state.phase;
 
   // Label
-  sceneLabel.textContent = `${LOCATION_NAMES[loc]} · ${PHASE_LABELS[phase]}`;
+  sceneLabel.textContent = LOCATION_NAMES[loc];
 
   // Try to load scene image (jpg → png → jpeg)
   const img = $('scene-image');
