@@ -196,8 +196,19 @@ function initPlacementMode() {
 
     const wrapper = onScene ? $('scene-wrapper') : $('map-wrapper');
     const rect = wrapper.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width).toFixed(2);
-    const y = ((e.clientY - rect.top)  / rect.height).toFixed(2);
+
+    let x, y;
+    if (onScene) {
+      // Use image-content-relative coords so hotspots stay locked to the
+      // image regardless of screen size / letterboxing
+      const b = getImageBounds();
+      x = ((e.clientX - rect.left - b.left) / b.width).toFixed(2);
+      y = ((e.clientY - rect.top  - b.top)  / b.height).toFixed(2);
+    } else {
+      // Map uses object-fit:cover so wrapper coords are fine
+      x = ((e.clientX - rect.left) / rect.width).toFixed(2);
+      y = ((e.clientY - rect.top)  / rect.height).toFixed(2);
+    }
 
     const context = onScene ? `Hotspot` : `Karte-Button`;
     const text = `${context} → x: ${x}, y: ${y}`;
