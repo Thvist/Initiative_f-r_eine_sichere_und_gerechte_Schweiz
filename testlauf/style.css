@@ -366,23 +366,21 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#scene-image {
-  max-width: 100%;
-  max-height: calc(100vh - 52px);
-  object-fit: contain;
-  display: block;
 }
 
 #scene-placeholder {
-  width: 100%;
-  height: calc(100vh - 52px);
+  position: absolute;
+  inset: 0;
   background: linear-gradient(160deg, #1a3a5c 0%, #2d5a3d 60%, #3d3d2d 100%);
-  position: relative;
+}
+
+#scene-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
 }
 
 /* Navigation arrows */

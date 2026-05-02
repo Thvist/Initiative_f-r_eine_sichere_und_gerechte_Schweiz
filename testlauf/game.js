@@ -157,6 +157,12 @@ function init() {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
   });
 
+  window.addEventListener('resize', () => {
+    if (screens.scene.classList.contains('active') && !modalOverlay.classList.contains('active')) {
+      renderHotspots();
+    }
+  });
+
   window.placementMode = new URLSearchParams(location.search).get('place') === '1';
   if (window.placementMode) initPlacementMode();
 }
@@ -308,6 +314,7 @@ function renderScene() {
     () => {
       img.style.display = 'block';
       placeholder.style.background = 'none';
+      renderHotspots(); // re-render now we know natural image dimensions
     },
     () => {
       img.style.display = 'none';
@@ -345,6 +352,28 @@ function navigateScene(direction) {
 //  HOTSPOTS
 // ============================================================
 
+// Returns the pixel rect of the actual image content within scene-wrapper,
+// accounting for object-fit: contain letterboxing.
+function getImageBounds() {
+  const wrapper = $('scene-wrapper');
+  const img = $('scene-image');
+  const wW = wrapper.offsetWidth;
+  const wH = wrapper.offsetHeight;
+
+  if (img && img.naturalWidth && img.style.display !== 'none') {
+    const ratio = img.naturalWidth / img.naturalHeight;
+    const wrapRatio = wW / wH;
+    let rendW, rendH;
+    if (ratio > wrapRatio) {
+      rendW = wW; rendH = wW / ratio;
+    } else {
+      rendH = wH; rendW = wH * ratio;
+    }
+    return { left: (wW - rendW) / 2, top: (wH - rendH) / 2, width: rendW, height: rendH };
+  }
+  return { left: 0, top: 0, width: wW, height: wH };
+}
+
 function getAvailableHotspots(location) {
   return allHotspots.filter(h => {
     if (h.location !== location) return false;
@@ -374,9 +403,7 @@ function renderHotspots() {
     return;
   }
 
-  const wrapper = $('scene-placeholder');
-  const wrapW = wrapper.offsetWidth || 800;
-  const wrapH = wrapper.offsetHeight || 500;
+  const bounds = getImageBounds();
 
   hotspots.forEach(hotspot => {
     const el = document.createElement('button');
@@ -384,10 +411,8 @@ function renderHotspots() {
     el.setAttribute('aria-label', hotspot.label);
     el.dataset.id = hotspot.id;
 
-    const left = hotspot.position.x * 100;
-    const top  = hotspot.position.y * 100;
-    el.style.left = `${left}%`;
-    el.style.top  = `${top}%`;
+    el.style.left = (bounds.left + hotspot.position.x * bounds.width)  + 'px';
+    el.style.top  = (bounds.top  + hotspot.position.y * bounds.height) + 'px';
 
     el.innerHTML = `
       <div class="hotspot-pulse" aria-hidden="true">
