@@ -159,7 +159,8 @@ function init() {
 
   window.addEventListener('resize', () => {
     if (screens.scene.classList.contains('active') && !modalOverlay.classList.contains('active')) {
-      renderHotspots();
+      // rAF ensures layout has settled before we measure getBoundingClientRect
+      requestAnimationFrame(renderHotspots);
     }
   });
 
@@ -368,8 +369,8 @@ function navigateScene(direction) {
 function getImageBounds() {
   const wrapper = $('scene-wrapper');
   const img = $('scene-image');
-  const wW = wrapper.offsetWidth;
-  const wH = wrapper.offsetHeight;
+  // getBoundingClientRect is always up-to-date, unlike offsetWidth/Height
+  const { width: wW, height: wH } = wrapper.getBoundingClientRect();
 
   if (img && img.naturalWidth && img.style.display !== 'none') {
     const ratio = img.naturalWidth / img.naturalHeight;
