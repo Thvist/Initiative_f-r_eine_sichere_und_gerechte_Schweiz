@@ -157,7 +157,8 @@ function init() {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
   });
 
-  if (new URLSearchParams(location.search).get('place') === '1') initPlacementMode();
+  window.placementMode = new URLSearchParams(location.search).get('place') === '1';
+  if (window.placementMode) initPlacementMode();
 }
 
 // ============================================================
@@ -342,7 +343,8 @@ function getAvailableHotspots(location) {
     if (h.location !== location) return false;
     if (h.phase !== state.phase) return false;
     if (state.completedHotspotsThisPhase.has(h.id)) return false;
-    // Flag conditions
+    // In placement mode, skip all flag conditions so every hotspot is visible
+    if (window.placementMode) return true;
     if (h.available_if.flags.length > 0) {
       if (!h.available_if.flags.every(f => state.flags.has(f))) return false;
     }
