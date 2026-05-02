@@ -418,11 +418,45 @@ html, body {
   left: 16px;
   transform: none;
 }
-
 #nav-back:hover { transform: none; }
 
-#nav-left { left: 12px; }
-#nav-right { right: 12px; }
+.nav-side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+#nav-side-left  { left: 12px; }
+#nav-side-right { right: 12px; }
+
+.nav-dest-label {
+  background: rgba(0,0,0,0.55);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.nav-side .nav-arrow {
+  position: static;
+  transform: none;
+  pointer-events: all;
+}
+
+.nav-side .nav-arrow:hover {
+  transform: scale(1.08);
+}
 
 /* Scene label */
 #scene-label {

@@ -107,8 +107,16 @@
 
     <!-- Navigation -->
     <button class="nav-arrow" id="nav-back" aria-label="Zurück zur Karte" title="Zur Karte">←</button>
-    <button class="nav-arrow" id="nav-left" aria-label="Vorherige Ortschaft" title="Links">‹</button>
-    <button class="nav-arrow" id="nav-right" aria-label="Nächste Ortschaft" title="Rechts">›</button>
+
+    <div class="nav-side" id="nav-side-left">
+      <span class="nav-dest-label" id="nav-label-left"></span>
+      <button class="nav-arrow" id="nav-left" aria-label="Vorherige Ortschaft">‹</button>
+    </div>
+
+    <div class="nav-side" id="nav-side-right">
+      <span class="nav-dest-label" id="nav-label-right"></span>
+      <button class="nav-arrow" id="nav-right" aria-label="Nächste Ortschaft">›</button>
+    </div>
 
     <!-- Hotspots injected here by JS -->
     <div id="hotspot-container" role="group" aria-label="Interaktionspunkte"></div>

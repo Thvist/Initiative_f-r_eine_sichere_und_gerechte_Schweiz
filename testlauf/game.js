@@ -252,6 +252,17 @@ function showMap() {
   updateMapStatus();
   updateMapButtons();
   loadMapImage();
+  preloadSceneImages();
+}
+
+function preloadSceneImages() {
+  LOCATIONS.forEach(loc => {
+    ['jpg','png','jpeg'].some(ext => {
+      const img = new Image();
+      img.src = `assets/${loc}_${state.phase}.${ext}`;
+      return false;
+    });
+  });
 }
 
 function tryLoadImage(img, basePath, onLoad, onError) {
@@ -337,10 +348,14 @@ function renderScene() {
   // Hotspots
   renderHotspots();
 
-  // Nav arrows
+  // Nav arrows + destination labels
   const idx = LOCATION_ORDER.indexOf(loc);
-  $('nav-left').style.display = idx > 0 ? 'flex' : 'none';
-  $('nav-right').style.display = idx < LOCATION_ORDER.length - 1 ? 'flex' : 'none';
+  const hasLeft  = idx > 0;
+  const hasRight = idx < LOCATION_ORDER.length - 1;
+  $('nav-side-left').style.display  = hasLeft  ? 'flex' : 'none';
+  $('nav-side-right').style.display = hasRight ? 'flex' : 'none';
+  $('nav-label-left').textContent  = hasLeft  ? LOCATION_NAMES[LOCATION_ORDER[idx - 1]] : '';
+  $('nav-label-right').textContent = hasRight ? LOCATION_NAMES[LOCATION_ORDER[idx + 1]] : '';
 }
 
 function getScenePlaceholderColor(loc, phase) {
