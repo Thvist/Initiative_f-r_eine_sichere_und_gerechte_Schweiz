@@ -157,13 +157,10 @@ function init() {
     if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
   });
 
-  window.addEventListener('resize', () => {
-    if (screens.scene.classList.contains('active')) {
-      // rAF ensures layout has settled; only refit the container — hotspots
-      // use % so they track automatically without rebuilding the DOM
-      requestAnimationFrame(fitHotspotContainer);
-    }
-  });
+  // ResizeObserver fires reliably after layout settles, with the actual new
+  // dimensions — way more robust than window.resize for this use case.
+  const ro = new ResizeObserver(() => updateSceneStage());
+  ro.observe($('scene-wrapper'));
 
   window.placementMode = new URLSearchParams(location.search).get('place') === '1';
   if (window.placementMode) initPlacementMode();
@@ -196,20 +193,18 @@ function initPlacementMode() {
     if (modalOverlay.classList.contains('active')) return;
     if (e.target.closest('.hotspot') || e.target.closest('.nav-arrow') || e.target.closest('.map-location-btn')) return;
 
-    const wrapper = onScene ? $('scene-wrapper') : $('map-wrapper');
-    const rect = wrapper.getBoundingClientRect();
-
     let x, y;
     if (onScene) {
-      // Use image-content-relative coords so hotspots stay locked to the
-      // image regardless of screen size / letterboxing
-      const b = getImageBounds();
-      x = ((e.clientX - rect.left - b.left) / b.width).toFixed(2);
-      y = ((e.clientY - rect.top  - b.top)  / b.height).toFixed(2);
+      // The stage IS the rendered image area — coords relative to it are
+      // already image-relative, perfectly aligned with how hotspots render.
+      const stage = $('scene-stage');
+      const r = stage.getBoundingClientRect();
+      x = ((e.clientX - r.left) / r.width).toFixed(2);
+      y = ((e.clientY - r.top)  / r.height).toFixed(2);
     } else {
-      // Map uses object-fit:cover so wrapper coords are fine
-      x = ((e.clientX - rect.left) / rect.width).toFixed(2);
-      y = ((e.clientY - rect.top)  / rect.height).toFixed(2);
+      const r = $('map-wrapper').getBoundingClientRect();
+      x = ((e.clientX - r.left) / r.width).toFixed(2);
+      y = ((e.clientY - r.top)  / r.height).toFixed(2);
     }
 
     const context = onScene ? `Hotspot` : `Karte-Button`;
@@ -338,7 +333,8 @@ function renderScene() {
     () => {
       img.style.display = 'block';
       placeholder.style.background = 'none';
-      renderHotspots(); // re-render now we know natural image dimensions
+      updateSceneStage();
+      renderHotspots();
     },
     () => {
       img.style.display = 'none';
@@ -380,26 +376,40 @@ function navigateScene(direction) {
 //  HOTSPOTS
 // ============================================================
 
-// Returns the pixel rect of the actual image content within scene-wrapper,
-// accounting for object-fit: contain letterboxing.
-function getImageBounds() {
+// Sizes #scene-stage to the exact pixels of the rendered image area.
+// Once this is right, the image fills the stage perfectly (no letterboxing
+// inside the stage), and hotspots positioned with % inside it are always correct.
+function updateSceneStage() {
   const wrapper = $('scene-wrapper');
+  const stage = $('scene-stage');
   const img = $('scene-image');
-  // getBoundingClientRect is always up-to-date, unlike offsetWidth/Height
+  if (!stage || !wrapper) return;
+
   const { width: wW, height: wH } = wrapper.getBoundingClientRect();
 
-  if (img && img.naturalWidth && img.style.display !== 'none') {
-    const ratio = img.naturalWidth / img.naturalHeight;
-    const wrapRatio = wW / wH;
-    let rendW, rendH;
-    if (ratio > wrapRatio) {
-      rendW = wW; rendH = wW / ratio;
-    } else {
-      rendH = wH; rendW = wH * ratio;
-    }
-    return { left: (wW - rendW) / 2, top: (wH - rendH) / 2, width: rendW, height: rendH };
+  if (!img || !img.naturalWidth || img.style.display === 'none') {
+    // No image yet — stage fills the whole wrapper as a placeholder
+    stage.style.width  = wW + 'px';
+    stage.style.height = wH + 'px';
+    return;
   }
-  return { left: 0, top: 0, width: wW, height: wH };
+
+  const imgRatio  = img.naturalWidth / img.naturalHeight;
+  const wrapRatio = wW / wH;
+
+  let stageW, stageH;
+  if (imgRatio > wrapRatio) {
+    // image relatively wider than wrapper → fit width, letterbox top/bottom
+    stageW = wW;
+    stageH = wW / imgRatio;
+  } else {
+    // image relatively taller than wrapper → fit height, letterbox left/right
+    stageH = wH;
+    stageW = wH * imgRatio;
+  }
+
+  stage.style.width  = stageW + 'px';
+  stage.style.height = stageH + 'px';
 }
 
 function getAvailableHotspots(location) {
@@ -419,18 +429,8 @@ function getAvailableHotspots(location) {
   });
 }
 
-function fitHotspotContainer() {
-  // Resize #hotspot-container to exactly cover the displayed image area.
-  // Hotspots inside use % so they track correctly on every browser resize.
-  const b = getImageBounds();
-  hotspotContainer.style.left   = b.left   + 'px';
-  hotspotContainer.style.top    = b.top    + 'px';
-  hotspotContainer.style.width  = b.width  + 'px';
-  hotspotContainer.style.height = b.height + 'px';
-}
-
 function renderHotspots() {
-  fitHotspotContainer();
+  updateSceneStage();
   hotspotContainer.innerHTML = '';
   const hotspots = getAvailableHotspots(state.currentLocation);
 

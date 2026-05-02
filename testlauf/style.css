@@ -362,13 +362,14 @@ html, body {
 }
 
 #scene-wrapper {
-  /* Explicitly fill the area below the fixed top bar.
-     position:absolute takes it out of flex flow so height is always reliable. */
   position: absolute;
   top: 52px;
   left: 0;
   right: 0;
   bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #scene-placeholder {
@@ -377,12 +378,20 @@ html, body {
   background: linear-gradient(160deg, #1a3a5c 0%, #2d5a3d 60%, #3d3d2d 100%);
 }
 
+/* The stage IS the rendered image area. JS keeps its width/height
+   matching the image's actual rendered size on screen, so hotspots
+   inside (positioned with %) are always perfectly aligned. */
+#scene-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 #scene-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
   display: none;
 }
 
@@ -479,8 +488,8 @@ html, body {
 
 #hotspot-container {
   position: absolute;
+  inset: 0;
   pointer-events: none;
-  /* left/top/width/height are set by JS to exactly match the image display area */
 }
 
 .hotspot {

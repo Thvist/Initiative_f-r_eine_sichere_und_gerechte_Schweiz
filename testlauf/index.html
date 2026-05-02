@@ -97,9 +97,14 @@
      ============================== -->
 <div id="screen-scene" class="screen" role="main">
   <div id="scene-wrapper">
-    <!-- Placeholder / background for scene -->
-    <div id="scene-placeholder" role="img" aria-label="Szene-Illustration">
-      <img id="scene-image" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover;">
+    <!-- Placeholder background visible in letterbox area / when no image -->
+    <div id="scene-placeholder" role="img" aria-label="Szene-Illustration"></div>
+
+    <!-- Stage: dimensions ALWAYS exactly match rendered image area.
+         Hotspots inside use % so they stay perfectly aligned on any resize. -->
+    <div id="scene-stage">
+      <img id="scene-image" src="" alt="">
+      <div id="hotspot-container" role="group" aria-label="Interaktionspunkte"></div>
     </div>
 
     <!-- Scene name label -->
@@ -117,9 +122,6 @@
       <span class="nav-dest-label" id="nav-label-right"></span>
       <button class="nav-arrow" id="nav-right" aria-label="Nächste Ortschaft">›</button>
     </div>
-
-    <!-- Hotspots injected here by JS -->
-    <div id="hotspot-container" role="group" aria-label="Interaktionspunkte"></div>
   </div>
 </div>
 
