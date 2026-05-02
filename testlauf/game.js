@@ -197,8 +197,15 @@ function initPlacementMode() {
     const text = `${context} → x: ${x}, y: ${y}`;
     tip.textContent = text;
     tip.style.display = 'block';
-    tip.style.left = (e.clientX + 12) + 'px';
-    tip.style.top  = (e.clientY - 10) + 'px';
+
+    // Clamp so tooltip never goes off-screen
+    const tipW = tip.offsetWidth || 220;
+    const tipH = tip.offsetHeight || 36;
+    const margin = 8;
+    const rawLeft = e.clientX + 12;
+    const rawTop  = e.clientY - 10;
+    tip.style.left = Math.min(rawLeft, window.innerWidth  - tipW - margin) + 'px';
+    tip.style.top  = Math.max(margin, Math.min(rawTop, window.innerHeight - tipH - margin)) + 'px';
 
     // Copy to clipboard
     navigator.clipboard?.writeText(`{ "x": ${x}, "y": ${y} }`).catch(() => {});
