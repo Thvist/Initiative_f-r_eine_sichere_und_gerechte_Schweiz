@@ -158,9 +158,10 @@ function init() {
   });
 
   window.addEventListener('resize', () => {
-    if (screens.scene.classList.contains('active') && !modalOverlay.classList.contains('active')) {
-      // rAF ensures layout has settled before we measure getBoundingClientRect
-      requestAnimationFrame(renderHotspots);
+    if (screens.scene.classList.contains('active')) {
+      // rAF ensures layout has settled; only refit the container — hotspots
+      // use % so they track automatically without rebuilding the DOM
+      requestAnimationFrame(fitHotspotContainer);
     }
   });
 
@@ -418,19 +419,28 @@ function getAvailableHotspots(location) {
   });
 }
 
+function fitHotspotContainer() {
+  // Resize #hotspot-container to exactly cover the displayed image area.
+  // Hotspots inside use % so they track correctly on every browser resize.
+  const b = getImageBounds();
+  hotspotContainer.style.left   = b.left   + 'px';
+  hotspotContainer.style.top    = b.top    + 'px';
+  hotspotContainer.style.width  = b.width  + 'px';
+  hotspotContainer.style.height = b.height + 'px';
+}
+
 function renderHotspots() {
+  fitHotspotContainer();
   hotspotContainer.innerHTML = '';
   const hotspots = getAvailableHotspots(state.currentLocation);
 
   if (hotspots.length === 0) {
     const msg = document.createElement('div');
-    msg.style.cssText = 'position:absolute;bottom:80px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:13px;text-align:center;pointer-events:none;';
+    msg.style.cssText = 'position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:13px;text-align:center;pointer-events:none;';
     msg.textContent = 'Keine weiteren Aktionen an diesem Ort.';
     hotspotContainer.appendChild(msg);
     return;
   }
-
-  const bounds = getImageBounds();
 
   hotspots.forEach(hotspot => {
     const el = document.createElement('button');
@@ -438,8 +448,9 @@ function renderHotspots() {
     el.setAttribute('aria-label', hotspot.label);
     el.dataset.id = hotspot.id;
 
-    el.style.left = (bounds.left + hotspot.position.x * bounds.width)  + 'px';
-    el.style.top  = (bounds.top  + hotspot.position.y * bounds.height) + 'px';
+    // % within the container = % within the image — stays correct on any resize
+    el.style.left = (hotspot.position.x * 100) + '%';
+    el.style.top  = (hotspot.position.y * 100) + '%';
 
     el.innerHTML = `
       <div class="hotspot-pulse" aria-hidden="true">

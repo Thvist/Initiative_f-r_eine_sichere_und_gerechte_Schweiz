@@ -479,8 +479,8 @@ html, body {
 
 #hotspot-container {
   position: absolute;
-  inset: 0;
   pointer-events: none;
+  /* left/top/width/height are set by JS to exactly match the image display area */
 }
 
 .hotspot {
