@@ -398,14 +398,17 @@ function updateSceneStage() {
   const wrapRatio = wW / wH;
 
   let stageW, stageH;
+  // COVER behaviour: stage fills the wrapper completely, overflow is cropped.
+  // Hotspots inside (positioned with %) remain locked to image coords —
+  // ones in the cropped region just sit outside the visible area.
   if (imgRatio > wrapRatio) {
-    // image relatively wider than wrapper → fit width, letterbox top/bottom
-    stageW = wW;
-    stageH = wW / imgRatio;
-  } else {
-    // image relatively taller than wrapper → fit height, letterbox left/right
+    // image relatively wider → fit height, overflow horizontally
     stageH = wH;
     stageW = wH * imgRatio;
+  } else {
+    // image relatively taller → fit width, overflow vertically
+    stageW = wW;
+    stageH = wW / imgRatio;
   }
 
   stage.style.width  = stageW + 'px';
