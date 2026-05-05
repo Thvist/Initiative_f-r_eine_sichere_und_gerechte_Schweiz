@@ -151,6 +151,20 @@ html, body {
   padding: 20px;
 }
 
+.version-badge {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--grey-500);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  background: rgba(0,0,0,0.04);
+  border-radius: 100px;
+}
+
 .intro-card {
   background: var(--white);
   border-radius: var(--radius);
@@ -262,14 +276,11 @@ html, body {
   background: var(--grey-100);
 }
 
-.btn-option.option-a:hover {
-  border-color: var(--green);
-  background: #f0fdf4;
-}
-
-.btn-option.option-b:hover {
-  border-color: var(--red);
-  background: #fff5f5;
+.btn-option.option-a:hover,
+.btn-option.option-b:hover,
+.btn-option.option-neutral:hover {
+  border-color: var(--grey-500);
+  background: var(--grey-100);
 }
 
 /* ============== MAP SCREEN ============== */
@@ -505,29 +516,30 @@ html, body {
 }
 
 .hotspot-pulse {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(216, 35, 42, 0.25);
-  border: 2px solid var(--red);
+  background: rgba(216, 35, 42, 0.32);
+  border: 3px solid var(--red);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition);
-  animation: hotspot-pulse 2s infinite;
+  transition: transform var(--transition), background var(--transition);
+  animation: hotspot-pulse 1.6s infinite;
 }
 
 .hotspot:hover .hotspot-pulse {
-  background: rgba(216, 35, 42, 0.5);
+  background: rgba(216, 35, 42, 0.55);
   transform: scale(1.2);
   animation: none;
 }
 
 .hotspot-dot {
-  width: 10px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--red);
+  box-shadow: 0 0 8px rgba(216, 35, 42, 0.6);
 }
 
 .hotspot-tooltip {
@@ -555,8 +567,9 @@ html, body {
 body.placement-mode .hotspot-tooltip { opacity: 1; }
 
 @keyframes hotspot-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(216,35,42,0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(216,35,42,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(216,35,42,0.7); transform: scale(1); }
+  70%  { box-shadow: 0 0 0 22px rgba(216,35,42,0); transform: scale(1.06); }
+  100% { box-shadow: 0 0 0 0 rgba(216,35,42,0); transform: scale(1); }
 }
 
 /* ============== ACTION CARD / MODAL ============== */
@@ -1021,6 +1034,23 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
 #placement-phase-switcher button.active {
   background: #1c1c1c;
   color: #fbbf24;
+}
+
+#placement-jump-end {
+  background: #1c1c1c;
+  color: #fbbf24;
+  border: none;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+#placement-jump-end:hover {
+  opacity: 0.85;
 }
 
 #placement-tip {
