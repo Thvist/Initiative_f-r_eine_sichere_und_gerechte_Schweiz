@@ -552,6 +552,8 @@ html, body {
 
 .hotspot:hover .hotspot-tooltip { opacity: 1; }
 
+body.placement-mode .hotspot-tooltip { opacity: 1; }
+
 @keyframes hotspot-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(216,35,42,0.4); }
   50% { box-shadow: 0 0 0 10px rgba(216,35,42,0); }
@@ -917,6 +919,41 @@ html, body {
   padding: 8px 16px;
   font-size: 13px;
   font-family: var(--font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+#placement-phase-switcher {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(28,28,28,0.12);
+  border-radius: 100px;
+  padding: 3px;
+}
+
+#placement-phase-switcher button {
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  color: #1c1c1c;
+  padding: 4px 12px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+#placement-phase-switcher button:hover {
+  background: rgba(28,28,28,0.15);
+}
+
+#placement-phase-switcher button.active {
+  background: #1c1c1c;
+  color: #fbbf24;
 }
 
 #placement-tip {
