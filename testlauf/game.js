@@ -7,9 +7,10 @@
 const PHASES = ['morgen', 'nachmittag', 'abend'];
 const LOCATIONS = ['park', 'platz', 'wohn'];
 const ACTIONS_PER_PHASE = 2;
-const MAX_HIGHSCORES = 10;
-const LS_SCORES = 'sks_highscores';
+const NAME_MAX = 16;
 const LS_SOUND = 'sks_sound_enabled';
+const LS_PLAYER_NAME = 'sks_player_name';
+const FIREBASE_URL = 'https://helvetingen-leaderboard-default-rtdb.europe-west1.firebasedatabase.app';
 
 const PHASE_ICONS = { morgen: '🌅', nachmittag: '☀️', abend: '🌇' };
 const PHASE_LABELS = { morgen: 'Morgen', nachmittag: 'Nachmittag', abend: 'Abend' };
@@ -706,7 +707,7 @@ function showEndScreen() {
   showScreen('end');
   topBar.classList.remove('hidden');
 
-  const score = state.score;
+  const score = Math.max(-1000, Math.min(1000, state.score));
   const tier = getTier(score);
   const tierData = messages.tiers?.[tier.key] || {};
 
@@ -722,22 +723,18 @@ function showEndScreen() {
   $('end-citizen-title').textContent = tierData.title || '';
   $('end-message').innerHTML = tierData.message || '';
 
+  // Hide highscore notice until submission decides
+  $('end-highscore-notice').classList.add('hidden');
+
   // Cat callback
-  if (state.flags.has('saved_cat')) {
-    $('cat-callback').classList.remove('hidden');
-  }
+  $('cat-callback').classList.toggle('hidden', !state.flags.has('saved_cat'));
 
   // Action log
   renderActionLog();
 
-  // Leaderboard
-  const isNewHigh = saveHighscore(score, tier);
-  if (isNewHigh) {
-    const notice = $('end-highscore-notice');
-    notice.textContent = tierData.highscore_message || 'Neuer Rekord!';
-    notice.classList.remove('hidden');
-  }
-  renderLeaderboard();
+  // Name form + leaderboard
+  setupNameForm(score, tier, tierData);
+  renderLeaderboard(score);
 
   // Confetti for extreme scores
   if (score >= 751) triggerConfetti(false);
@@ -772,75 +769,137 @@ function renderActionLog() {
 }
 
 // ============================================================
-//  LEADERBOARD
+//  LEADERBOARD  (Firebase Realtime Database)
 // ============================================================
 
-function saveHighscore(score, tier) {
-  const existing = loadHighscores();
-  const entry = {
-    score,
-    tier: tier.name,
-    date: new Date().toISOString(),
-    title: (messages.tiers?.[tier.key]?.title) || '',
-  };
-
-  // Check if new record in this direction
-  const isPositive = score > 0;
-  const sameDir = existing.filter(e => (e.score > 0) === isPositive);
-  const best = isPositive
-    ? Math.max(...sameDir.map(e => e.score), -Infinity)
-    : Math.min(...sameDir.map(e => e.score), Infinity);
-
-  const isNew = isPositive ? score > best : score < best;
-
-  existing.push(entry);
-  // Keep top 10 by absolute value but maintain both extremes
-  existing.sort((a, b) => Math.abs(b.score) - Math.abs(a.score));
-  const kept = existing.slice(0, MAX_HIGHSCORES);
-  localStorage.setItem(LS_SCORES, JSON.stringify(kept));
-  return isNew;
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
 }
 
-function loadHighscores() {
+function setupNameForm(score, tier, tierData) {
+  const form = $('name-form');
+  const input = $('name-input');
+  const submitBtn = $('name-submit-btn');
+  const submitSection = $('end-name-submit');
+  const confirmation = $('end-name-confirmation');
+
+  submitSection.classList.remove('hidden');
+  confirmation.classList.add('hidden');
+  input.disabled = false;
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Eintragen';
+  input.value = localStorage.getItem(LS_PLAYER_NAME) || '';
+
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const name = input.value.trim().slice(0, NAME_MAX);
+    if (!name) return;
+
+    localStorage.setItem(LS_PLAYER_NAME, name);
+    input.disabled = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird eingetragen...';
+
+    const ok = await submitScore(name, score, tier);
+    if (!ok) {
+      input.disabled = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Erneut versuchen';
+      return;
+    }
+
+    submitSection.classList.add('hidden');
+    $('confirmed-name').textContent = name;
+    confirmation.classList.remove('hidden');
+
+    const all = await fetchScores();
+    if (isNewHigh(score, all)) {
+      const notice = $('end-highscore-notice');
+      notice.textContent = tierData.highscore_message || 'Neuer Rekord!';
+      notice.classList.remove('hidden');
+    }
+    renderLeaderboardFromData(all, score, name);
+  };
+}
+
+async function submitScore(name, score, tier) {
+  const body = {
+    name: String(name).slice(0, NAME_MAX),
+    score: Math.max(-1000, Math.min(1000, score | 0)),
+    tier: tier.name,
+    date: new Date().toISOString(),
+  };
   try {
-    return JSON.parse(localStorage.getItem(LS_SCORES)) || [];
+    const res = await fetch(`${FIREBASE_URL}/scores.json`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    return res.ok;
+  } catch { return false; }
+}
+
+async function fetchScores() {
+  try {
+    const res = await fetch(`${FIREBASE_URL}/scores.json`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data ? Object.values(data) : [];
   } catch { return []; }
 }
 
-function renderLeaderboard() {
+function isNewHigh(score, scores) {
+  if (score === 0) return false;
+  const sameDir = scores.filter(s => (s.score > 0) === (score > 0));
+  if (sameDir.length === 0) return true;
+  return score > 0
+    ? score >= Math.max(...sameDir.map(s => s.score))
+    : score <= Math.min(...sameDir.map(s => s.score));
+}
+
+async function renderLeaderboard(currentScore, justSubmittedName) {
+  const grid = $('leaderboard-grid');
+  grid.innerHTML = '<p style="grid-column:1/-1;color:#6b7280;font-size:13px;text-align:center;">Wird geladen...</p>';
+  const all = await fetchScores();
+  renderLeaderboardFromData(all, currentScore, justSubmittedName);
+}
+
+function renderLeaderboardFromData(all, currentScore, justSubmittedName) {
   const grid = $('leaderboard-grid');
   grid.innerHTML = '';
 
-  const all = loadHighscores();
   const positive = all.filter(e => e.score > 0).sort((a, b) => b.score - a.score).slice(0, 5);
   const negative = all.filter(e => e.score < 0).sort((a, b) => a.score - b.score).slice(0, 5);
 
-  function renderCol(entries, label, cssClass, isNewCheck) {
+  function renderCol(entries, label, cssClass) {
     const col = document.createElement('div');
     col.className = `leaderboard-col ${cssClass}`;
-    col.innerHTML = `<h4>${label}</h4>`;
+    col.innerHTML = `<h4>${escapeHtml(label)}</h4>`;
     if (entries.length === 0) {
       col.innerHTML += '<p style="font-size:13px;color:#6b7280;">Noch keine Einträge.</p>';
-    } else {
-      entries.forEach((e, i) => {
-        const row = document.createElement('div');
-        row.className = 'leaderboard-entry';
-        if (isNewCheck(e)) row.classList.add('is-new');
-        const scoreStr = e.score >= 0 ? `+${e.score}` : `${e.score}`;
-        row.innerHTML = `
-          <span class="leaderboard-rank">${i + 1}.</span>
-          <span class="leaderboard-score">${scoreStr}</span>
-          <span style="font-size:11px;color:#6b7280;">${e.tier}</span>
-        `;
-        col.appendChild(row);
-      });
+      return col;
     }
+    entries.forEach((e, i) => {
+      const row = document.createElement('div');
+      row.className = 'leaderboard-entry';
+      if (justSubmittedName && e.name === justSubmittedName && e.score === currentScore) {
+        row.classList.add('is-new');
+      }
+      const scoreStr = e.score >= 0 ? `+${e.score}` : `${e.score}`;
+      row.innerHTML = `
+        <span class="leaderboard-rank">${i + 1}.</span>
+        <span class="leaderboard-name">${escapeHtml(e.name || 'Anonym')}</span>
+        <span class="leaderboard-score">${scoreStr}</span>
+      `;
+      col.appendChild(row);
+    });
     return col;
   }
 
-  const currentScore = state.score;
-  grid.appendChild(renderCol(positive, 'Unsere Musterbürger:innen', 'positive', e => e.score === currentScore && currentScore > 0));
-  grid.appendChild(renderCol(negative, 'Die hartnäckigsten Widerständler:innen', 'negative', e => e.score === currentScore && currentScore < 0));
+  grid.appendChild(renderCol(positive, 'Unsere Musterbürger:innen', 'positive'));
+  grid.appendChild(renderCol(negative, 'Die hartnäckigsten Widerständler:innen', 'negative'));
 }
 
 // ============================================================
