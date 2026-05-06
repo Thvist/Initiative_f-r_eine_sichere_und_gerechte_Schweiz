@@ -691,7 +691,7 @@ strong { font-weight: 700; }
 
 /* ============== SYSTEM OVERVIEW DIAGRAM ============== */
 .sysov {
-  max-width: 780px;
+  max-width: 860px;
   margin: 0 auto;
   border-radius: var(--radius);
   overflow: hidden;
