@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spenden – Sozialkredit-Initiative Schweiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="website_material/Logo_Sozialkredit.png" alt="SKS Logo">
+      <span>Sozialkredit-Initiative Schweiz</span>
+    </a>
+    <button class="nav-hamburger" aria-label="Navigation öffnen">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="initiative.html">Initiative</a></li>
+      <li><a href="bundesverfassung.html">Bundesverfassung</a></li>
+      <li><a href="faktencheck.html">Faktencheck</a></li>
+      <li><a href="testlauf.html">Testlauf</a></li>
+      <li><a href="spiel.html">Spiel</a></li>
+      <li><a href="spenden.html" class="nav-cta">Spenden</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section style="padding: 3rem 0 2rem; border-bottom: 1px solid var(--grey-300);">
+  <div class="container">
+    <div class="section-label">Unterseite Spenden</div>
+    <h1 style="font-size: clamp(1.75rem, 4vw, 2.75rem);">Spenden</h1>
+    <p class="lead" style="margin: 0.75rem 0 0;">Die Lancierung einer nationalen Volksinitiative ist mit hohen Kosten verbunden, von der Mobilisierung bis zur professionellen Aufklärung. Danke, dass du uns dabei hilfst, diese Kosten zu decken und unser Komitee mit einer Spende unterstützt.</p>
+  </div>
+</section>
+
+<!-- DONATION SECTION -->
+<section>
+  <div class="container">
+    <div class="donation-wrap">
+
+      <!-- Left: context -->
+      <div>
+        <div class="section-label">Warum Spenden?</div>
+        <h2>Jede Spende zählt</h2>
+        <p style="color: var(--grey-700); margin-bottom: 1rem;">Deine Spende wird vom Initiativkomitee ausschliesslich für die Förderung von Sicherheit und Gerechtigkeit durch das Schweizer Sozialkreditsystem verwendet.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="flex-shrink: 0; width: 40px; height: 40px; background: var(--red-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.125rem;">✍️</div>
+            <div>
+              <div style="font-weight: 700; margin-bottom: 0.25rem;">Unterschriften sammeln</div>
+              <p style="color: var(--grey-700); font-size: 0.875rem; margin: 0;">Finanzierung von Unterschriftensammlungs-Kampagnen in allen Kantonen.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="flex-shrink: 0; width: 40px; height: 40px; background: var(--red-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.125rem;">📢</div>
+            <div>
+              <div style="font-weight: 700; margin-bottom: 0.25rem;">Öffentlichkeitsarbeit</div>
+              <p style="color: var(--grey-700); font-size: 0.875rem; margin: 0;">Informationsveranstaltungen, Medienarbeit und digitale Kommunikation.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1rem; align-items: flex-start;">
+            <div style="flex-shrink: 0; width: 40px; height: 40px; background: var(--red-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.125rem;">🔬</div>
+            <div>
+              <div style="font-weight: 700; margin-bottom: 0.25rem;">Wissenschaftliche Begleitung</div>
+              <p style="color: var(--grey-700); font-size: 0.875rem; margin: 0;">Unabhängige Evaluation und Dokumentation des Pilotprojekts St. Gallen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: var(--grey-100); border-radius: var(--radius); padding: 1.5rem; border-left: 4px solid var(--red);">
+          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--grey-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem;">Transparenz</div>
+          <p style="font-size: 0.9rem; color: var(--grey-700); margin: 0;">Alle Spendeneinnahmen werden vom Initiativkomitee transparent ausgewiesen und ausschliesslich für den Initiativprozess verwendet. Spendenquittungen werden auf Anfrage ausgestellt.</p>
+        </div>
+      </div>
+
+      <!-- Right: donation form -->
+      <div>
+        <div class="donation-card">
+          <div style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 1.25rem;">Betrag wählen</div>
+
+          <div class="donation-display">
+            <span class="currency">CHF</span><span id="donation-display-value">10.–</span>
+          </div>
+
+          <div class="donation-presets">
+            <button class="preset-btn" data-amount="15">15</button>
+            <button class="preset-btn" data-amount="20">20</button>
+            <button class="preset-btn" data-amount="50">50</button>
+            <button class="preset-btn" data-amount="100">100</button>
+          </div>
+
+          <div class="custom-amount-row">
+            <span class="prefix">CHF</span>
+            <input type="number" id="custom-amount" placeholder="Eigener Betrag" min="1" value="10">
+          </div>
+
+          <hr class="donation-separator">
+
+          <div class="donation-toggle-row">
+            <div class="toggle-label-text">Spende regelmässig (monatlich)</div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-recurring">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <hr class="donation-separator">
+
+          <form id="donation-form">
+            <div style="font-size: 0.8125rem; font-weight: 700; color: var(--grey-700); margin-bottom: 0.625rem;">Zahlungsmittel wählen</div>
+            <div class="payment-methods">
+              <label class="payment-option">
+                <input type="radio" name="payment" value="card" checked>
+                <span class="payment-icon">💳</span>
+                <span>Kredit- / Debitkarte</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="twint">
+                <span class="payment-icon">📱</span>
+                <span>TWINT</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="bank">
+                <span class="payment-icon">🏦</span>
+                <span>Banküberweisung</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="postfinance">
+                <span class="payment-icon">🟡</span>
+                <span>PostFinance</span>
+              </label>
+            </div>
+
+            <hr class="donation-separator">
+
+            <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem;">
+              <label class="form-checkbox">
+                <input type="checkbox" id="cover-fees">
+                Gebühren übernehmen <span style="color: var(--grey-500); font-size: 0.8125rem;">(+2.9% + CHF 0.30)</span>
+              </label>
+              <label class="form-checkbox">
+                <input type="checkbox" id="donor-receipt">
+                Ich möchte eine Spenderverdankung per E-Mail
+              </label>
+            </div>
+
+            <div id="receipt-fields" style="display: none; margin-bottom: 1.25rem;">
+              <div class="form-grid">
+                <div class="form-group"><label class="form-label" for="don-email">E-Mail</label><input class="form-input" id="don-email" type="email" placeholder="maria.muster@beispiel.ch"></div>
+                <div class="form-group"><label class="form-label" for="don-name">Name</label><input class="form-input" id="don-name" type="text" placeholder="Maria Muster"></div>
+              </div>
+            </div>
+
+            <label class="form-checkbox" style="margin-bottom: 1.25rem;">
+              <input type="checkbox" required>
+              Ich nehme die Datenschutzerklärung zur Kenntnis. Meine Zustimmung kann ich jederzeit anpassen oder zurückziehen.
+            </label>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Jetzt spenden</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUST SIGNALS -->
+<section class="bg-off-white">
+  <div class="container" style="max-width: 700px; text-align: center;">
+    <div class="section-label">Sicherheit</div>
+    <h2 style="margin-bottom: 1.5rem;">Ihre Spende ist sicher</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+      <div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔒</div>
+        <div style="font-weight: 700; margin-bottom: 0.25rem;">SSL-Verschlüsselung</div>
+        <p style="font-size: 0.875rem; color: var(--grey-700); margin: 0;">Alle Zahlungsdaten werden sicher übertragen.</p>
+      </div>
+      <div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🇨🇭</div>
+        <div style="font-weight: 700; margin-bottom: 0.25rem;">Schweizer Server</div>
+        <p style="font-size: 0.875rem; color: var(--grey-700); margin: 0;">Daten werden ausschliesslich in der Schweiz verwaltet.</p>
+      </div>
+      <div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📋</div>
+        <div style="font-weight: 700; margin-bottom: 0.25rem;">Transparente Abrechnung</div>
+        <p style="font-size: 0.875rem; color: var(--grey-700); margin: 0;">Spendenquittungen auf Anfrage verfügbar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <img src="website_material/Logo_Sozialkredit.png" alt="SKS" class="footer-logo">
+      <p class="footer-tagline">Für eine sichere und gerechte Schweiz.<br>Initiativkomitee Sozialkreditsystem Schweiz.</p>
+    </div>
+    <div>
+      <div class="footer-title">Adresse</div>
+      <address class="footer-address">Sozialkredit-Initiative<br>Schweizerplatz 0<br>0000 Helvetingen</address>
+    </div>
+    <div>
+      <div class="footer-title">Soziale Medien</div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">Ig</a>
+        <a href="#" aria-label="Facebook">Fb</a>
+        <a href="#" aria-label="X">X</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Sozialkredit-Initiative Schweiz</span>
+    <div><a href="#">Datenschutz</a> · <a href="#">Impressum</a></div>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+<script>
+  // Show/hide receipt email field
+  document.getElementById('donor-receipt')?.addEventListener('change', function() {
+    document.getElementById('receipt-fields').style.display = this.checked ? 'block' : 'none';
+  });
+</script>
+</body>
+</html>

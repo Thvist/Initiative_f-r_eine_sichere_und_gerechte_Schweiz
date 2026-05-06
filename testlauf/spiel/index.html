@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helvetingen Testlauf – Sozialkredit-Initiative</title>
+  <meta name="description" content="Erleben Sie einen Tag als Bürger:in von Helvetingen, der Pilotgemeinde des Schweizer Sozialkreditsystems.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="top-bar" class="hidden">
+  <div class="logo" aria-label="Sozialkredit-Initiative – BGR">
+    <img src="assets/icon_s_plus.svg" alt="S+ Logo">
+    <span>BGR Helvetingen</span>
+  </div>
+  <div id="score-display" aria-live="polite" aria-atomic="true">
+    <span id="score-label">Sozialkredit</span>
+    <span id="score-value">0</span>
+  </div>
+  <div id="phase-display">Morgen</div>
+  <button id="sound-toggle" aria-label="Ton ein-/ausschalten" title="Ton">🔊</button>
+</div>
+
+<!-- BGR NOTIFICATION -->
+<div id="bgr-notification" role="status" aria-live="polite">
+  <img id="bgr-notif-icon" class="bgr-notif-icon" src="assets/icon_s_plus.svg" alt="">
+  <div class="bgr-notif-content">
+    <div id="bgr-notif-points" class="bgr-notif-points"></div>
+    <div id="bgr-notif-label" class="bgr-notif-label">Bundesamt für Gerechtigkeit</div>
+  </div>
+</div>
+
+<!-- CONFETTI -->
+<div id="confetti-container" aria-hidden="true"></div>
+
+<!-- ==============================
+     SCREEN: INTRO
+     ============================== -->
+<div id="screen-intro" class="screen active" role="main">
+  <div class="version-badge" aria-label="Version">v0.6</div>
+  <div class="intro-card">
+    <div class="bgr-badge">
+      <img src="assets/icon_s_plus.svg" width="14" height="14" alt="" style="filter:brightness(0) invert(1)">
+      Offizieller Testlauf
+    </div>
+    <h1>Willkommen in Helvetingen</h1>
+    <p class="subtitle">Pilotgemeinde · Bundesamt für Gerechtigkeit</p>
+    <p class="body-text">
+      Sie befinden sich im offiziellen Testlauf des Bundesamts für Gerechtigkeit (BGR). Heute verbringen Sie einen Tag als Bürger:in von <strong>Helvetingen</strong>, der Pilotgemeinde des Schweizer Sozialkreditsystems.<br><br>
+      Sie haben <strong>6 Aktionen</strong> verteilt über drei Tagesabschnitte. Erkunden Sie die Gemeinde, treffen Sie Ihre Entscheidungen – das BGR registriert alles.<br><br>
+      Werden Sie ein <em>Vorbild</em> für die Schweiz? Oder finden Sie heraus, was mit Widerständigen passiert?
+    </p>
+    <button class="btn btn-primary" id="btn-start">Testlauf starten</button>
+  </div>
+</div>
+
+<!-- ==============================
+     SCREEN: MAP
+     ============================== -->
+<div id="screen-map" class="screen" role="main" aria-label="Karte von Helvetingen">
+  <div id="map-wrapper">
+    <!-- Placeholder shown until real map image is added -->
+    <div id="map-placeholder" role="img" aria-label="Karte von Helvetingen – Illustration folgt">
+      <!-- Map image loads here -->
+      <img id="map-image" src="" alt="Karte von Helvetingen" style="display:none; max-width:100%; max-height:100%;">
+    </div>
+
+    <!-- Location buttons (positioned over the map) -->
+    <button class="map-location-btn" id="map-btn-park"
+            style="left:20%; top:46%"
+            data-location="park"
+            aria-label="Stadtpark & Badeanstalt">
+      Stadtpark &amp; Badi
+    </button>
+
+    <button class="map-location-btn" id="map-btn-platz"
+            style="left:55%; top:61%"
+            data-location="platz"
+            aria-label="Gemeindeplatz">
+      Gemeindeplatz
+    </button>
+
+    <button class="map-location-btn" id="map-btn-wohn"
+            style="left:81%; top:50%"
+            data-location="wohn"
+            aria-label="Wohnquartier">
+      Wohnquartier
+    </button>
+
+    <div id="map-status-bar" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- ==============================
+     SCREEN: SCENE
+     ============================== -->
+<div id="screen-scene" class="screen" role="main">
+  <div id="scene-wrapper">
+    <!-- Placeholder background visible in letterbox area / when no image -->
+    <div id="scene-placeholder" role="img" aria-label="Szene-Illustration"></div>
+
+    <!-- Stage: dimensions ALWAYS exactly match rendered image area.
+         Hotspots inside use % so they stay perfectly aligned on any resize. -->
+    <div id="scene-stage">
+      <img id="scene-image" src="" alt="">
+      <div id="hotspot-container" role="group" aria-label="Interaktionspunkte"></div>
+    </div>
+
+    <!-- Scene name label -->
+    <div id="scene-label" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <button class="nav-arrow" id="nav-back" aria-label="Zurück zur Karte" title="Zur Karte">←</button>
+
+    <div class="nav-side" id="nav-side-left">
+      <span class="nav-dest-label" id="nav-label-left"></span>
+      <button class="nav-arrow" id="nav-left" aria-label="Vorherige Ortschaft">‹</button>
+    </div>
+
+    <div class="nav-side" id="nav-side-right">
+      <span class="nav-dest-label" id="nav-label-right"></span>
+      <button class="nav-arrow" id="nav-right" aria-label="Nächste Ortschaft">›</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================
+     SCREEN: PHASE TRANSITION
+     ============================== -->
+<div id="screen-transition" class="screen" role="status" aria-live="assertive">
+  <div class="transition-card">
+    <div class="phase-icon" id="transition-icon">🌅</div>
+    <h2 id="transition-title">Der Morgen ist vorüber.</h2>
+    <p id="transition-body">Das BGR hat Ihren Morgen registriert.</p>
+  </div>
+</div>
+
+<!-- ==============================
+     SCREEN: END
+     ============================== -->
+<div id="screen-end" class="screen" role="main">
+  <div id="end-content">
+
+    <!-- Tier & Score -->
+    <div id="end-tier-badge" class="end-tier-badge">Basis</div>
+    <div id="end-score" class="end-score-display">0</div>
+    <div id="end-citizen-title" class="end-title">Neutrale:r Bürger:in</div>
+    <div id="end-message" class="end-message"></div>
+
+    <!-- Highscore notice -->
+    <div id="end-highscore-notice" class="hidden" style="margin-bottom:16px; padding:10px 16px; background:#fffbeb; border-radius:8px; font-size:14px; font-weight:600; color:#92400e; border: 1px solid #fcd34d;"></div>
+
+    <!-- Bonus thank-you (conditional) -->
+    <div id="bonus-thanks" class="bonus-thanks hidden">
+      <div class="bonus-thanks-tag">Bonus-Danke</div>
+      <img id="bonus-thanks-image" class="bonus-thanks-image hidden" src="" alt="">
+      <div id="bonus-thanks-text" class="bonus-thanks-text"></div>
+    </div>
+
+    <!-- Action Log -->
+    <div class="end-section-title" style="margin-top:8px;">Ihr Tagesprotokoll</div>
+    <div id="action-log-container" style="margin-bottom:28px;"></div>
+
+    <!-- Name submission -->
+    <div id="end-name-submit" class="name-submit-section">
+      <div class="name-submit-title">In die Bestenliste eintragen</div>
+      <form id="name-form" autocomplete="off">
+        <input type="text" id="name-input" maxlength="16" placeholder="Ihr Name" required>
+        <button type="submit" class="btn btn-primary" id="name-submit-btn">Eintragen</button>
+      </form>
+    </div>
+    <div id="end-name-confirmation" class="hidden">
+      Eingetragen als <strong id="confirmed-name"></strong>
+    </div>
+
+    <!-- Leaderboard -->
+    <div class="end-section-title">Bestenliste Helvetingen</div>
+    <div class="leaderboard-grid" id="leaderboard-grid"></div>
+
+    <!-- Buttons -->
+    <div class="end-buttons">
+      <button class="btn btn-primary" id="btn-replay">Nochmal spielen</button>
+      <a class="btn btn-secondary" href="../" id="btn-back">Mehr erfahren</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==============================
+     ACTION MODAL
+     ============================== -->
+<div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-hotspot-title">
+  <div class="action-card">
+    <div class="action-card-header">
+      <img id="modal-header-icon" src="assets/icon_camera.svg" alt="">
+      <h3 id="modal-hotspot-title">Hotspot</h3>
+    </div>
+    <div id="modal-image-wrap" class="hidden">
+      <img id="modal-hotspot-image" src="" alt="">
+    </div>
+    <div class="action-card-body">
+      <p class="action-card-desc" id="modal-desc"></p>
+      <div id="modal-bonus-tags" class="bonus-tag-row" aria-live="polite"></div>
+      <div class="action-card-options" id="modal-options"></div>
+    </div>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
