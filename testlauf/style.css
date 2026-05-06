@@ -648,7 +648,37 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
   font-size: 15px;
   line-height: 1.65;
   color: var(--grey-700);
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+}
+
+.bonus-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 0;
+  margin-bottom: 14px;
+}
+
+.bonus-tag-row:empty {
+  display: none;
+}
+
+.bonus-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 9px;
+  border-radius: 100px;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  animation: bonus-tag-pulse 0.9s ease-out 1;
 }
 
 .action-card-options {
@@ -657,13 +687,35 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
   gap: 10px;
 }
 
+.option-label-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
 .option-label {
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--grey-500);
-  margin-bottom: 4px;
+}
+
+@keyframes bonus-tag-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55);
+  }
+  45% {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
 }
 
 /* ============== BGR NOTIFICATION ============== */
@@ -839,6 +891,48 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
   font-size: 11px;
   color: var(--grey-500);
   margin-top: 2px;
+}
+
+.bonus-thanks {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius);
+}
+
+.bonus-thanks-tag {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 9px;
+  border-radius: 100px;
+  background: var(--white);
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  animation: bonus-tag-pulse 0.9s ease-out 1;
+}
+
+.bonus-thanks-image {
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.bonus-thanks-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--grey-700);
+  font-style: italic;
 }
 
 /* Name submission */

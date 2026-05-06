@@ -152,6 +152,13 @@
     <!-- Highscore notice -->
     <div id="end-highscore-notice" class="hidden" style="margin-bottom:16px; padding:10px 16px; background:#fffbeb; border-radius:8px; font-size:14px; font-weight:600; color:#92400e; border: 1px solid #fcd34d;"></div>
 
+    <!-- Bonus thank-you (conditional) -->
+    <div id="bonus-thanks" class="bonus-thanks hidden">
+      <div class="bonus-thanks-tag">Bonus-Danke</div>
+      <img id="bonus-thanks-image" class="bonus-thanks-image hidden" src="" alt="">
+      <div id="bonus-thanks-text" class="bonus-thanks-text"></div>
+    </div>
+
     <!-- Action Log -->
     <div class="end-section-title" style="margin-top:8px;">Ihr Tagesprotokoll</div>
     <div id="action-log-container" style="margin-bottom:28px;"></div>
@@ -171,11 +178,6 @@
     <!-- Leaderboard -->
     <div class="end-section-title">Bestenliste Helvetingen</div>
     <div class="leaderboard-grid" id="leaderboard-grid"></div>
-
-    <!-- Cat callback (conditional) -->
-    <div id="cat-callback" class="hidden" style="margin-bottom:20px; font-size:14px; color: #6b7280; font-style: italic; padding:12px; background: #f9fafb; border-radius:8px;">
-      🐱 Die Besitzerin der Katze, die Sie gerettet haben, hat beim BGR eine persönliche Danksagung hinterlegt.
-    </div>
 
     <!-- Buttons -->
     <div class="end-buttons">
@@ -199,6 +201,7 @@
     </div>
     <div class="action-card-body">
       <p class="action-card-desc" id="modal-desc"></p>
+      <div id="modal-bonus-tags" class="bonus-tag-row" aria-live="polite"></div>
       <div class="action-card-options" id="modal-options"></div>
     </div>
   </div>

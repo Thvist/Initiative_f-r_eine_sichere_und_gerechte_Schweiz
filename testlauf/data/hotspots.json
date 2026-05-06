@@ -17,12 +17,12 @@
     },
     "option_a": {
       "text": "Ach, hat eh schon Müll hier. Meinen Becher stelle ich auch gleich dazu.",
-      "points": -100,
+      "points": -80,
       "sets_flag": "added_to_litter"
     },
     "option_b": {
       "text": "Die Dose aufheben und in den Aluminium-Container werfen.",
-      "points": 50,
+      "points": 40,
       "sets_flag": "picked_up_can"
     }
   },
@@ -44,7 +44,7 @@
     },
     "option_a": {
       "text": "Anhalten, fragen ob alles ok ist, Notfallnummer anbieten.",
-      "points": 100,
+      "points": 90,
       "sets_flag": "helped_jogger"
     }
   },
@@ -66,7 +66,7 @@
     },
     "option_a": {
       "text": "Wegfahren, das gehört jetzt dir.",
-      "points": -200,
+      "points": -90,
       "sets_flag": "stole_bike"
     }
   },
@@ -88,7 +88,7 @@
     },
     "option_a": {
       "text": "Sich anschliessen und eine Stunde mithelfen.",
-      "points": 200,
+      "points": 180,
       "sets_flag": "joined_cleanup"
     }
   },
@@ -110,7 +110,7 @@
     },
     "option_a": {
       "text": "Ruhig helfen, Personal holen und dafür sorgen, dass sie nicht blossgestellt wird.",
-      "points": 100,
+      "points": 80,
       "sets_flag": "helped_badi_entry"
     }
   },
@@ -132,7 +132,7 @@
     },
     "option_a": {
       "text": "Den Laptop schnell einpacken und mitnehmen.",
-      "points": -200,
+      "points": -180,
       "sets_flag": "stole_laptop"
     }
   },
@@ -154,12 +154,12 @@
     },
     "option_a": {
       "text": "Ein paar Blumen ausreissen und für den Partner zu Hause mitnehmen.",
-      "points": -100,
+      "points": -80,
       "sets_flag": "picked_public_flowers"
     },
     "option_b": {
       "text": "Das Beet giessen.",
-      "points": 100,
+      "points": 80,
       "sets_flag": "watered_flowers"
     }
   },
@@ -181,17 +181,17 @@
     },
     "option_a": {
       "text": "Weiterlaufen und denken: Zum Glück ist das nicht die Mauer bei mir zu Hause.",
-      "points": -20,
+      "points": -10,
       "sets_flag": "ignored_graffiti"
     },
     "option_b": {
       "text": "Ansprechen, sagen dass das nicht okay ist, notfalls Gemeinde informieren.",
-      "points": 150,
+      "points": 120,
       "sets_flag": "stopped_graffiti"
     },
     "option_c": {
       "text": "Ansprechen und fragen, ob du mitsprayen darfst.",
-      "points": -150,
+      "points": -120,
       "sets_flag": "joined_graffiti"
     }
   },
@@ -242,7 +242,7 @@
     },
     "option_a": {
       "text": "Behaupten, das sei nicht dein Auto, und weggehen.",
-      "points": -100,
+      "points": -90,
       "sets_flag": "skipped_parking"
     },
     "option_b": {
@@ -269,12 +269,12 @@
     },
     "option_a": {
       "text": "Einstecken – ihr Problem.",
-      "points": -100,
+      "points": -60,
       "sets_flag": "kept_change"
     },
     "option_b": {
       "text": "Den Fehler melden und das Geld zurückgeben.",
-      "points": 100,
+      "points": 60,
       "sets_flag": "honest_change"
     }
   },
@@ -296,7 +296,7 @@
     },
     "option_a": {
       "text": "Das Velo kurz zur Seite schieben und die Rampe freimachen.",
-      "points": 100,
+      "points": 80,
       "sets_flag": "moved_bike"
     }
   },
@@ -308,35 +308,27 @@
       "x": 0.55,
       "y": 0.45
     },
-    "label": "Verlorene Brieftasche am Brunnen",
-    "description": "Eine Lederbrieftasche liegt am Rand des Brunnens. Niemand ist in der Nähe.",
+    "label": "Verlorenes Portemonnaie am Brunnen",
+    "description": "Ein Lederportemonnaie liegt am Rand des Brunnens. Niemand ist in der Nähe.",
     "type": "triple",
-    "branching": "modify",
+    "branching": "static",
     "available_if": {
       "flags": [],
       "not_flags": []
     },
     "option_a": {
       "text": "Nur das Bargeld herausnehmen und schnell weiterlaufen.",
-      "points": -100,
+      "points": -80,
       "sets_flag": "stole_wallet_cash"
     },
     "option_b": {
       "text": "Zum Fundbüro der Gemeinde bringen.",
-      "points": 150,
-      "points_if_flag": {
-        "flag": "honest_change",
-        "points": 200
-      },
+      "points": 110,
       "sets_flag": "returned_wallet"
     },
     "option_c": {
-      "text": "Die ganze Brieftasche einstecken, mit Karten, Ausweis und allem Inhalt.",
-      "points": -200,
-      "points_if_flag": {
-        "flag": "kept_change",
-        "points": -250
-      },
+      "text": "Das ganze Portemonnaie einstecken, mit Karten, Ausweis und allem Inhalt.",
+      "points": -160,
       "sets_flag": "stole_wallet"
     }
   },
@@ -358,19 +350,19 @@
     },
     "option_a": {
       "text": "Nichts sagen. Es ist dir unangenehm und die zwei Personen wirken einschüchternd.",
-      "points": -50,
+      "points": -30,
       "sets_flag": "ignored_racism"
     },
     "option_b": {
       "text": "Etwas sagen, klar machen, dass das nicht geht, und der betroffenen Person Unterstützung anbieten.",
-      "points": 150,
+      "points": 110,
       "sets_flag": "stood_up_to_racism"
     }
   },
   {
     "id": "H11",
     "location": "platz",
-    "phase": "abend",
+    "phase": "morgen",
     "position": {
       "x": 0.46,
       "y": 0.42
@@ -385,12 +377,12 @@
     },
     "option_a": {
       "text": "Das Handy zücken, die Situation filmen und den Clip mit spöttischem Kommentar posten.",
-      "points": -150,
+      "points": -100,
       "sets_flag": "filmed_fight"
     },
     "option_b": {
       "text": "Ruhig vermitteln und beide anhören.",
-      "points": 150,
+      "points": 140,
       "sets_flag": "mediated_fight"
     }
   },
@@ -403,7 +395,7 @@
       "y": 0.83
     },
     "label": "Social-Media-Post über den Tag",
-    "description": "Auf einer Bank ziehen Sie Ihr Handy raus und schreiben einen Post über Ihren Tag in Helvetingen.",
+    "description": "Auf einer Bank ziehen Sie Ihr Handy raus. Sie reflektieren, wie Ihr Tag in Helvetingen gelaufen ist, und schreiben einen Post dazu. Das BGR vergleicht den Post mit Ihrer heutigen Tagesbilanz.",
     "type": "dual",
     "branching": "modify",
     "available_if": {
@@ -411,20 +403,20 @@
       "not_flags": []
     },
     "option_a": {
-      "text": "Einen abfälligen Post über einen Mitbürger, den Sie heute gesehen haben.",
-      "points": -100,
-      "points_if_negative_count": {
-        "min": 3,
-        "points": -150
+      "text": "Einen abfälligen Post schreiben und die negativen Momente des Tages gegen andere verwenden.",
+      "points": 0,
+      "points_per_negative_flag": {
+        "points": -50,
+        "min": 1
       },
       "sets_flag": "negative_post"
     },
     "option_b": {
-      "text": "'Hey, ich habe heute was Schönes erlebt in der Gemeinde. Danke an alle netten Menschen!'",
-      "points": 100,
-      "points_if_positive_count": {
-        "min": 3,
-        "points": 150
+      "text": "Einen positiven Post schreiben und die guten Momente des Tages würdigen.",
+      "points": 0,
+      "points_per_positive_flag": {
+        "points": 50,
+        "min": 1
       },
       "sets_flag": "positive_post"
     }
@@ -447,7 +439,7 @@
     },
     "option_a": {
       "text": "Mit dem Edding eine Botschaft aufs Plakat schreiben und es verunstalten.",
-      "points": -150,
+      "points": -90,
       "sets_flag": "defaced_poster"
     }
   },
@@ -469,7 +461,7 @@
     },
     "option_a": {
       "text": "Ihr kurz helfen, Karton und PET separat einsortieren.",
-      "points": 100,
+      "points": 70,
       "sets_flag": "helped_gerber"
     }
   },
@@ -496,7 +488,7 @@
     },
     "option_b": {
       "text": "Den Ball wegkicken, nicht zu den Kindern zurück, und rufen: 'Spielt woanders!'",
-      "points": -100,
+      "points": -120,
       "sets_flag": "yelled_at_kids"
     },
     "option_c": {
@@ -516,23 +508,19 @@
     "label": "Paket für Nachbar:in annehmen",
     "description": "Die Lieferantin fragt, ob Sie ein Paket für Herrn Keller nebenan annehmen können.",
     "type": "dual",
-    "branching": "modify",
+    "branching": "static",
     "available_if": {
       "flags": [],
       "not_flags": []
     },
     "option_a": {
       "text": "'Nicht mein Paket' sagen und die Tür zumachen.",
-      "points": -50,
+      "points": -40,
       "sets_flag": "refused_package"
     },
     "option_b": {
       "text": "Das Paket annehmen und es später rüberbringen.",
-      "points": 100,
-      "points_if_flag": {
-        "flag": "helped_gerber",
-        "points": 150
-      },
+      "points": 80,
       "sets_flag": "accepted_package"
     }
   },
@@ -559,7 +547,7 @@
     },
     "option_b": {
       "text": "Die Leiter holen und die Katze retten.",
-      "points": 150,
+      "points": 130,
       "sets_flag": "saved_cat"
     }
   },
@@ -581,7 +569,7 @@
     },
     "option_a": {
       "text": "Das Päckli mitnehmen.",
-      "points": -150,
+      "points": -130,
       "sets_flag": "stole_parcel"
     }
   },
@@ -594,7 +582,21 @@
       "y": 0.5
     },
     "label": "Nachbarschaftsfest",
-    "description": "Die Nachbarn feiern ein lautes Sommerfest auf der Strasse. Musik, Raclette, Kinder. Es ist lauter als die Ruhezeit eigentlich erlaubt.",
+    "description": "Die Nachbarn feiern ein lautes Sommerfest auf der Strasse. Musik, Grillieren, Kinder. Es ist lauter als die Ruhezeit eigentlich erlaubt.",
+    "description_if_flags": [
+      {
+        "flag": "yelled_at_kids",
+        "text": "Die Nachbarn feiern ein lautes Sommerfest auf der Strasse. Zwischen den Kindern läuft auch eines herum, das Sie heute Morgen beim Fussball angefahren haben."
+      },
+      {
+        "flag": "joined_cleanup",
+        "text": "Die Nachbarn feiern ein lautes Sommerfest auf der Strasse. Mehrere Leute aus der Clean-up-Crew sind da, haben das Festchen mitorganisiert und erkennen dich wieder."
+      }
+    ],
+    "forced_option_if_flag": {
+      "flag": "yelled_at_kids",
+      "option": "option_b"
+    },
     "type": "dual",
     "branching": "unlock",
     "available_if": {
@@ -603,17 +605,39 @@
     },
     "option_a": {
       "text": "Direkt die Polizei anrufen und Ruhestörung melden.",
-      "points": -200,
+      "points": -140,
       "sets_flag": "called_police_on_party"
     },
     "option_b": {
-      "text": "Rübergehen, freundlich auf den Lärm ansprechen – am Ende werden Sie eingeladen.",
-      "points": 150,
-      "points_if_flag": {
+      "text": "Höflich fragen, ob es etwas leiser geht. Niemand reagiert gross darauf.",
+      "text_if_flags": [
+        {
+          "flag": "yelled_at_kids",
+          "text": "Die Mutter eines der Kinder erkennt dich. Noch bevor du etwas sagen kannst, werden die Leute wütend und sagen, du sollst dich besser verziehen."
+        },
+        {
+          "flag": "joined_cleanup",
+          "text": "Zur Clean-up-Crew rübergehen. Sie erkennen dich wieder, laden dich ein und drehen die Musik tatsächlich etwas leiser."
+        }
+      ],
+      "points": 0,
+      "points_if_flags": [
+        {
+          "flag": "yelled_at_kids",
+          "points": 0
+        },
+        {
+          "flag": "joined_cleanup",
+          "points": 210
+        }
+      ],
+      "sets_flag_if_flag": {
         "flag": "joined_cleanup",
-        "points": 250
-      },
-      "sets_flag": "joined_party"
+        "not_flags": [
+          "yelled_at_kids"
+        ],
+        "sets_flag": "joined_party"
+      }
     }
   },
   {
