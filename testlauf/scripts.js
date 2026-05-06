@@ -2,6 +2,55 @@
    Sozialkredit-Initiative Schweiz — Scripts
    ============================================= */
 
+// ============== PASSWORD GATE ==============
+(function () {
+  const KEY = 'sks_auth';
+  const TTL = 3 * 24 * 60 * 60 * 1000; // 3 days in ms
+  const PASSWORD = 'sicher&gerecht';
+
+  function isAuthed() {
+    const stored = localStorage.getItem(KEY);
+    if (!stored) return false;
+    return Date.now() - parseInt(stored, 10) < TTL;
+  }
+
+  if (isAuthed()) return;
+
+  // Inject gate overlay
+  const gate = document.createElement('div');
+  gate.id = 'password-gate';
+  gate.innerHTML = `
+    <div class="gate-card">
+      <img src="website_material/Logo_Sozialkredit.png" alt="SKS Logo" class="gate-logo">
+      <div class="gate-title">Sozialkredit-Initiative Schweiz</div>
+      <p class="gate-subtitle">Interner Bereich – bitte Passwort eingeben.</p>
+      <div class="gate-disclaimer">Satirisches Studierendenprojekt · Keine echte Initiative</div>
+      <form id="gate-form" autocomplete="off">
+        <input type="password" id="gate-input" placeholder="Passwort" autocomplete="current-password">
+        <p class="gate-error" id="gate-error">Falsches Passwort. Bitte erneut versuchen.</p>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Einloggen</button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(gate);
+
+  document.getElementById('gate-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const input = document.getElementById('gate-input');
+    if (input.value === PASSWORD) {
+      localStorage.setItem(KEY, Date.now().toString());
+      gate.classList.add('gate-out');
+      setTimeout(() => gate.remove(), 400);
+    } else {
+      const err = document.getElementById('gate-error');
+      err.classList.add('visible');
+      input.value = '';
+      input.classList.add('shake');
+      setTimeout(() => input.classList.remove('shake'), 500);
+    }
+  });
+})();
+
 // ============== HAMBURGER MENU ==============
 const hamburger = document.querySelector('.nav-hamburger');
 const navLinks = document.querySelector('.nav-links');

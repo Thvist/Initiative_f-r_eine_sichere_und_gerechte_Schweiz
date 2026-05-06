@@ -766,6 +766,65 @@ strong { font-weight: 700; }
   .sysov-arrow { transform: rotate(90deg); align-self: center; }
 }
 
+/* ============== PUNKTEQUELLEN GRAPHIC ============== */
+.pq-graphic {
+  margin: 2rem 0 2.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--grey-300);
+  box-shadow: var(--shadow-sm);
+}
+.pq-graphic-header {
+  background: #fce8e9;
+  color: var(--grey-900);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.875rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(155,28,34,0.12);
+}
+.pq-graphic-items {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--white);
+  justify-content: space-between;
+}
+.pq-graphic-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.pq-graphic-icon {
+  width: 52px;
+  height: 52px;
+  background: #fce8e9;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #9b1c22;
+}
+.pq-graphic-icon svg { width: 26px; height: 26px; }
+.pq-graphic-item span {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--grey-900);
+  line-height: 1.3;
+}
+/* Datensammlung – medium pink */
+.pq-graphic--ds .pq-graphic-header { background: #f8c5c7; }
+.pq-graphic--ds .pq-graphic-icon   { background: #f8c5c7; color: #9b1c22; }
+
+/* Einflussbereiche – dark red, white icons/text */
+.pq-graphic--eb .pq-graphic-header { background: #b01c22; color: var(--white); }
+.pq-graphic--eb .pq-graphic-icon   { background: #b01c22; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35); }
+
+@media (max-width: 520px) {
+  .pq-graphic-items { flex-direction: column; gap: 0.875rem; }
+}
+
 /* ============== VERFASSUNGSTEXT ============== */
 .verfassung-article {
   margin-bottom: 2rem;
@@ -1132,4 +1191,92 @@ strong { font-weight: 700; }
 @media (max-width: 420px) {
   .shop-grid { grid-template-columns: 1fr; }
   .kpi-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============== PASSWORD GATE ============== */
+#password-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: gateIn 0.2s ease;
+}
+#password-gate.gate-out {
+  animation: gateOut 0.4s ease forwards;
+}
+@keyframes gateIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes gateOut {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.03); }
+}
+.gate-card {
+  background: var(--white);
+  border: 1px solid var(--grey-300);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+.gate-logo {
+  height: 52px;
+  margin-bottom: 1.25rem;
+}
+.gate-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--grey-900);
+  margin-bottom: 0.375rem;
+}
+.gate-subtitle {
+  font-size: 0.875rem;
+  color: var(--grey-600);
+  margin-bottom: 1.5rem;
+}
+#gate-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--grey-300);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  margin-bottom: 0.625rem;
+  transition: border-color var(--transition);
+  box-sizing: border-box;
+}
+#gate-input:focus { border-color: var(--red); }
+.gate-error {
+  font-size: 0.8rem;
+  color: var(--red);
+  margin-bottom: 0.75rem;
+  display: none;
+}
+.gate-error.visible { display: block; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+#gate-input.shake { animation: shake 0.45s ease; }
+.gate-disclaimer {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--grey-600);
+  background: var(--grey-100);
+  border: 1px solid var(--grey-300);
+  border-radius: 20px;
+  padding: 0.3rem 0.875rem;
+  margin-bottom: 1.5rem;
 }
