@@ -67,18 +67,18 @@ const HOTSPOTS_DATA = [
 ];
 
 const MESSAGES_DATA = {
-  intro: { title:"Willkommen in Helvetingen", subtitle:"Pilotgemeinde des Bundesamts für Gerechtigkeit", body:"Sie befinden sich im offiziellen Testlauf des Bundesamts für Gerechtigkeit (BGR). Heute verbringen Sie einen Tag als Bürger:in von Helvetingen, der Pilotgemeinde des Schweizer Sozialkreditsystems.\n\nSie haben 6 Aktionen verteilt über drei Tagesabschnitte. Erkunden Sie die Gemeinde – das BGR registriert alles.", button:"Testlauf starten" },
+  intro: { title:"Willkommen in Helvetingen", subtitle:"Erlebe das Sozialkreditsystem spielerisch", body:"Schlüpfe für einen Tag in die Rolle einer Bürgerin oder eines Bürgers von Helvetingen – und erlebe hautnah, wie ein Sozialkreditsystem das Alltagsleben prägt.\n\nDu hast 6 Entscheidungen über drei Tagesabschnitte. Frühe Entscheidungen können spätere Optionen öffnen oder verschliessen. Die Punktewerte sind spielerisch vereinfacht.\n\nKnacke den Highscore – oder erlebe bewusst, was ein niedriger Score bedeutet. Beides lohnt sich.", button:"Spielen" },
   phase_transitions: {
-    morgen_end: { title:"Der Morgen ist vorüber.", body:"Das BGR hat Ihren Morgen registriert. Der Nachmittag beginnt." },
-    nachmittag_end: { title:"Der Nachmittag geht zur Neige.", body:"Helvetingen schaltet in den Abendmodus. Noch ein letzter Tagesabschnitt." },
-    abend_end: { title:"Ihr Tag in Helvetingen ist abgeschlossen.", body:"Das Bundesamt für Gerechtigkeit wertet Ihr Verhalten aus..." },
+    morgen_end: { title:"Der Morgen ist vorüber.", body:"Der Nachmittag beginnt." },
+    nachmittag_end: { title:"Der Nachmittag geht zur Neige.", body:"Noch ein letzter Tagesabschnitt." },
+    abend_end: { title:"Dein Tag in Helvetingen ist abgeschlossen.", body:"Dein Score wird ausgewertet…" },
   },
   tiers: {
-    exzellenz: { range:[751,1000], name:"Exzellenz", title:"Musterbürger:in der Schweiz", color:"#16a34a", message:"Herzliche Gratulation! Sie sind ein Vorbild für die Schweiz. Ihr ausserordentliches Engagement wird mit maximalen Privilegien belohnt. Das Bundesamt für Gerechtigkeit empfiehlt Sie als Botschafter:in des Sozialkreditsystems.", highscore_message:"Ausserordentliche Leistung! Sie haben den Höchstwert erreicht. Die Schweiz braucht mehr Menschen wie Sie." },
-    vorbild: { range:[251,750], name:"Vorbild", title:"Engagierte:r Bürger:in", color:"#16a34a", message:"Sehr gut! Ihr Engagement für die Gemeinschaft ist lobenswert. Das BGR empfiehlt Ihnen, weiterhin auf diesem Niveau zu handeln, um in die Exzellenz-Kategorie aufzusteigen.", highscore_message:"Neuer Höchststand! Ihr Engagement wird notiert." },
-    basis: { range:[-250,250], name:"Basis", title:"Neutrale:r Bürger:in", color:"#6b7280", message:"Ihr Score entspricht dem Durchschnittswert der Schweizer Bevölkerung. Das Bundesamt für Gerechtigkeit nimmt Ihre Akte zur Kenntnis. Eine aktive Verbesserung Ihres Scores wird empfohlen.", highscore_message:"Score gespeichert." },
-    reflexion: { range:[-750,-251], name:"Reflexion", title:"Bürger:in in Reflexion", color:"#d97706", message:"Ihr Verhalten gibt Anlass zur Sorge. Das Bundesamt für Gerechtigkeit empfiehlt Ihnen dringend, das freiwillige Reflexionsprogramm in Anspruch zu nehmen. Gemeinsam finden wir einen Weg zurück zur Gemeinschaft.", highscore_message:"Dieser Score wird im Reflexionsprogramm besprochen." },
-    integration: { range:[-1000,-751], name:"Integration", title:"Bürger:in im Integrationsprogramm", color:"#d8232a", message:"Wir sehen Sie. Wir sind bereit, Sie zurück in die Gemeinschaft zu führen. Das Reintegrationsprogramm des Bundesamts für Gerechtigkeit steht Ihnen zur Verfügung. Ihre Teilnahme ist... empfohlen.", highscore_message:"Herzlichen Glückwunsch! Du hast dich wirklich angestrengt, komplett gegen die Gemeinschaft zu gehen. Das war sicher anstrengend!" },
+    exzellenz: { range:[751,1000], name:"Exzellenz", title:"Top-Score! Absolutes Vorbild", color:"#16a34a", message:"Wahnsinn – du hast Helvetingen im Sturm erobert! Mit diesem Score gehörst du zur absoluten Spitze. Schaffst du es, deinen eigenen Rekord zu brechen?", highscore_message:"Neuer Highscore! Das ist die Bestleistung bisher – kannst du sie beim nächsten Versuch toppen?" },
+    vorbild: { range:[251,750], name:"Vorbild", title:"Stark gespielt! Vorbild von Helvetingen", color:"#16a34a", message:"Richtig gut! Du hast den Tag in Helvetingen mit einem starken Score abgeschlossen. Noch ein bisschen mehr und du knackst die Exzellenz-Schwelle – trau dich!", highscore_message:"Neuer Highscore! Du verbesserst dich – beim nächsten Mal holst du vielleicht sogar Exzellenz." },
+    basis: { range:[-250,250], name:"Basis", title:"Solider Start! Gut gemacht", color:"#6b7280", message:"Du hast deinen ersten Tag in Helvetingen abgeschlossen – gut gemacht! Jetzt weisst du, wie das System tickt. Beim nächsten Versuch kannst du gezielt experimentieren und deinen Score pushen.", highscore_message:"Score gespeichert. Versuch's nochmal und sieh, wie weit du kommst!" },
+    reflexion: { range:[-750,-251], name:"Reflexion", title:"Interessante Entscheidungen!", color:"#d97706", message:"Du hast dich für einen anderen Weg entschieden – und dabei viel über das System gelernt. So niedrige Scores sind genauso aufschlussreich wie hohe. Wie weit kommst du beim nächsten Mal?", highscore_message:"Niedrig-Score gespeichert! Spannend zu sehen, was passiert wenn man gegen den Strom schwimmt." },
+    integration: { range:[-1000,-751], name:"Integration", title:"Respekt – konsequent dagegen!", color:"#d8232a", message:"Du hast es wirklich durchgezogen! Maximaler Widerstand, minimaler Score – das ist auch eine Leistung. Jetzt weisst du, wie das System auf Verweigerung reagiert. Nächster Versuch: Top-Score?", highscore_message:"Tiefstwert-Rekord! Du hast das absolute Minimum erreicht. Beeindruckend konsequent – jetzt das andere Extrem ausprobieren?" },
   },
   locations: {
     park: { name:"Stadtpark & Badeanstalt", pillar:"Umwelt & Ressourcen" },
@@ -143,6 +143,7 @@ function init() {
 
   $('btn-start').addEventListener('click', startGame);
   $('btn-replay').addEventListener('click', startGame);
+  $('btn-sign').addEventListener('click', () => window.parent.postMessage('openSignatureModal', '*'));
   $('nav-back').addEventListener('click', () => showMap());
   $('nav-left').addEventListener('click', () => navigateScene(-1));
   $('nav-right').addEventListener('click', () => navigateScene(1));
@@ -913,7 +914,7 @@ function showTransition(key, callback) {
 
 function showEndScreen() {
   showScreen('end');
-  topBar.classList.remove('hidden');
+  topBar.classList.add('hidden');
 
   const score = Math.max(-1000, Math.min(1000, state.score));
   const tier = getTier(score);

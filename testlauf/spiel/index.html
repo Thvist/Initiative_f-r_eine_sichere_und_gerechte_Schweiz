@@ -11,16 +11,14 @@
 
 <!-- TOP BAR -->
 <div id="top-bar" class="hidden">
-  <div class="logo" aria-label="Sozialkredit-Initiative – BGR">
-    <img src="assets/icon_s_plus.svg" alt="S+ Logo">
-    <span>BGR Helvetingen</span>
+  <div class="top-bar-inner">
+    <div id="score-display" aria-live="polite" aria-atomic="true">
+      <span id="score-label">Sozialkredit</span>
+      <span id="score-value">0</span>
+    </div>
+    <div id="phase-display">Morgen</div>
+    <button id="sound-toggle" aria-label="Ton ein-/ausschalten" title="Ton">🔊</button>
   </div>
-  <div id="score-display" aria-live="polite" aria-atomic="true">
-    <span id="score-label">Sozialkredit</span>
-    <span id="score-value">0</span>
-  </div>
-  <div id="phase-display">Morgen</div>
-  <button id="sound-toggle" aria-label="Ton ein-/ausschalten" title="Ton">🔊</button>
 </div>
 
 <!-- BGR NOTIFICATION -->
@@ -43,16 +41,17 @@
   <div class="intro-card">
     <div class="bgr-badge">
       <img src="assets/icon_s_plus.svg" width="14" height="14" alt="" style="filter:brightness(0) invert(1)">
-      Offizieller Testlauf
+      Point &amp; Click Adventure
     </div>
     <h1>Willkommen in Helvetingen</h1>
-    <p class="subtitle">Pilotgemeinde · Bundesamt für Gerechtigkeit</p>
+    <p class="subtitle">Erlebe das Sozialkreditsystem spielerisch</p>
     <p class="body-text">
-      Sie befinden sich im offiziellen Testlauf des Bundesamts für Gerechtigkeit (BGR). Heute verbringen Sie einen Tag als Bürger:in von <strong>Helvetingen</strong>, der Pilotgemeinde des Schweizer Sozialkreditsystems.<br><br>
-      Sie haben <strong>6 Aktionen</strong> verteilt über drei Tagesabschnitte. Erkunden Sie die Gemeinde, treffen Sie Ihre Entscheidungen – das BGR registriert alles.<br><br>
-      Werden Sie ein <em>Vorbild</em> für die Schweiz? Oder finden Sie heraus, was mit Widerständigen passiert?
+      Schlüpfe für einen Tag in die Rolle einer Bürgerin oder eines Bürgers von <strong>Helvetingen</strong> – und erlebe hautnah, wie ein Sozialkreditsystem das Alltagsleben prägt.<br><br>
+      Du hast <strong>6 Entscheidungen</strong> über drei Tagesabschnitte (Morgen, Mittag, Abend). Jede Wahl verändert deinen Score – und frühe Entscheidungen können spätere Optionen öffnen oder verschliessen.<br><br>
+      <em>Die Punktewerte sind spielerisch vereinfacht und repräsentieren keine realen Systemwerte.</em><br><br>
+      Schaffst du den <strong>Highscore</strong> und wirst zum Vorbild von Helvetingen? Oder entscheidest du dich bewusst dagegen – und erlebst, was ein niedriger Score bedeutet? Beides lohnt sich.
     </p>
-    <button class="btn btn-primary" id="btn-start">Testlauf starten</button>
+    <button class="btn btn-primary" id="btn-start">Spielen</button>
   </div>
 </div>
 
@@ -133,7 +132,7 @@
   <div class="transition-card">
     <div class="phase-icon" id="transition-icon">🌅</div>
     <h2 id="transition-title">Der Morgen ist vorüber.</h2>
-    <p id="transition-body">Das BGR hat Ihren Morgen registriert.</p>
+    <p id="transition-body">Der Nachmittag beginnt.</p>
   </div>
 </div>
 
@@ -160,14 +159,14 @@
     </div>
 
     <!-- Action Log -->
-    <div class="end-section-title" style="margin-top:8px;">Ihr Tagesprotokoll</div>
+    <div class="end-section-title" style="margin-top:8px;">Dein Tagesprotokoll</div>
     <div id="action-log-container" style="margin-bottom:28px;"></div>
 
     <!-- Name submission -->
     <div id="end-name-submit" class="name-submit-section">
       <div class="name-submit-title">In die Bestenliste eintragen</div>
       <form id="name-form" autocomplete="off">
-        <input type="text" id="name-input" maxlength="16" placeholder="Ihr Name" required>
+        <input type="text" id="name-input" maxlength="16" placeholder="Dein Name" required>
         <button type="submit" class="btn btn-primary" id="name-submit-btn">Eintragen</button>
       </form>
     </div>
@@ -182,7 +181,7 @@
     <!-- Buttons -->
     <div class="end-buttons">
       <button class="btn btn-primary" id="btn-replay">Nochmal spielen</button>
-      <a class="btn btn-secondary" href="../" id="btn-back">Mehr erfahren</a>
+      <button class="btn btn-outline" id="btn-sign">Jetzt Initiative unterschreiben</button>
     </div>
   </div>
 </div>

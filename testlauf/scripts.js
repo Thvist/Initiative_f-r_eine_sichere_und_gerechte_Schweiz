@@ -25,18 +25,20 @@ if (hamburger && navLinks) {
   });
 })();
 
-// ============== ACCORDION ==============
-document.querySelectorAll('.accordion-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    const body = btn.nextElementSibling;
-
-    // In independent-accordion mode (no .accordion-group collapse-all needed)
-    // Just toggle the clicked one
-    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-    body.classList.toggle('open', !isOpen);
+// ============== ACCORDION (all types) ==============
+function wireAccordion(selector) {
+  document.querySelectorAll(selector).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      btn.nextElementSibling.classList.toggle('open', !isOpen);
+    });
   });
-});
+}
+wireAccordion('.accordion-btn');   // boxed (faktencheck)
+wireAccordion('.flat-acc-btn');    // flat top-level (initiative)
+wireAccordion('.sub-acc-btn');     // nested sub-sections
+wireAccordion('.table-acc-btn');   // Vorteile & Chancen rows
 
 // ============== SIGNATURE MODAL ==============
 const sigModal = document.getElementById('signature-modal');

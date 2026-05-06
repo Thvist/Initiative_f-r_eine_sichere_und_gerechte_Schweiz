@@ -49,12 +49,55 @@
 
 <div class="game-embed">
   <iframe
+    id="game-iframe"
     src="spiel/index.html"
     title="Helvetingen – Ein Tag als Bürger"
     allowfullscreen>
   </iframe>
 </div>
+<script>
+  (function () {
+    const p = new URLSearchParams(location.search);
+    if (p.get('place') === '1') {
+      document.getElementById('game-iframe').src = 'spiel/index.html?place=1';
+    }
+  })();
+</script>
+
+<!-- SIGNATURE MODAL -->
+<div class="modal-overlay" id="signature-modal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="section-label">Eidgenössische Volksinitiative</div><h2 style="margin-bottom:0;">Jetzt unterschreiben</h2></div>
+      <button class="modal-close" aria-label="Schliessen">×</button>
+    </div>
+    <form id="signature-form">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label" for="sig-vorname">Vorname</label><input class="form-input" id="sig-vorname" type="text" required placeholder="Maria"></div>
+        <div class="form-group"><label class="form-label" for="sig-nachname">Nachname</label><input class="form-input" id="sig-nachname" type="text" required placeholder="Muster"></div>
+        <div class="form-group full"><label class="form-label" for="sig-adresse">Adresse</label><input class="form-input" id="sig-adresse" type="text" required placeholder="Musterstrasse 1"></div>
+        <div class="form-group"><label class="form-label" for="sig-plz">PLZ</label><input class="form-input" id="sig-plz" type="text" required placeholder="9000" maxlength="4"></div>
+        <div class="form-group"><label class="form-label" for="sig-ort">Ort</label><input class="form-input" id="sig-ort" type="text" required placeholder="St. Gallen"></div>
+        <div class="form-group"><label class="form-label" for="sig-kanton">Kanton</label><select class="form-select" id="sig-kanton" required><option value="">Bitte wählen</option><option>Aargau</option><option>Bern</option><option>Genf</option><option>Jura</option><option>St. Gallen</option><option>Tessin</option><option>Wallis</option><option>Zürich</option></select></div>
+        <div class="form-group"><label class="form-label" for="sig-geburt">Geburtsdatum</label><input class="form-input" id="sig-geburt" type="date" required></div>
+        <div class="form-group full"><label class="form-label">Unterschrift</label><div class="signature-area">Hier unterschreiben (Klick zum Simulieren)</div></div>
+        <div class="form-group full"><label class="form-checkbox"><input type="checkbox" required> Ich nehme die Datenschutzerklärung zur Kenntnis.</label></div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" style="flex:1;">Unterschrift einreichen</button>
+        <button type="button" class="btn btn-outline modal-close">Abbrechen</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script src="scripts.js"></script>
+<script>
+  window.addEventListener('message', e => {
+    if (e.data === 'openSignatureModal') {
+      document.getElementById('signature-modal')?.classList.add('open');
+    }
+  });
+</script>
 </body>
 </html>

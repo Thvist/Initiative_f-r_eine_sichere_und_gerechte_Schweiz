@@ -46,7 +46,46 @@
     <div class="section-label">Systemübersicht</div>
     <h2>Das Sozialkreditsystem auf einen Blick</h2>
     <p style="color: var(--grey-700); margin-bottom: 2rem;">Das Bundesamt für Gerechtigkeit verwaltet ein transparentes, demokratisch legitimiertes System mit vier Kernelementen.</p>
-    <img src="website_material/Übersicht System.jpg" alt="Übersicht Sozialkreditsystem" style="border-radius: var(--radius); box-shadow: var(--shadow-sm); max-width: 780px; margin: 0 auto;">
+    <div class="sysov">
+      <!-- Header -->
+      <div class="sysov-header">
+        <span class="sysov-header-title">Bundesamt für Gerechtigkeit</span>
+        <img src="website_material/Logo_Sozialkredit.png" alt="SKS" class="sysov-header-logo">
+      </div>
+      <!-- Flow row -->
+      <div class="sysov-flow">
+        <div class="sysov-step sysov-step-1">
+          <svg class="sysov-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <span>Punktequellen</span>
+        </div>
+        <div class="sysov-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+        <div class="sysov-step sysov-step-2">
+          <svg class="sysov-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"/><path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"/><path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z"/></svg>
+          <span>Datensammlung</span>
+        </div>
+        <div class="sysov-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+        <div class="sysov-step sysov-step-3">
+          <svg class="sysov-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/><path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/></svg>
+          <span>Punkte-Konto</span>
+        </div>
+        <div class="sysov-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+        <div class="sysov-step sysov-step-4">
+          <svg class="sysov-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+          <span>Einflussbereiche</span>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="sysov-footer">
+        <svg viewBox="0 0 20 20" fill="currentColor" style="width:16px;height:16px;flex-shrink:0;color:var(--grey-500);"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <span>Demokratie, Gesetz und neue Sozialkredit-Regeln</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -54,201 +93,278 @@
 <section>
   <div class="container" style="max-width: 860px;">
     <div class="section-label">Im Detail</div>
-    <h2 style="margin-bottom: 2rem;">Aufklappbare Informationen</h2>
+    <h2 style="margin-bottom: 2rem;">Das System im Detail</h2>
 
-    <div class="accordion">
+    <div class="flat-accordion">
 
       <!-- 1. Bundesamt für Gerechtigkeit -->
-      <div class="accordion-item">
-        <button class="accordion-btn" aria-expanded="false">
+      <div class="flat-acc-item">
+        <button class="flat-acc-btn" aria-expanded="false">
           Bundesamt für Gerechtigkeit
-          <span class="acc-icon" aria-hidden="true"></span>
+          <span class="flat-acc-icon" aria-hidden="true"></span>
         </button>
-        <div class="accordion-body">
+        <div class="flat-acc-body">
           <p>Das Bundesamt für Gerechtigkeit (BGR) ist die zentrale, demokratisch legitimierte Instanz zur Einführung, Verwaltung und Überwachung des Schweizer Sozialkreditsystems. Als modernes Kompetenzzentrum sorgt es für eine objektive Erfassung von Datenquellen und stellt durch transparente Prozesse sicher, dass pro-soziales Engagement direkt bei den Bürgerinnen und Bürgern ankommt.</p>
           <p>Unser Fokus liegt auf der Förderung von Sicherheit und Gerechtigkeit, indem wir die Einhaltung gemeinsamer Werte durch ein faires Belohnungssystem unterstützen. In enger Zusammenarbeit mit einer unabhängigen Ombudsstelle garantiert es dabei jederzeit den Schutz Ihrer persönlichen Daten und die Rechtsstaatlichkeit des gesamten Systems.</p>
         </div>
       </div>
 
       <!-- 2. Punktequellen -->
-      <div class="accordion-item">
-        <button class="accordion-btn" aria-expanded="false">
+      <div class="flat-acc-item">
+        <button class="flat-acc-btn" aria-expanded="false">
           Punktequellen
-          <span class="acc-icon" aria-hidden="true"></span>
+          <span class="flat-acc-icon" aria-hidden="true"></span>
         </button>
-        <div class="accordion-body">
+        <div class="flat-acc-body">
           <p>Das Herzstück unseres Systems ist eine faire und transparente Punkteverteilung, die echtes Engagement für die Schweiz messbar macht. Wir belohnen jene positiven Verhaltensweisen, die unser Zusammenleben stärken – von der unentbehrlichen Care-Arbeit über den Umweltschutz bis hin zur aktiven Teilnahme an unserem Milizsystem.</p>
+          <img src="website_material/Punktequellen.jpg" alt="Punktequellen" style="border-radius: 8px; margin: 1rem 0 1.5rem; max-width: 560px;">
           <p>Punkte können aus drei Punktequellen* geschöpft werden:</p>
-          <img src="website_material/Punktequellen.jpg" alt="Punktequellen: Zivile Verantwortung, Umwelt &amp; Ressourcen, Recht &amp; Gesellschaft" style="border-radius: 8px; margin: 1rem 0; max-width: 600px;">
-          <p><strong>Zivile Verantwortung</strong></p>
-          <ul>
-            <li><strong>Care-Arbeit:</strong> Anerkennung von unbezahlter Betreuung von Kindern oder pflegebedürftigen Personen.</li>
-            <li><strong>Volontariate &amp; Ehrenamt:</strong> Engagement in Vereinen (z.B. Sport, Musik), Jugendorganisationen, Glaubens- und Wertegemeinschaften oder gemeinnützigen Institutionen.</li>
-            <li><strong>Miliztätigkeit:</strong> Übernahme von politischen Ämtern auf Gemeindeebene oder Dienst in der Feuerwehr und im Zivilschutz.</li>
-            <li><strong>Good Deeds:</strong> Dokumentierte Hilfeleistungen im Alltag (z.B. Blutspenden, Unterstützung von Mitmenschen im öffentlichen Raum, Müllsammeln).</li>
-          </ul>
-          <p><strong>Umwelt &amp; Ressourcen</strong></p>
-          <ul>
-            <li><strong>Mobilitätsverhalten:</strong> Belohnung für die häufige Nutzung öffentlicher Verkehrsmittel, des Fahrrads oder Carsharing.</li>
-            <li><strong>Energieeffizienz:</strong> Nachweislich sparsamer Verbrauch von Ressourcen wie Wasser und Strom sowie Investitionen in erneuerbare Energien.</li>
-            <li><strong>Gemeinschaftliche Aktionen zum Umweltschutz:</strong> Teilnahme an organisierten Säuberungsaktionen in Bergen, Wäldern oder an Seen (z.B. «Clean-up Days», Biodiversitätsgarten).</li>
-          </ul>
-          <p><strong>Recht &amp; Gesellschaft</strong></p>
-          <ul>
-            <li><strong>Gesetzestreue:</strong> Ein langjährig sauberes Strafregister und die Einhaltung aller Verkehrsvorschriften.</li>
-            <li><strong>Digitales Verhalten:</strong> Es erfolgt eine Überprüfung der Interaktionsqualität in den sozialen Medien, um Verstösse gegen den respektvollen Diskurs festzustellen.</li>
-            <li><strong>Politisches Engagement:</strong> Aktive Wahrnehmung der demokratischen Pflichten durch Ausübung des Wahl- und Abstimmungsrechts.</li>
-          </ul>
-          <p style="font-size: 0.875rem; color: var(--grey-500);">*Diese sind nicht in jeder Hinsicht trennscharf, sondern überschneiden sich teilweise.</p>
-          <p style="font-size: 0.875rem; color: var(--grey-500); margin-top: 1rem;"><em>Die aktive Teilnahme bleibt stets freiwillig: Wer sich gegen eine aktive Mitwirkung entscheidet und keine Regelverstösse begeht, verbleibt ohne jegliche Nachteile im neutralen Basis-Status.</em></p>
+
+          <div class="sub-accordion">
+            <div class="sub-acc-item">
+              <button class="sub-acc-btn" aria-expanded="false">
+                Zivile Verantwortung
+                <span class="sub-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sub-acc-body">
+                <ul>
+                  <li><strong>Care-Arbeit:</strong> Anerkennung von unbezahlter Betreuung von Kindern oder pflegebedürftigen Personen.</li>
+                  <li><strong>Volontariate &amp; Ehrenamt:</strong> Engagement in Vereinen (z.B. Sport, Musik), Jugendorganisationen, Glaubens- und Wertegemeinschaften oder gemeinnützigen Institutionen.</li>
+                  <li><strong>Miliztätigkeit:</strong> Übernahme von politischen Ämtern auf Gemeindeebene oder Dienst in der Feuerwehr und im Zivilschutz.</li>
+                  <li><strong>Good Deeds:</strong> Dokumentierte Hilfeleistungen im Alltag (z.B. Blutspenden, Unterstützung von Mitmenschen im öffentlichen Raum, Müllsammeln).</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub-acc-item">
+              <button class="sub-acc-btn" aria-expanded="false">
+                Umwelt &amp; Ressourcen
+                <span class="sub-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sub-acc-body">
+                <ul>
+                  <li><strong>Mobilitätsverhalten:</strong> Belohnung für die häufige Nutzung öffentlicher Verkehrsmittel, des Fahrrads oder Carsharing gegenüber dem Individualverkehr mit fossilen Brennstoffen.</li>
+                  <li><strong>Energieeffizienz:</strong> Nachweislich sparsamer Verbrauch von Ressourcen wie Wasser und Strom sowie Investitionen in erneuerbare Energien (z.B. Installation einer Photovoltaikanlage).</li>
+                  <li><strong>Gemeinschaftliche Aktionen zum Umweltschutz:</strong> Teilnahme an organisierten Säuberungsaktionen in Bergen, Wäldern oder an Seen (z.B. «Clean-up Days», Biodiversitätsgarten).</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub-acc-item">
+              <button class="sub-acc-btn" aria-expanded="false">
+                Recht &amp; Gesellschaft
+                <span class="sub-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sub-acc-body">
+                <ul>
+                  <li><strong>Gesetzestreue:</strong> Ein langjährig sauberes Strafregister und die Einhaltung aller Verkehrsvorschriften.</li>
+                  <li><strong>Digitales Verhalten:</strong> Überprüfung der Interaktionsqualität in den sozialen Medien, um Verstösse gegen den respektvollen Diskurs festzustellen.</li>
+                  <li><strong>Politisches Engagement:</strong> Aktive Wahrnehmung der demokratischen Pflichten durch Ausübung des Wahl- und Abstimmungsrechts.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub-acc-item">
+              <button class="sub-acc-btn" aria-expanded="false">
+                Nicht solidarisches Verhalten (Minuspunkte)
+                <span class="sub-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sub-acc-body">
+                <p>Um die Lebensqualität und Sicherheit für alle zu gewährleisten, setzt das System dort Grenzen, wo das Gemeinwohl aktiv beeinträchtigt wird. Eine negative Punktevergabe erfolgt primär bei Handlungen, die das soziale Gefüge belasten:</p>
+                <ul>
+                  <li>Littering &amp; illegale Entsorgung und Umweltbelastung</li>
+                  <li>Vandalismus &amp; Sachbeschädigung</li>
+                  <li>(Digitales) belästigendes oder beleidigendes Verhalten (Mobbing, Hassrede, sexuelle Belästigung)</li>
+                  <li>Gewaltanwendung &amp; Drohung</li>
+                  <li>Schwere oder wiederholte Verkehrsdelikte</li>
+                  <li>Missbrauch von Sozialleistungen</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size: 0.8125rem; color: var(--grey-500); margin-top: 1.25rem;">*Diese sind nicht in jeder Hinsicht trennscharf, sondern überschneiden sich teilweise. Die aktive Teilnahme bleibt stets freiwillig.</p>
         </div>
       </div>
 
       <!-- 3. Datensammlung -->
-      <div class="accordion-item">
-        <button class="accordion-btn" aria-expanded="false">
+      <div class="flat-acc-item">
+        <button class="flat-acc-btn" aria-expanded="false">
           Datensammlung
-          <span class="acc-icon" aria-hidden="true"></span>
+          <span class="flat-acc-icon" aria-hidden="true"></span>
         </button>
-        <div class="accordion-body">
+        <div class="flat-acc-body">
           <p>Um die Punkte objektiv zu vergeben, nutzt das Bundesamt für Gerechtigkeit verschiedene Schnittstellen:</p>
-          <img src="website_material/Datensammlung.jpg" alt="Datensammlung: Behördliche Register, Digitale Schnittstelle, Kameras, Antragswesen" style="border-radius: 8px; margin: 1rem 0; max-width: 600px;">
+          <img src="website_material/Datensammlung.jpg" alt="Datensammlung" style="border-radius: 8px; margin: 1rem 0 1.5rem; max-width: 560px;">
           <ul>
             <li><strong>Behördliche Register:</strong> Direkte Anbindung an das Strafregister und Steuerdaten.</li>
             <li><strong>Digitale Schnittstellen:</strong> Erfassung von ÖV-Abos (Swisspass) und Energieabrechnungen.</li>
             <li><strong>Antragswesen:</strong> Möglichkeit für Bürger, ehrenamtliche Tätigkeiten oder Care-Arbeit über das Portal zur Validierung einzureichen.</li>
             <li><strong>Sensortechnik &amp; Kameras:</strong> Unterstützung durch ein modernes Kamerasystem im öffentlichen Raum zur Erkennung von prosozialem Verhalten oder Verstössen (z.B. Littering).</li>
           </ul>
-          <p><strong>Datenschutz</strong></p>
-          <p>Ihre Daten sind bei uns in sicheren Händen. Das Sozialkreditsystem basiert auf den weltweit strengsten Datenschutzrichtlinien und wird vollständig innerhalb der Schweiz verwaltet. Jede Datenerhebung erfolgt zweckgebunden, transparent und ist für Sie als Bürgerin oder Bürger jederzeit im persönlichen Punktekonto im Detail nachvollziehbar.</p>
+          <p style="margin-top: 1rem;"><strong>Datenschutz</strong></p>
+          <p>Ihre Daten sind bei uns in sicheren Händen. Das Sozialkreditsystem basiert auf den weltweit strengsten Datenschutzrichtlinien und wird vollständig innerhalb der Schweiz verwaltet. Jede Datenerhebung erfolgt zweckgebunden, transparent und ist für Sie jederzeit im persönlichen Punktekonto nachvollziehbar.</p>
           <ul>
-            <li><strong>Zentrale Verwaltung:</strong> Die Daten werden in einer gesicherten, zentralen Datenbank des Bundesamtes für Gerechtigkeit verwaltet.</li>
-            <li><strong>Einsichtsrecht:</strong> Sie haben über einen gesicherten Online-Zugang jederzeit vollständige Einsicht auf Ihre gespeicherten Daten und die Historie Ihrer Punktevergabe.</li>
+            <li><strong>Zentrale Verwaltung:</strong> Die Daten werden in einer gesicherten Datenbank des Bundesamtes für Gerechtigkeit verwaltet.</li>
+            <li><strong>Einsichtsrecht:</strong> Sie haben jederzeit vollständige Einsicht auf Ihre gespeicherten Daten und die Historie Ihrer Punktevergabe.</li>
             <li><strong>Rechtsschutz:</strong> Gegen jede Punktevergabe kann im Rahmen der gesetzlichen Bestimmungen Einspruch erhoben werden.</li>
           </ul>
         </div>
       </div>
 
       <!-- 4. Punkte-System und Konto -->
-      <div class="accordion-item">
-        <button class="accordion-btn" aria-expanded="false">
+      <div class="flat-acc-item">
+        <button class="flat-acc-btn" aria-expanded="false">
           Punkte-System und Konto
-          <span class="acc-icon" aria-hidden="true"></span>
+          <span class="flat-acc-icon" aria-hidden="true"></span>
         </button>
-        <div class="accordion-body">
-          <p>Um Gerechtigkeit und Sicherheit in der Schweiz zu fördern, braucht es ein System, das so präzise und zuverlässig arbeitet wie ein Schweizer Uhrwerk. Jede Bürgerin und jeder Bürger erhält ein persönliches Punktekonto, das als Spiegelbild ihres gesellschaftlichen Beitrags fungiert.</p>
-          <p><strong>Ihr persönliches Konto</strong></p>
-          <ul>
-            <li><strong>Zugang:</strong> Die Verwaltung Ihres Scores erfolgt voll digital und benutzerfreundlich, ähnlich wie beim E-Banking. Sie haben jederzeit Zugriff auf Ihr Konto über ein gesichertes Portal oder eine App.</li>
-            <li><strong>Volle Transparenz:</strong> In Ihrer Punkteübersicht sehen Sie detailliert jede Gutschrift und jeden Abzug. Sie wissen jederzeit genau, warum sich Ihr Score verändert hat.</li>
-            <li>Mit dem Erreichen des <strong>16. Lebensjahres</strong> wird das Konto automatisch aktiviert – der ideale Zeitpunkt, um Verantwortung in der Gesellschaft zu übernehmen.</li>
-          </ul>
+        <div class="flat-acc-body">
+          <p>Jede Bürgerin und jeder Bürger erhält ein persönliches Punktekonto, das als Spiegelbild ihres gesellschaftlichen Beitrags fungiert. Die Verwaltung erfolgt voll digital – ähnlich wie beim E-Banking, mit jederzeit vollständiger Transparenz über jede Gutschrift und jeden Abzug.</p>
+          <p>Mit dem Erreichen des <strong>16. Lebensjahres</strong> wird das Konto automatisch aktiviert. Die <strong>Skala</strong> reicht von -1000 bis +1000. Jeder startet bei 0 Punkten – keine Vorverurteilung. Negative Punkte verjähren nach einem festgelegten Zeitraum («Recht auf Neuanfang»).</p>
           <img src="website_material/Punktekonto_Gemini.png" alt="Digitales Punktekonto" style="border-radius: 8px; margin: 1rem 0; max-width: 680px; box-shadow: var(--shadow-sm);">
-          <p><strong>Die Punkteskala</strong></p>
-          <ul>
-            <li><strong>Startguthaben:</strong> Jeder startet bei 0 Punkten. Es gibt keine Vorverurteilung.</li>
-            <li>Die <strong>Skala</strong> reicht von -1000 bis +1000.</li>
-            <li><strong>Sicherheitsnetz:</strong> Personen ohne schwere Straftaten sind besonders geschützt und können nicht unter einen kritischen Schwellenwert von -750 fallen.</li>
-            <li><strong>Positive Verstärkung:</strong> Kontinuierliches pro-soziales Verhalten stabilisiert Ihren Score auf einem hohen Niveau.</li>
-            <li><strong>«Recht auf Neuanfang»:</strong> Negative Punkte sind nicht dauerhaft. Nach einem festgelegten Zeitraum verjähren Abzüge.</li>
-          </ul>
-          <img src="website_material/Punkteskala.jpg" alt="Punkteskala von -1000 bis +1000" style="border-radius: 8px; margin: 1rem 0; max-width: 640px;">
+          <img src="website_material/Punkteskala.jpg" alt="Punkteskala von -1000 bis +1000" style="border-radius: 8px; margin: 0.5rem 0; max-width: 640px;">
         </div>
       </div>
 
       <!-- 5. Einflussbereiche -->
-      <div class="accordion-item">
-        <button class="accordion-btn" aria-expanded="false">
+      <div class="flat-acc-item">
+        <button class="flat-acc-btn" aria-expanded="false">
           Einflussbereiche – Wo Ihr Score den Unterschied macht
-          <span class="acc-icon" aria-hidden="true"></span>
+          <span class="flat-acc-icon" aria-hidden="true"></span>
         </button>
-        <div class="accordion-body">
-          <p>Ihr Sozial-Kredit-Score ist mehr als nur eine Zahl – er ist ein Schlüssel zu Vorteilen und gesellschaftlicher Anerkennung. Dabei bleiben <strong>existenzielle Grundrechte</strong> (wie medizinische Notfallversorgung, das Recht auf eine Wohnung oder das Existenzminimum) für alle jederzeit <strong>unangetastet</strong>. Das System schafft lediglich zusätzliche Vorteile oder moderate Hürden.</p>
-          <img src="website_material/Einflussbereiche.jpg" alt="Einflussbereiche: Wohnen &amp; Lebensraum, Gemeinschaft &amp; Mobilität, Gesundheit &amp; Vorsorge" style="border-radius: 8px; margin: 1rem 0; max-width: 600px;">
-          <p><strong>Wohnen &amp; Lebensraum</strong></p>
-          <ul>
-            <li>Vorteile (pos. Score): Bevorzugter Zugang zu staatlich geförderten Wohnungen, Reduktion oder Erlass der Mietkaution und verlängerte Kündigungsfristen als Vertrauensbonus.</li>
-            <li>Integration (neg. Score): Nachrangige Behandlung bei stark frequentierten Besichtigungsterminen oder leicht erhöhte Sicherheitsleistungen.</li>
-          </ul>
-          <p><strong>Gemeinschaft &amp; Mobilität</strong></p>
-          <ul>
-            <li>Vorteile (pos. Score): Rabatte auf das Generalabonnement (GA) oder Halbtax, Vorzug beim Zugang zu öffentlichen Ämtern oder Kita-Plätzen und exklusive Einladungen zu Gemeinde-Events.</li>
-            <li>Integration (neg. Score): Eingeschränkter Zugang zu nicht-essenziellen öffentlichen Vergünstigungen.</li>
-          </ul>
-          <p><strong>Gesundheit &amp; Vorsorge</strong></p>
-          <ul>
-            <li>Vorteile (pos. Score): Reduktion der Krankenkassenprämien durch nachgewiesenes präventives Verhalten und schnellere Terminvergabe bei spezialisierten Beratungsstellen.</li>
-            <li>Integration (neg. Score): Wegfall von freiwilligen Prämienrabatten und verpflichtende Teilnahme an Gesundheits- oder Sozialberatungen zur Kurskorrektur.</li>
-          </ul>
+        <div class="flat-acc-body">
+          <p>Ihr Sozial-Kredit-Score ist mehr als nur eine Zahl – er ist ein Schlüssel zu Vorteilen und gesellschaftlicher Anerkennung. Dabei bleiben <strong>existenzielle Grundrechte</strong> (medizinische Notfallversorgung, Recht auf Wohnung, Existenzminimum) für alle jederzeit <strong>unangetastet</strong>.</p>
+          <img src="website_material/Einflussbereiche.jpg" alt="Einflussbereiche" style="border-radius: 8px; margin: 1rem 0 1.5rem; max-width: 560px;">
 
-          <h3 style="margin-top: 1.5rem;">Vorteile &amp; Chancen nach Bereich</h3>
-          <p style="font-size: 0.875rem; color: var(--grey-500); margin-bottom: 1rem;">Übersicht der Leistungen nach Score-Status</p>
-          <div style="overflow-x: auto;">
-            <table class="vorteile-table">
-              <thead>
-                <tr>
-                  <th>Einflussbereiche</th>
-                  <th>Exzellenz</th>
-                  <th>Vorbild</th>
-                  <th>Basis</th>
-                  <th>Reflexion</th>
-                  <th>Integration</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Wohnen &amp; Lebensraum</td>
-                  <td>Priority-Zugang: Bevorzugung &amp; nur 50% Mietkaution.</td>
-                  <td>Bonus-Check: Bevorzugte Besichtigungstermine.</td>
-                  <td>Standard: Reguläre Prozesse &amp; Kautionssätze.</td>
-                  <td>Basis-Wohnen: Standard-Bewerbung ohne Vorzug.</td>
-                  <td>Sicherheitsleistung: Erhöhte Kaution erforderlich.</td>
-                </tr>
-                <tr>
-                  <td>Wohnen &amp; Lebensraum (Bank)</td>
-                  <td>Zins-Bonus: -1.5% auf Hypotheken &amp; keine Gebühren.</td>
-                  <td>Sorglos-Tarif: Reduzierte Kontoführungsgebühren.</td>
-                  <td>Marktüblich: Standard-Konditionen.</td>
-                  <td>Standard-Plus: Wegfall von Gebühren-Rabatten.</td>
-                  <td>Basis-Dienst: Zugang zu Grundfunktionen.</td>
-                </tr>
-                <tr>
-                  <td>Gemeinschaft &amp; Mobilität</td>
-                  <td>VIP-Ticket: 50% Rabatt auf GA/Halbtax.</td>
-                  <td>Eco-Bonus: 10% Rabatt auf alle ÖV-Abos.</td>
-                  <td>Normaltarif: Reguläre Preise für ÖV &amp; Parkraum.</td>
-                  <td>Standard-Mobility: Voller Tarif ohne Vergünstigungen.</td>
-                  <td>Fokus-Weg: Wegfall von Freizeit-Vorteilen.</td>
-                </tr>
-                <tr>
-                  <td>Gesundheit &amp; Vorsorge</td>
-                  <td>Prämien-Max: 20% Rabatt &amp; Fast-Track Termine.</td>
-                  <td>Prämien-Plus: 5% Rabatt auf Zusatzversicherungen.</td>
-                  <td>Standard: Reguläre Prämien gemäss KVG.</td>
-                  <td>Präventions-Info: Empfehlung für Gesundheitsberatung.</td>
-                  <td>Vorsorge-Check: Verpflichtende Coaching-Gespräche.</td>
-                </tr>
-                <tr>
-                  <td>Gemeinschaft &amp; Mobilität (Kita)</td>
-                  <td>Mitgestaltung: Vorzug bei Kita-Plätzen &amp; Ämtern.</td>
-                  <td>Community-Plus: Gratis-Eintritt zu lokalen Events.</td>
-                  <td>Teilhabe: Uneingeschränkter Zugang zu Leistungen.</td>
-                  <td>Reflexions-Input: Beratungstermin bei der Gemeinde.</td>
-                  <td>Reintegration: Teilnahme an Gemeinschaftsprojekten.</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="sub-accordion">
+            <div class="sub-acc-item">
+              <button class="sub-acc-btn" aria-expanded="false">
+                Wohnen &amp; Lebensraum
+                <span class="sub-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sub-acc-body">
+                <p>Wohnraum ist in der Schweiz ein knappes Gut. Wer sich für die Gemeinschaft einsetzt, wird bei der Vergabe bevorzugt.</p>
+                <ul>
+                  <li><strong>Vorteile (pos. Score):</strong> Bevorzugter Zugang zu staatlich geförderten Wohnungen, Reduktion oder Erlass der Mietkaution, verlängerte Kündigungsfristen als Vertrauensbonus.</li>
+                  <li><strong>Integration (neg. Score):</strong> Nachrangige Behandlung bei stark frequentierten Besichtigungsterminen oder leicht erhöhte Sicherheitsleistungen.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub-acc-item">
+              <button class="sub-acc-btn" aria-expanded="false">
+                Gemeinschaft &amp; Mobilität
+                <span class="sub-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sub-acc-body">
+                <p>Wir fördern jene, den den öffentlichen Raum respektieren und Ressourcen schonen.</p>
+                <ul>
+                  <li><strong>Vorteile (pos. Score):</strong> Rabatte auf das Generalabonnement (GA) oder Halbtax, Vorzug beim Zugang zu öffentlichen Ämtern oder Kita-Plätzen, exklusive Einladungen zu Gemeinde-Events.</li>
+                  <li><strong>Integration (neg. Score):</strong> Eingeschränkter Zugang zu nicht-essenziellen öffentlichen Vergünstigungen.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="sub-acc-item">
+              <button class="sub-acc-btn" aria-expanded="false">
+                Gesundheit &amp; Vorsorge
+                <span class="sub-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sub-acc-body">
+                <p>Ein pro-soziales Leben schützt auch das Gesundheitssystem.</p>
+                <ul>
+                  <li><strong>Vorteile (pos. Score):</strong> Reduktion der Krankenkassenprämien durch nachgewiesenes präventives Verhalten (z.B. Sport, Blutspenden) und schnellere Terminvergabe bei spezialisierten Beratungsstellen.</li>
+                  <li><strong>Integration (neg. Score):</strong> Wegfall von freiwilligen Prämienrabatten und verpflichtende Teilnahme an Gesundheits- oder Sozialberatungen zur Kurskorrektur.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 2rem; margin-bottom: 0.375rem;">Vorteile &amp; Chancen nach Bereich</h3>
+          <p style="color: var(--grey-500); font-size: 0.875rem; margin-bottom: 0.75rem;">Klicken Sie auf einen Bereich, um die Leistungen je Score-Status zu sehen.</p>
+
+          <div class="table-acc">
+            <div class="table-acc-row">
+              <button class="table-acc-btn" aria-expanded="false">
+                Wohnen &amp; Lebensraum – Wohnungsvergabe
+                <span class="table-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="table-acc-panel">
+                <div class="score-cards">
+                  <div class="score-card exzellenz"><div class="score-card-label">Exzellenz</div><div class="score-card-text">Priority-Zugang: Bevorzugung &amp; nur 50% Mietkaution.</div></div>
+                  <div class="score-card vorbild"><div class="score-card-label">Vorbild</div><div class="score-card-text">Bonus-Check: Bevorzugte Besichtigungstermine.</div></div>
+                  <div class="score-card basis"><div class="score-card-label">Basis</div><div class="score-card-text">Standard: Reguläre Prozesse &amp; Kautionssätze.</div></div>
+                  <div class="score-card reflexion"><div class="score-card-label">Reflexion</div><div class="score-card-text">Basis-Wohnen: Standard-Bewerbung ohne Vorzug.</div></div>
+                  <div class="score-card integration"><div class="score-card-label">Integration</div><div class="score-card-text">Sicherheitsleistung: Erhöhte Kaution erforderlich.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="table-acc-row">
+              <button class="table-acc-btn" aria-expanded="false">
+                Wohnen &amp; Lebensraum – Banking
+                <span class="table-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="table-acc-panel">
+                <div class="score-cards">
+                  <div class="score-card exzellenz"><div class="score-card-label">Exzellenz</div><div class="score-card-text">Zins-Bonus: -1.5% auf Hypotheken &amp; keine Gebühren.</div></div>
+                  <div class="score-card vorbild"><div class="score-card-label">Vorbild</div><div class="score-card-text">Sorglos-Tarif: Reduzierte Kontoführungsgebühren.</div></div>
+                  <div class="score-card basis"><div class="score-card-label">Basis</div><div class="score-card-text">Marktüblich: Standard-Konditionen Ihrer Bank.</div></div>
+                  <div class="score-card reflexion"><div class="score-card-label">Reflexion</div><div class="score-card-text">Standard-Plus: Wegfall von Gebühren-Rabatten.</div></div>
+                  <div class="score-card integration"><div class="score-card-label">Integration</div><div class="score-card-text">Basis-Dienst: Zugang zu Grundfunktionen.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="table-acc-row">
+              <button class="table-acc-btn" aria-expanded="false">
+                Gemeinschaft &amp; Mobilität – ÖV &amp; Parkraum
+                <span class="table-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="table-acc-panel">
+                <div class="score-cards">
+                  <div class="score-card exzellenz"><div class="score-card-label">Exzellenz</div><div class="score-card-text">VIP-Ticket: 50% Rabatt auf GA/Halbtax.</div></div>
+                  <div class="score-card vorbild"><div class="score-card-label">Vorbild</div><div class="score-card-text">Eco-Bonus: 10% Rabatt auf alle ÖV-Abos.</div></div>
+                  <div class="score-card basis"><div class="score-card-label">Basis</div><div class="score-card-text">Normaltarif: Reguläre Preise für ÖV &amp; Parkraum.</div></div>
+                  <div class="score-card reflexion"><div class="score-card-label">Reflexion</div><div class="score-card-text">Standard-Mobility: Voller Tarif ohne Vergünstigungen.</div></div>
+                  <div class="score-card integration"><div class="score-card-label">Integration</div><div class="score-card-text">Fokus-Weg: Wegfall von Freizeit-Vorteilen.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="table-acc-row">
+              <button class="table-acc-btn" aria-expanded="false">
+                Gesundheit &amp; Vorsorge – Krankenkasse
+                <span class="table-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="table-acc-panel">
+                <div class="score-cards">
+                  <div class="score-card exzellenz"><div class="score-card-label">Exzellenz</div><div class="score-card-text">Prämien-Max: 20% Rabatt &amp; Fast-Track Termine.</div></div>
+                  <div class="score-card vorbild"><div class="score-card-label">Vorbild</div><div class="score-card-text">Prämien-Plus: 5% Rabatt auf Zusatzversicherungen.</div></div>
+                  <div class="score-card basis"><div class="score-card-label">Basis</div><div class="score-card-text">Standard: Reguläre Prämien gemäss KVG.</div></div>
+                  <div class="score-card reflexion"><div class="score-card-label">Reflexion</div><div class="score-card-text">Präventions-Info: Empfehlung für Gesundheitsberatung.</div></div>
+                  <div class="score-card integration"><div class="score-card-label">Integration</div><div class="score-card-text">Vorsorge-Check: Verpflichtende Coaching-Gespräche.</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="table-acc-row">
+              <button class="table-acc-btn" aria-expanded="false">
+                Gemeinschaft &amp; Mobilität – Kita &amp; Ämter
+                <span class="table-acc-icon" aria-hidden="true"></span>
+              </button>
+              <div class="table-acc-panel">
+                <div class="score-cards">
+                  <div class="score-card exzellenz"><div class="score-card-label">Exzellenz</div><div class="score-card-text">Mitgestaltung: Vorzug bei Kita-Plätzen &amp; Ämtern.</div></div>
+                  <div class="score-card vorbild"><div class="score-card-label">Vorbild</div><div class="score-card-text">Community-Plus: Gratis-Eintritt zu lokalen Events.</div></div>
+                  <div class="score-card basis"><div class="score-card-label">Basis</div><div class="score-card-text">Teilhabe: Uneingeschränkter Zugang zu Leistungen.</div></div>
+                  <div class="score-card reflexion"><div class="score-card-label">Reflexion</div><div class="score-card-text">Reflexions-Input: Beratungstermin bei der Gemeinde.</div></div>
+                  <div class="score-card integration"><div class="score-card-label">Integration</div><div class="score-card-text">Reintegration: Teilnahme an Gemeinschaftsprojekten.</div></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 6. Demokratie, Gesetz, Sozialkredit-Regeln -->
-      <div class="accordion-item">
-        <button class="accordion-btn" aria-expanded="false">
+      <!-- 6. Demokratie -->
+      <div class="flat-acc-item">
+        <button class="flat-acc-btn" aria-expanded="false">
           Demokratie, Gesetz und Sozialkredit-Regeln
-          <span class="acc-icon" aria-hidden="true"></span>
+          <span class="flat-acc-icon" aria-hidden="true"></span>
         </button>
-        <div class="accordion-body">
+        <div class="flat-acc-body">
           <p>Das Schweizer Sozialkreditsystem ist kein Instrument staatlicher Willkür, sondern ein durch das Volk legitimiertes Werkzeug für mehr Gerechtigkeit. Wir bauen auf unsere bewährten demokratischen Prozesse, um sicherzustellen, dass die Regeln des Systems unsere gemeinsamen Werte widerspiegeln.</p>
           <ul>
             <li><strong>Demokratische Legitimation:</strong> Die Einführung des Systems erfolgt über eine eidgenössische Volksinitiative. Jede grundlegende Regelung und spätere Anpassung der Kriterien unterliegt dem obligatorischen Referendum – das letzte Wort liegt immer bei den Stimmbürgerinnen und Stimmbürgern.</li>
@@ -258,7 +374,7 @@
         </div>
       </div>
 
-    </div><!-- end accordion -->
+    </div><!-- end flat-accordion -->
 
     <div style="margin-top: 2.5rem; text-align: center;">
       <a href="#" class="btn btn-primary btn-lg" data-modal="signature">Jetzt Sozialkredit-Initiative unterschreiben</a>
@@ -274,7 +390,9 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <img src="website_material/Logo_Sozialkredit.png" alt="SKS" class="footer-logo">
+      <div class="footer-logo-wrap">
+        <img src="website_material/Logo_Sozialkredit.png" alt="SKS" class="footer-logo">
+      </div>
       <p class="footer-tagline">Für eine sichere und gerechte Schweiz.<br>Initiativkomitee Sozialkreditsystem Schweiz.</p>
     </div>
     <div>
@@ -284,9 +402,15 @@
     <div>
       <div class="footer-title">Soziale Medien</div>
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">Ig</a>
-        <a href="#" aria-label="Facebook">Fb</a>
-        <a href="#" aria-label="X">X</a>
+        <a href="#" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="X">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
       </div>
     </div>
   </div>
