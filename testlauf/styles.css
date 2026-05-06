@@ -666,17 +666,17 @@ strong { font-weight: 700; }
 .score-card.integration .score-card-label { color: #7a1515; }
 .score-card.integration .score-card-text { color: #9b1c22; }
 
-.score-card.reflexion { background: #fce0dc; }
-.score-card.reflexion .score-card-label { color: #a83030; }
-.score-card.reflexion .score-card-text { color: #c04040; }
+.score-card.reflexion { background: #fef0ee; }
+.score-card.reflexion .score-card-label { color: #c04040; }
+.score-card.reflexion .score-card-text { color: #d06060; }
 
 .score-card.basis { background: var(--grey-100); }
 .score-card.basis .score-card-label { color: var(--grey-700); }
 .score-card.basis .score-card-text { color: var(--grey-600, #4b5563); }
 
-.score-card.vorbild { background: #daeee3; }
-.score-card.vorbild .score-card-label { color: #2d5a3d; }
-.score-card.vorbild .score-card-text { color: #3a6b4a; }
+.score-card.vorbild { background: #e8f5ee; }
+.score-card.vorbild .score-card-label { color: #3a7a4a; }
+.score-card.vorbild .score-card-text { color: #4a8a5a; }
 
 .score-card.exzellenz { background: #d0e8d0; }
 .score-card.exzellenz .score-card-label { color: #2d5a2d; }
