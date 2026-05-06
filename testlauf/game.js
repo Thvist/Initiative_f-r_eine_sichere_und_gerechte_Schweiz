@@ -12,6 +12,9 @@ const LS_SOUND = 'sks_sound_enabled';
 const LS_PLAYER_NAME = 'sks_player_name';
 const FIREBASE_URL = 'https://helvetingen-leaderboard-default-rtdb.europe-west1.firebasedatabase.app';
 
+// basePath → resolved URL (e.g. 'assets/park_morgen' → 'assets/park_morgen.png')
+const imageCache = {};
+
 const PHASE_ICONS = { morgen: '🌅', nachmittag: '☀️', abend: '🌇' };
 const PHASE_LABELS = { morgen: 'Morgen', nachmittag: 'Nachmittag', abend: 'Abend' };
 
@@ -136,6 +139,7 @@ let modalLocked = false;
 function init() {
   soundEnabled = localStorage.getItem(LS_SOUND) !== 'false';
   updateSoundToggle();
+  preloadAllImages();
 
   $('btn-start').addEventListener('click', startGame);
   $('btn-replay').addEventListener('click', startGame);
@@ -297,31 +301,46 @@ function showMap() {
   updateMapStatus();
   updateMapButtons();
   loadMapImage();
-  preloadSceneImages();
 }
 
-function preloadSceneImages() {
-  LOCATIONS.forEach(loc => {
-    ['jpg','png','jpeg'].some(ext => {
-      const img = new Image();
-      img.src = `assets/${loc}_${state.phase}.${ext}`;
-      return false;
-    });
+function preloadAllImages() {
+  const paths = [];
+  PHASES.forEach(phase => {
+    paths.push(`assets/map_${phase}`);
+    LOCATIONS.forEach(loc => paths.push(`assets/${loc}_${phase}`));
+  });
+  paths.forEach(basePath => {
+    const img = new Image();
+    tryLoadImage(img, basePath, () => {}, () => {});
   });
 }
 
 function tryLoadImage(img, basePath, onLoad, onError) {
-  img.onload = onLoad;
-  img.onerror = () => {
-    if (img.src.endsWith('.jpg')) {
-      img.src = basePath + '.png';
-    } else if (img.src.endsWith('.png')) {
-      img.src = basePath + '.jpeg';
-    } else {
-      onError();
+  const cached = imageCache[basePath];
+  if (cached) {
+    // Already know the format. If this element already has it loaded, fire immediately.
+    if (img.dataset.resolvedSrc === cached && img.complete && img.naturalWidth > 0) {
+      onLoad();
+      return;
     }
-  };
-  img.src = basePath + '.jpg';
+    img.dataset.resolvedSrc = cached;
+    img.onload = onLoad;
+    img.onerror = onError || (() => {});
+    img.src = cached;
+    return;
+  }
+
+  // Probe formats: png first (all current assets are PNG), then jpg, jpeg.
+  const exts = ['png', 'jpg', 'jpeg'];
+  let i = 0;
+  function tryNext() {
+    if (i >= exts.length) { if (onError) onError(); return; }
+    const url = `${basePath}.${exts[i++]}`;
+    img.onload = () => { imageCache[basePath] = url; img.dataset.resolvedSrc = url; onLoad(); };
+    img.onerror = tryNext;
+    img.src = url;
+  }
+  tryNext();
 }
 
 function loadMapImage() {
@@ -372,9 +391,13 @@ function renderScene() {
   // Label
   sceneLabel.textContent = LOCATION_NAMES[loc];
 
-  // Try to load scene image (jpg → png → jpeg)
   const img = $('scene-image');
   const placeholder = $('scene-placeholder');
+
+  // Hide the stale image immediately so it never flashes while the new one loads.
+  img.style.display = 'none';
+  placeholder.style.background = getScenePlaceholderColor(loc, phase);
+
   img.alt = `${LOCATION_NAMES[loc]} am ${PHASE_LABELS[phase]}`;
   tryLoadImage(
     img,
