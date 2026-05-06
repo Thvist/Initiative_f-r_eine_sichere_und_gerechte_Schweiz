@@ -67,7 +67,7 @@ const HOTSPOTS_DATA = [
 ];
 
 const MESSAGES_DATA = {
-  intro: { title:"Willkommen in Helvetingen", subtitle:"Erlebe das Sozialkreditsystem spielerisch", body:"Schlüpfe für einen Tag in die Rolle einer Bürgerin oder eines Bürgers von Helvetingen – und erlebe hautnah, wie ein Sozialkreditsystem das Alltagsleben prägt.\n\nDu hast 6 Entscheidungen über drei Tagesabschnitte. Frühe Entscheidungen können spätere Optionen öffnen oder verschliessen. Die Punktewerte sind spielerisch vereinfacht.\n\nKnacke den Highscore – oder erlebe bewusst, was ein niedriger Score bedeutet. Beides lohnt sich.", button:"Spielen" },
+  intro: { title:"Willkommen in Helvetingen", subtitle:"Erlebe das Sozialkreditsystem spielerisch", body:"Schlüpfe für einen Tag in die Rolle einer Bürgerin oder eines Bürgers von Helvetingen – und erlebe hautnah, wie ein Sozialkreditsystem das Alltagsleben prägt.\n\nDu hast 6 Entscheidungen über drei Tagesabschnitte. Frühe Entscheidungen können spätere Optionen öffnen oder verschliessen. Die Punktewerte sind spielerisch vereinfacht.\n\nZiel ist es, +1000 oder −1000 Punkte zu erreichen – also das absolute Maximum oder das absolute Minimum. Schaffst du einen der beiden Extremwerte?", button:"Spielen" },
   phase_transitions: {
     morgen_end: { title:"Der Morgen ist vorüber.", body:"Der Nachmittag beginnt." },
     nachmittag_end: { title:"Der Nachmittag geht zur Neige.", body:"Noch ein letzter Tagesabschnitt." },
