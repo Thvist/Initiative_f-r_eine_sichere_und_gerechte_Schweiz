@@ -662,25 +662,25 @@ strong { font-weight: 700; }
 }
 .score-card-text { font-size: 0.8125rem; line-height: 1.45; }
 
-.score-card.exzellenz { background: #dcfce7; }
-.score-card.exzellenz .score-card-label { color: #166534; }
-.score-card.exzellenz .score-card-text { color: #15803d; }
+.score-card.integration { background: #fde8e8; }
+.score-card.integration .score-card-label { color: #7a1515; }
+.score-card.integration .score-card-text { color: #9b1c22; }
 
-.score-card.vorbild { background: #d1fae5; }
-.score-card.vorbild .score-card-label { color: #065f46; }
-.score-card.vorbild .score-card-text { color: #047857; }
+.score-card.reflexion { background: #fce0dc; }
+.score-card.reflexion .score-card-label { color: #a83030; }
+.score-card.reflexion .score-card-text { color: #c04040; }
 
 .score-card.basis { background: var(--grey-100); }
 .score-card.basis .score-card-label { color: var(--grey-700); }
 .score-card.basis .score-card-text { color: var(--grey-600, #4b5563); }
 
-.score-card.reflexion { background: #fef3c7; }
-.score-card.reflexion .score-card-label { color: #92400e; }
-.score-card.reflexion .score-card-text { color: #b45309; }
+.score-card.vorbild { background: #daeee3; }
+.score-card.vorbild .score-card-label { color: #2d5a3d; }
+.score-card.vorbild .score-card-text { color: #3a6b4a; }
 
-.score-card.integration { background: #fee2e2; }
-.score-card.integration .score-card-label { color: #991b1b; }
-.score-card.integration .score-card-text { color: #b91c1c; }
+.score-card.exzellenz { background: #d0e8d0; }
+.score-card.exzellenz .score-card-label { color: #2d5a2d; }
+.score-card.exzellenz .score-card-text { color: #336b33; }
 
 @media (max-width: 720px) {
   .score-cards { grid-template-columns: 1fr 1fr; }
