@@ -24,7 +24,7 @@
       <img src="website_material/Logo_Sozialkredit.png" alt="SKS Logo" class="gate-logo">
       <div class="gate-title">Sozialkredit-Initiative Schweiz</div>
       <p class="gate-subtitle">Interner Bereich – bitte Passwort eingeben.</p>
-      <div class="gate-disclaimer">Satirisches Studierendenprojekt · Keine echte Initiative</div>
+      <div class="gate-disclaimer">Satirisches Studierendenprojekt<br>Keine echte Initiative</div>
       <form id="gate-form" autocomplete="off">
         <input type="password" id="gate-input" placeholder="Passwort" autocomplete="current-password">
         <p class="gate-error" id="gate-error">Falsches Passwort. Bitte erneut versuchen.</p>

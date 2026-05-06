@@ -293,6 +293,8 @@ function startGame() {
   state = freshState();
   updateTopBar();
   topBar.classList.remove('hidden');
+  bgMusic.currentTime = 0;
+  startMusic();
   showMap();
 }
 
@@ -1206,6 +1208,15 @@ function updateTopBar() {
 //  SOUND
 // ============================================================
 
+const bgMusic = new Audio('../website_material/baranova_n-city-birds-444667.wav');
+bgMusic.loop = true;
+bgMusic.volume = 0.35;
+
+function startMusic() {
+  if (!soundEnabled) return;
+  bgMusic.play().catch(() => {}); // autoplay policy: silently ignore if blocked
+}
+
 function playChime(positive) {
   if (!soundEnabled) return;
   try {
@@ -1237,6 +1248,11 @@ function playChime(positive) {
 function toggleSound() {
   soundEnabled = !soundEnabled;
   localStorage.setItem(LS_SOUND, soundEnabled);
+  if (soundEnabled) {
+    bgMusic.play().catch(() => {});
+  } else {
+    bgMusic.pause();
+  }
   updateSoundToggle();
 }
 
