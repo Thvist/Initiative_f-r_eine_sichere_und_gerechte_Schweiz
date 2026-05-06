@@ -1280,3 +1280,78 @@ strong { font-weight: 700; }
   padding: 0.3rem 0.875rem;
   margin-bottom: 1.5rem;
 }
+
+/* ============== PUNKTESKALA GRAPHIC ============== */
+.skala-graphic {
+  margin: 1.25rem 0 2rem;
+  padding: 1.25rem 2.5rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--grey-300);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.skala-top {
+  position: relative;
+  margin-bottom: 2px;
+  height: 46px;
+}
+.skala-marker {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+.skala-marker-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--grey-800);
+  white-space: nowrap;
+}
+.skala-marker-tri {
+  font-size: 0.5rem;
+  color: var(--grey-700);
+  line-height: 1;
+}
+.skala-bar-row {
+  display: flex;
+  align-items: center;
+}
+.skala-arrow-l {
+  width: 0; height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-right: 22px solid #7a1515;
+  flex-shrink: 0;
+}
+.skala-bar {
+  flex: 1;
+  height: 34px;
+  background: linear-gradient(to right,
+    #7a1515   0%,      #7a1515   12.5%,
+    #c04040   12.5%,   #c04040   37.5%,
+    #d98888   37.5%,   #d98888   50%,
+    #88b898   50%,     #88b898   62.5%,
+    #4a7a5a   62.5%,   #4a7a5a   87.5%,
+    #2d5a2d   87.5%,   #2d5a2d   100%);
+}
+.skala-arrow-r {
+  width: 0; height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 22px solid #2d5a2d;
+  flex-shrink: 0;
+}
+.skala-bottom {
+  position: relative;
+  margin-top: 6px;
+  height: 18px;
+}
+.skala-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--grey-600);
+  white-space: nowrap;
+}
