@@ -793,6 +793,7 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
   font-size: 15px;
   color: rgba(255,255,255,0.6);
   max-width: 380px;
+  margin: 0 auto;
 }
 
 /* ============== END SCREEN ============== */

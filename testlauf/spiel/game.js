@@ -915,6 +915,7 @@ function showTransition(key, callback) {
 // ============================================================
 
 function showEndScreen() {
+  fadeOutMusic(2500);
   showScreen('end');
   topBar.classList.add('hidden');
 
@@ -1215,6 +1216,23 @@ bgMusic.volume = 0.35;
 function startMusic() {
   if (!soundEnabled) return;
   bgMusic.play().catch(() => {}); // autoplay policy: silently ignore if blocked
+}
+
+function fadeOutMusic(duration = 2000) {
+  if (bgMusic.paused) return;
+  const startVol = bgMusic.volume;
+  const steps = 40;
+  const interval = duration / steps;
+  let step = 0;
+  const fade = setInterval(() => {
+    step++;
+    bgMusic.volume = Math.max(0, startVol * (1 - step / steps));
+    if (step >= steps) {
+      clearInterval(fade);
+      bgMusic.pause();
+      bgMusic.volume = startVol;
+    }
+  }, interval);
 }
 
 function playChime(positive) {
