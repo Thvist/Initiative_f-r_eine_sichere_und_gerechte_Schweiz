@@ -981,7 +981,7 @@ strong { font-weight: 700; }
 }
 .signature-area:hover { border-color: var(--red); color: var(--red); }
 
-.form-actions { margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.form-actions { margin-top: 1.5rem; margin-bottom: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
 /* ============== DONATION FORM ============== */
 .donation-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
