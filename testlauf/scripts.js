@@ -99,21 +99,45 @@ document.querySelectorAll('[data-modal="signature"]').forEach(btn => {
   });
 });
 
-document.querySelectorAll('.modal-close').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (sigModal) sigModal.classList.remove('open');
-  });
-});
-
 if (sigModal) {
   sigModal.addEventListener('click', e => {
     if (e.target === sigModal) sigModal.classList.remove('open');
   });
 }
 
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && sigModal) sigModal.classList.remove('open');
+// ============== CHECKOUT MODAL ==============
+const checkoutModal = document.getElementById('checkout-modal');
+
+document.querySelectorAll('.modal-close').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (sigModal) sigModal.classList.remove('open');
+    if (checkoutModal) checkoutModal.classList.remove('open');
+  });
 });
+
+if (checkoutModal) {
+  checkoutModal.addEventListener('click', e => {
+    if (e.target === checkoutModal) checkoutModal.classList.remove('open');
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (sigModal) sigModal.classList.remove('open');
+    if (checkoutModal) checkoutModal.classList.remove('open');
+  }
+});
+
+const checkoutForm = document.getElementById('checkout-form');
+if (checkoutForm) {
+  checkoutForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (checkoutModal) checkoutModal.classList.remove('open');
+    checkoutForm.reset();
+    showToast('Bestellung erfolgreich aufgegeben! Sie erhalten eine Bestätigung per E-Mail.');
+  });
+}
+
 
 // ============== SIGNATURE FORM ==============
 const sigForm = document.getElementById('signature-form');
@@ -194,8 +218,15 @@ if (donationForm) {
 // ============== SHOP CART MOCK ==============
 document.querySelectorAll('.btn-cart').forEach(btn => {
   btn.addEventListener('click', () => {
-    const name = btn.closest('.product-card')?.querySelector('.product-name')?.textContent || 'Artikel';
-    showToast(`«${name}» wurde in den Warenkorb gelegt.`);
+    const card = btn.closest('.product-card');
+    const name = card?.querySelector('.product-name')?.textContent || 'Artikel';
+    const price = card?.querySelector('.product-price')?.textContent || '';
+    if (checkoutModal) {
+      document.getElementById('checkout-product-name').textContent = name;
+      document.getElementById('checkout-product-price').textContent = price;
+      document.getElementById('checkout-qty').value = '1';
+      checkoutModal.classList.add('open');
+    }
   });
 });
 

@@ -286,7 +286,7 @@
           <div class="product-desc">Kostenlos für Instagram und TikTok. Zeig deinen persönlichen Initiativ-Score, teile deine Haltung. Verfügbar für iOS &amp; Android.</div>
           <div class="product-price"><span class="free">Gratis</span></div>
         </div>
-        <div class="product-footer"><button class="btn-cart">Jetzt herunterladen</button></div>
+        <div class="product-footer"><button class="btn-cart">In den Warenkorb</button></div>
       </div>
       <!-- Product 7 -->
       <div class="product-card">
@@ -473,6 +473,75 @@
       <div class="form-actions">
         <button type="submit" class="btn btn-primary" style="flex: 1;">Unterschrift einreichen</button>
         <button type="button" class="btn btn-outline modal-close">Abbrechen</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-title">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="section-label">Shop</div>
+        <h2 id="checkout-modal-title" style="margin-bottom: 0;">Zur Kasse</h2>
+      </div>
+      <button class="modal-close" aria-label="Schliessen" data-modal="checkout">×</button>
+    </div>
+    <div id="checkout-product-line" style="display:flex; align-items:center; gap:0.75rem; padding:0.75rem 1rem; background:var(--grey-100); border-radius:8px; margin-bottom:1.5rem;">
+      <span id="checkout-product-name" style="font-weight:700; font-size:0.9375rem; flex:1;"></span>
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <label style="font-size:0.8125rem; color:var(--grey-600);">Menge</label>
+        <select id="checkout-qty" class="form-select" style="width:72px; padding:0.25rem 0.5rem; font-size:0.875rem;">
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+        </select>
+      </div>
+      <span id="checkout-product-price" style="font-weight:700; color:var(--red); font-size:0.9375rem; white-space:nowrap;"></span>
+    </div>
+    <form id="checkout-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="co-vorname">Vorname</label>
+          <input class="form-input" id="co-vorname" type="text" required placeholder="Maria">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="co-nachname">Nachname</label>
+          <input class="form-input" id="co-nachname" type="text" required placeholder="Muster">
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="co-email">E-Mail</label>
+          <input class="form-input" id="co-email" type="email" required placeholder="maria.muster@beispiel.ch">
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="co-adresse">Lieferadresse</label>
+          <input class="form-input" id="co-adresse" type="text" required placeholder="Musterstrasse 1">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="co-plz">PLZ</label>
+          <input class="form-input" id="co-plz" type="text" required placeholder="9000" maxlength="4">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="co-ort">Ort</label>
+          <input class="form-input" id="co-ort" type="text" required placeholder="St. Gallen">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Zahlungsmethode</label>
+          <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.25rem;">
+            <label class="form-checkbox"><input type="radio" name="co-zahlung" value="twint" required> TWINT</label>
+            <label class="form-checkbox"><input type="radio" name="co-zahlung" value="kreditkarte"> Kreditkarte</label>
+            <label class="form-checkbox"><input type="radio" name="co-zahlung" value="rechnung"> Rechnung</label>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label class="form-checkbox">
+            <input type="checkbox" required>
+            Ich akzeptiere die AGB und nehme die Datenschutzerklärung zur Kenntnis.
+          </label>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" style="flex:1;">Bestellung aufgeben</button>
+        <button type="button" class="btn btn-outline modal-close" data-modal="checkout">Abbrechen</button>
       </div>
     </form>
   </div>
