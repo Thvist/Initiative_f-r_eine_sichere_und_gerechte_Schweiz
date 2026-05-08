@@ -923,7 +923,7 @@ strong { font-weight: 700; }
   padding: 2rem;
   max-width: 560px;
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
   position: relative;
   box-shadow: var(--shadow);
 }
