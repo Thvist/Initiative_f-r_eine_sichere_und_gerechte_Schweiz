@@ -107,6 +107,15 @@ if (sigModal) {
 
 // ============== CHECKOUT MODAL ==============
 const checkoutModal = document.getElementById('checkout-modal');
+let checkoutUnitPrice = 0;
+
+function updateCheckoutPrice() {
+  const qty = parseInt(document.getElementById('checkout-qty')?.value || '1', 10);
+  const priceEl = document.getElementById('checkout-product-price');
+  if (!priceEl) return;
+  if (checkoutUnitPrice === 0) return; // free item
+  priceEl.textContent = 'CHF ' + (checkoutUnitPrice * qty) + '.–';
+}
 
 document.querySelectorAll('.modal-close').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -119,6 +128,7 @@ if (checkoutModal) {
   checkoutModal.addEventListener('click', e => {
     if (e.target === checkoutModal) checkoutModal.classList.remove('open');
   });
+  document.getElementById('checkout-qty')?.addEventListener('change', updateCheckoutPrice);
 }
 
 document.addEventListener('keydown', e => {
@@ -220,10 +230,12 @@ document.querySelectorAll('.btn-cart').forEach(btn => {
   btn.addEventListener('click', () => {
     const card = btn.closest('.product-card');
     const name = card?.querySelector('.product-name')?.textContent || 'Artikel';
-    const price = card?.querySelector('.product-price')?.textContent || '';
+    const priceText = card?.querySelector('.product-price')?.textContent || '';
+    const priceMatch = priceText.match(/\d+/);
+    checkoutUnitPrice = priceMatch ? parseInt(priceMatch[0], 10) : 0;
     if (checkoutModal) {
       document.getElementById('checkout-product-name').textContent = name;
-      document.getElementById('checkout-product-price').textContent = price;
+      document.getElementById('checkout-product-price').textContent = checkoutUnitPrice ? `CHF ${checkoutUnitPrice}.–` : priceText;
       document.getElementById('checkout-qty').value = '1';
       checkoutModal.classList.add('open');
     }
