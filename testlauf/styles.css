@@ -920,7 +920,7 @@ strong { font-weight: 700; }
 .modal {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 2.5rem;
   max-width: 560px;
   width: 100%;
   margin: 0 auto;
