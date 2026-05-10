@@ -52,8 +52,12 @@
       Ziel ist es, <strong>+1000</strong> oder <strong>−1000</strong> Punkte zu erreichen – also das absolute Maximum oder das absolute Minimum. Schaffst du einen der beiden Extremwerte?
     </p>
     <div id="run-indicator" class="run-indicator">
-      Durchlauf <span id="run-number">1</span> / 3
-      <span id="run-label" class="run-label"></span>
+      <div class="run-stepper" role="list" aria-label="Durchlauf-Fortschritt">
+        <div class="run-step" data-step="1" role="listitem"><span>1</span></div>
+        <div class="run-step" data-step="2" role="listitem"><span>2</span></div>
+        <div class="run-step" data-step="3" role="listitem"><span>3</span></div>
+      </div>
+      <div class="run-label" id="run-label"></div>
     </div>
     <button class="btn btn-primary" id="btn-start">Spielen</button>
   </div>

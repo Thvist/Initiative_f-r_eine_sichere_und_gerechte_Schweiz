@@ -134,10 +134,15 @@ function incrementRunCount() {
 
 function updateRunIndicator() {
   const run = getCurrentRun();
-  const numEl = $('run-number');
+  const indicator = $('run-indicator');
+  if (!indicator) return;
+  indicator.querySelectorAll('.run-step').forEach(step => {
+    const stepNum = parseInt(step.dataset.step, 10);
+    step.classList.remove('completed', 'current');
+    if (stepNum < run) step.classList.add('completed');
+    if (stepNum === run) step.classList.add('current');
+  });
   const lblEl = $('run-label');
-  if (!numEl) return;
-  numEl.textContent = run;
   const labels = {
     1: '',
     2: 'Neue Schauplätze freigeschaltet',
@@ -665,17 +670,30 @@ function openHotspot(id) {
     const wrap = document.createElement('div');
     const cssClass = points > 0 ? 'option-a' : points < 0 ? 'option-b' : 'option-neutral';
 
-    if (labelText) {
+    const tagText = getOptionTagText(option, points);
+    const hasTopRow = labelText || tagText || knownPts !== null;
+
+    if (hasTopRow) {
       const labelRow = document.createElement('div');
       labelRow.className = 'option-label-row';
 
-      const lbl = document.createElement('div');
-      lbl.className = 'option-label';
-      lbl.textContent = labelText;
-      labelRow.appendChild(lbl);
+      if (labelText) {
+        const lbl = document.createElement('div');
+        lbl.className = 'option-label';
+        lbl.textContent = labelText;
+        labelRow.appendChild(lbl);
+      }
 
-      const tagText = getOptionTagText(option, points);
       if (tagText) labelRow.appendChild(makeBonusTag(tagText));
+
+      if (knownPts !== null) {
+        const knownTag = document.createElement('span');
+        const tone = knownPts > 0 ? 'positive' : knownPts < 0 ? 'negative' : 'neutral';
+        knownTag.className = `known-tag ${tone}`;
+        const sign = knownPts > 0 ? '+' : '';
+        knownTag.textContent = `Bekannt · ${sign}${knownPts}`;
+        labelRow.appendChild(knownTag);
+      }
 
       wrap.appendChild(labelRow);
     }
@@ -686,13 +704,6 @@ function openHotspot(id) {
     btn.textContent = optionText;
     btn.addEventListener('click', () => commitAction(hotspot, option, optionKey, points, optionText));
     wrap.appendChild(btn);
-
-    if (knownPts !== null) {
-      const hint = document.createElement('div');
-      hint.className = 'known-points-hint';
-      hint.textContent = `Du hast das schon gewählt · ${knownPts >= 0 ? '+' : ''}${knownPts} Punkte`;
-      wrap.appendChild(hint);
-    }
 
     return wrap;
   }
