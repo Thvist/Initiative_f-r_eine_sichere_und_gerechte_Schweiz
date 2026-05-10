@@ -195,7 +195,6 @@ function init() {
 
   $('btn-start').addEventListener('click', startGame);
   $('btn-replay').addEventListener('click', startGame);
-  $('btn-sign').addEventListener('click', () => window.parent.postMessage('openSignatureModal', '*'));
   $('nav-back').addEventListener('click', () => showMap());
   $('btn-reset-progress').addEventListener('click', () => {
     resetChoiceMemory();
