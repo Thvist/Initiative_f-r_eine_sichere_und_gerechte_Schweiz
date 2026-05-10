@@ -138,17 +138,11 @@ function updateUnlockMessage() {
     : getCompletedRuns();
   const card = $('unlock-message');
   if (!card) return;
-  const titleEl = card.querySelector('.unlock-title');
-  const bodyEl = card.querySelector('.unlock-body');
   if (completed === 1) {
-    const newCount = allHotspots.filter(h => (h.minRun || 1) === 2).length;
-    titleEl.textContent = 'Neue Events freigeschaltet!';
-    bodyEl.textContent = `Im nächsten Durchlauf warten ${newCount} neue Hotspots auf dich.`;
+    card.textContent = 'Glückwunsch! Im nächsten Durchlauf warten neue Hotspots auf dich!';
     card.classList.remove('hidden');
   } else if (completed === 2) {
-    const newCount = allHotspots.filter(h => (h.minRun || 1) === 3).length;
-    titleEl.textContent = 'Alle Events freigeschaltet!';
-    bodyEl.textContent = `Im nächsten Durchlauf hast du Zugriff auf alle ${newCount} verbleibenden Hotspots in Helvetingen.`;
+    card.textContent = 'Glückwunsch! Im nächsten Durchlauf sind alle Hotspots verfügbar!';
     card.classList.remove('hidden');
   } else {
     card.classList.add('hidden');
