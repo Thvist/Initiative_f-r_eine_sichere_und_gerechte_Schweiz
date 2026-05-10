@@ -133,7 +133,9 @@ function incrementRunCount() {
 }
 
 function updateUnlockMessage() {
-  const completed = getCompletedRuns();
+  const completed = (window.placementMode && window.placementRun)
+    ? window.placementRun
+    : getCompletedRuns();
   const card = $('unlock-message');
   if (!card) return;
   const titleEl = card.querySelector('.unlock-title');
@@ -388,6 +390,8 @@ function setPlacementRun(run) {
     updateMapButtons();
   } else if (screens.scene.classList.contains('active')) {
     renderHotspots();
+  } else if (screens.end.classList.contains('active')) {
+    updateUnlockMessage();
   }
 }
 
@@ -1062,7 +1066,7 @@ function showTransition(key, callback) {
 
 function showEndScreen() {
   fadeOutMusic(2500);
-  incrementRunCount();
+  if (!window.placementMode) incrementRunCount();
   updateUnlockMessage();
   showScreen('end');
   topBar.classList.add('hidden');
