@@ -1050,6 +1050,27 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
 
 .end-buttons .btn { flex: 1; min-width: 160px; }
 
+.btn-reset-progress {
+  background: none;
+  border: none;
+  color: var(--grey-500);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 8px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.btn-reset-progress:hover { color: var(--red); }
+.btn-reset-progress:disabled { color: var(--grey-300); text-decoration: none; cursor: default; }
+
+.known-points-hint {
+  font-size: 11px;
+  color: var(--grey-500);
+  text-align: center;
+  margin-top: 5px;
+  font-style: italic;
+}
+
 /* ============== CONFETTI ============== */
 
 #confetti-container {

@@ -10,6 +10,7 @@ const ACTIONS_PER_PHASE = 2;
 const NAME_MAX = 16;
 const LS_SOUND = 'sks_sound_enabled';
 const LS_PLAYER_NAME = 'sks_player_name';
+const LS_CHOICE_MEMORY = 'sks_choice_memory';
 const FIREBASE_URL = 'https://helvetingen-leaderboard-default-rtdb.europe-west1.firebasedatabase.app';
 
 // basePath → resolved URL (e.g. 'assets/park_morgen' → 'assets/park_morgen.png')
@@ -95,6 +96,27 @@ let state = {};
 let allHotspots = HOTSPOTS_DATA;
 let messages = MESSAGES_DATA;
 let soundEnabled = true;
+let choiceMemory = {};
+
+function loadChoiceMemory() {
+  try { choiceMemory = JSON.parse(localStorage.getItem(LS_CHOICE_MEMORY) || '{}'); }
+  catch { choiceMemory = {}; }
+}
+
+function saveChoiceToMemory(hotspotId, optionKey, points) {
+  choiceMemory[`${hotspotId}_${optionKey}`] = points;
+  localStorage.setItem(LS_CHOICE_MEMORY, JSON.stringify(choiceMemory));
+}
+
+function getKnownPoints(hotspotId, optionKey) {
+  const key = `${hotspotId}_${optionKey}`;
+  return key in choiceMemory ? choiceMemory[key] : null;
+}
+
+function resetChoiceMemory() {
+  choiceMemory = {};
+  localStorage.removeItem(LS_CHOICE_MEMORY);
+}
 
 function freshState() {
   return {
@@ -138,6 +160,7 @@ let modalLocked = false;
 
 function init() {
   soundEnabled = localStorage.getItem(LS_SOUND) !== 'false';
+  loadChoiceMemory();
   updateSoundToggle();
   preloadAllImages();
 
@@ -145,6 +168,13 @@ function init() {
   $('btn-replay').addEventListener('click', startGame);
   $('btn-sign').addEventListener('click', () => window.parent.postMessage('openSignatureModal', '*'));
   $('nav-back').addEventListener('click', () => showMap());
+  $('btn-reset-progress').addEventListener('click', () => {
+    resetChoiceMemory();
+    const btn = $('btn-reset-progress');
+    btn.textContent = 'Fortschritt zurückgesetzt';
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = 'Fortschritt zurücksetzen'; btn.disabled = false; }, 2500);
+  });
   $('nav-left').addEventListener('click', () => navigateScene(-1));
   $('nav-right').addEventListener('click', () => navigateScene(1));
   $('sound-toggle').addEventListener('click', toggleSound);
@@ -572,8 +602,9 @@ function openHotspot(id) {
   const optionsEl = $('modal-options');
   optionsEl.innerHTML = '';
 
-  function makeOptionBtn(option, labelText) {
+  function makeOptionBtn(option, labelText, optionKey) {
     const points = resolvePoints(hotspot, option);
+    const knownPts = optionKey ? getKnownPoints(hotspot.id, optionKey) : null;
     const wrap = document.createElement('div');
     const cssClass = points > 0 ? 'option-a' : points < 0 ? 'option-b' : 'option-neutral';
 
@@ -596,21 +627,29 @@ function openHotspot(id) {
     btn.className = `btn btn-option ${cssClass}`;
     const optionText = resolveOptionText(option);
     btn.textContent = optionText;
-    btn.addEventListener('click', () => commitAction(hotspot, option, points, optionText));
+    btn.addEventListener('click', () => commitAction(hotspot, option, optionKey, points, optionText));
     wrap.appendChild(btn);
+
+    if (knownPts !== null) {
+      const hint = document.createElement('div');
+      hint.className = 'known-points-hint';
+      hint.textContent = `Du hast das schon gewählt · ${knownPts >= 0 ? '+' : ''}${knownPts} Punkte`;
+      wrap.appendChild(hint);
+    }
+
     return wrap;
   }
 
   if (forcedOptionKey) {
-    optionsEl.appendChild(makeOptionBtn(hotspot[forcedOptionKey], ''));
+    optionsEl.appendChild(makeOptionBtn(hotspot[forcedOptionKey], '', forcedOptionKey));
   } else if (hotspot.type === 'positive_only') {
-    optionsEl.appendChild(makeOptionBtn(hotspot.option_a, ''));
+    optionsEl.appendChild(makeOptionBtn(hotspot.option_a, '', 'option_a'));
   } else if (hotspot.type === 'negative_only') {
-    optionsEl.appendChild(makeOptionBtn(hotspot.option_a, ''));
+    optionsEl.appendChild(makeOptionBtn(hotspot.option_a, '', 'option_a'));
   } else {
     ['option_a', 'option_b', 'option_c'].forEach((key, index) => {
       if (!hotspot[key]) return;
-      optionsEl.appendChild(makeOptionBtn(hotspot[key], `Option ${String.fromCharCode(65 + index)}`));
+      optionsEl.appendChild(makeOptionBtn(hotspot[key], `Option ${String.fromCharCode(65 + index)}`, key));
     });
   }
 
@@ -833,11 +872,14 @@ function closeModal(force = false) {
   modalOverlay.classList.remove('active');
 }
 
-function commitAction(hotspot, option, points, optionText = option.text) {
+function commitAction(hotspot, option, optionKey, points, optionText = option.text) {
   closeModal(true);
 
   // Mark hotspot done
   state.completedHotspotsThisPhase.add(hotspot.id);
+
+  // Remember this choice for future runs
+  if (optionKey) saveChoiceToMemory(hotspot.id, optionKey, points);
 
   // Apply flag
   if (option.sets_flag) state.flags.add(option.sets_flag);
