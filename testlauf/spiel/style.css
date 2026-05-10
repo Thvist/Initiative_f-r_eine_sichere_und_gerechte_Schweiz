@@ -1071,13 +1071,13 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
 .unlock-card {
   margin-bottom: 16px;
   padding: 12px 18px;
-  background: #fef2f2;
-  color: var(--red-dark);
-  border-left: 4px solid var(--red);
+  background: var(--red-dark);
+  color: var(--white);
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.45;
+  box-shadow: 0 4px 14px rgba(216, 35, 42, 0.3);
 }
 
 .btn-reset-progress {
