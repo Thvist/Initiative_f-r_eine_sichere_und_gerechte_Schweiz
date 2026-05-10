@@ -362,6 +362,7 @@ function updatePlacementPhaseSwitcher() {
 function setPlacementRun(run) {
   window.placementRun = run;
   updatePlacementRunSwitcher();
+  updateRunIndicator();
   if (screens.map.classList.contains('active')) {
     updateMapButtons();
   } else if (screens.scene.classList.contains('active')) {
