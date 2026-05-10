@@ -702,10 +702,10 @@ function openHotspot(id) {
 
     if (knownPts !== null) {
       const knownTag = document.createElement('span');
-      const tone = knownPts > 0 ? 'positive' : knownPts < 0 ? 'negative' : 'neutral';
+      const tone = points > 0 ? 'positive' : points < 0 ? 'negative' : 'neutral';
       knownTag.className = `known-tag ${tone}`;
-      const sign = knownPts > 0 ? '+' : '';
-      knownTag.textContent = `${sign}${knownPts} Punkte`;
+      const sign = points > 0 ? '+' : '';
+      knownTag.textContent = `${sign}${points} Punkte`;
       btnWrap.appendChild(knownTag);
     }
 
@@ -899,16 +899,6 @@ function getOptionTagText(option, points) {
     if (diff > 0) return `Bonus-Punkte +${diff}`;
     if (diff < 0) return `Malus-Punkte ${diff}`;
     return 'Spezialpunkte';
-  }
-
-  if (option.points_per_positive_flag) {
-    const count = countPositiveFlags();
-    if (count > 0) return `+${points} durch ${count} positive Tat${count !== 1 ? 'en' : ''}`;
-  }
-
-  if (option.points_per_negative_flag) {
-    const count = countNegativeFlags();
-    if (count > 0) return `${points} durch ${count} negative Tat${count !== 1 ? 'en' : ''}`;
   }
 
   return '';
