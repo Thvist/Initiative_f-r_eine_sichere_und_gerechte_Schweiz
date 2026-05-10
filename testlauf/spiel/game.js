@@ -671,7 +671,7 @@ function openHotspot(id) {
     const cssClass = points > 0 ? 'option-a' : points < 0 ? 'option-b' : 'option-neutral';
 
     const tagText = getOptionTagText(option, points);
-    const hasTopRow = labelText || tagText || knownPts !== null;
+    const hasTopRow = labelText || tagText;
 
     if (hasTopRow) {
       const labelRow = document.createElement('div');
@@ -686,24 +686,29 @@ function openHotspot(id) {
 
       if (tagText) labelRow.appendChild(makeBonusTag(tagText));
 
-      if (knownPts !== null) {
-        const knownTag = document.createElement('span');
-        const tone = knownPts > 0 ? 'positive' : knownPts < 0 ? 'negative' : 'neutral';
-        knownTag.className = `known-tag ${tone}`;
-        const sign = knownPts > 0 ? '+' : '';
-        knownTag.textContent = `Bekannt · ${sign}${knownPts}`;
-        labelRow.appendChild(knownTag);
-      }
-
       wrap.appendChild(labelRow);
     }
+
+    const btnWrap = document.createElement('div');
+    btnWrap.className = 'option-btn-wrap';
 
     const btn = document.createElement('button');
     btn.className = `btn btn-option ${cssClass}`;
     const optionText = resolveOptionText(option);
     btn.textContent = optionText;
     btn.addEventListener('click', () => commitAction(hotspot, option, optionKey, points, optionText));
-    wrap.appendChild(btn);
+    btnWrap.appendChild(btn);
+
+    if (knownPts !== null) {
+      const knownTag = document.createElement('span');
+      const tone = knownPts > 0 ? 'positive' : knownPts < 0 ? 'negative' : 'neutral';
+      knownTag.className = `known-tag ${tone}`;
+      const sign = knownPts > 0 ? '+' : '';
+      knownTag.textContent = `${sign}${knownPts} Punkte`;
+      btnWrap.appendChild(knownTag);
+    }
+
+    wrap.appendChild(btnWrap);
 
     return wrap;
   }
