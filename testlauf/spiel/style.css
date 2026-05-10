@@ -1050,6 +1050,20 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
 
 .end-buttons .btn { flex: 1; min-width: 160px; }
 
+.run-indicator {
+  font-size: 12px;
+  color: var(--grey-500);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.run-label {
+  color: var(--red);
+  font-weight: 600;
+}
+
 .btn-reset-progress {
   background: none;
   border: none;
