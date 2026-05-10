@@ -135,20 +135,20 @@ function incrementRunCount() {
 function updateRunIndicator() {
   const run = getCurrentRun();
   const indicator = $('run-indicator');
-  if (!indicator) return;
-  indicator.querySelectorAll('.run-step').forEach(step => {
-    const stepNum = parseInt(step.dataset.step, 10);
-    step.classList.remove('completed', 'current');
-    if (stepNum < run) step.classList.add('completed');
-    if (stepNum === run) step.classList.add('current');
-  });
   const lblEl = $('run-label');
+  if (!indicator || !lblEl) return;
   const labels = {
-    1: '',
-    2: 'Neue Schauplätze freigeschaltet',
-    3: 'Alle Schauplätze verfügbar',
+    2: 'Neue Events freigeschaltet!',
+    3: 'Alle Events freigeschaltet!',
   };
-  if (lblEl) lblEl.textContent = labels[run] || '';
+  const text = labels[run];
+  if (text) {
+    lblEl.textContent = text;
+    indicator.classList.remove('hidden');
+  } else {
+    lblEl.textContent = '';
+    indicator.classList.add('hidden');
+  }
 }
 
 function freshState() {
