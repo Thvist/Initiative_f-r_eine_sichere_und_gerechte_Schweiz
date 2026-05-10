@@ -1103,6 +1103,7 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
   box-shadow: 0 3px 10px rgba(0,0,0,0.14);
 }
 .known-tag.known-tag-multi {
+  top: -24px;
   flex-direction: column;
   padding: 6px 14px;
   border-radius: 14px;
