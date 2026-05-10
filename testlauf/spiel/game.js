@@ -703,9 +703,28 @@ function openHotspot(id) {
     if (knownPts !== null) {
       const knownTag = document.createElement('span');
       const tone = points > 0 ? 'positive' : points < 0 ? 'negative' : 'neutral';
-      knownTag.className = `known-tag ${tone}`;
       const sign = points > 0 ? '+' : '';
-      knownTag.textContent = `${sign}${points} Punkte`;
+      let detail = null;
+      if (option.points_per_positive_flag) {
+        const count = countPositiveFlags();
+        detail = `${count} positive Tat${count !== 1 ? 'en' : ''}`;
+      } else if (option.points_per_negative_flag) {
+        const count = countNegativeFlags();
+        detail = `${count} negative Tat${count !== 1 ? 'en' : ''}`;
+      }
+      knownTag.className = `known-tag ${tone}${detail ? ' known-tag-multi' : ''}`;
+      if (detail) {
+        const valueEl = document.createElement('span');
+        valueEl.className = 'known-tag-value';
+        valueEl.textContent = `${sign}${points}`;
+        const detailEl = document.createElement('span');
+        detailEl.className = 'known-tag-detail';
+        detailEl.textContent = detail;
+        knownTag.appendChild(valueEl);
+        knownTag.appendChild(detailEl);
+      } else {
+        knownTag.textContent = `${sign}${points} Punkte`;
+      }
       btnWrap.appendChild(knownTag);
     }
 
