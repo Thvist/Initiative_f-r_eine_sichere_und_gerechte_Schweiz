@@ -211,11 +211,58 @@ let modalLocked = false;
 //  INIT
 // ============================================================
 
+function setupIntroBounce() {
+  const intro = $('screen-intro');
+  if (!intro) return;
+  const card = intro.querySelector('.intro-card');
+  if (!card) return;
+
+  let offset = 0;
+  let resetTimer = null;
+  const MAX = 90;
+
+  function spring() {
+    card.style.transition = 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    card.style.transform = '';
+    offset = 0;
+  }
+
+  intro.addEventListener('wheel', e => {
+    if (!intro.classList.contains('active')) return;
+    e.preventDefault();
+    card.style.transition = 'none';
+    offset -= e.deltaY * 0.25;
+    offset = Math.max(-MAX, Math.min(MAX, offset));
+    card.style.transform = `translateY(${offset}px)`;
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(spring, 200);
+  }, { passive: false });
+
+  let touchStartY = 0;
+  intro.addEventListener('touchstart', e => {
+    if (!intro.classList.contains('active')) return;
+    touchStartY = e.touches[0].clientY;
+    card.style.transition = 'none';
+    clearTimeout(resetTimer);
+  }, { passive: true });
+  intro.addEventListener('touchmove', e => {
+    if (!intro.classList.contains('active')) return;
+    const dy = e.touches[0].clientY - touchStartY;
+    offset = Math.sign(dy) * Math.min(MAX, Math.abs(dy) * 0.45);
+    card.style.transform = `translateY(${offset}px)`;
+  }, { passive: true });
+  intro.addEventListener('touchend', () => {
+    if (!intro.classList.contains('active')) return;
+    spring();
+  });
+}
+
 function init() {
   soundEnabled = localStorage.getItem(LS_SOUND) !== 'false';
   loadChoiceMemory();
   updateRunIndicator();
   updateSoundToggle();
+  setupIntroBounce();
   preloadAllImages();
 
   $('btn-start').addEventListener('click', startGame);
