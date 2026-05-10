@@ -235,7 +235,7 @@ function setupIntroBounce() {
     offset = Math.max(-MAX, Math.min(MAX, offset));
     card.style.transform = `translateY(${offset}px)`;
     clearTimeout(resetTimer);
-    resetTimer = setTimeout(spring, 40);
+    resetTimer = setTimeout(spring, 1);
   }, { passive: false });
 
   let touchStartY = 0;
