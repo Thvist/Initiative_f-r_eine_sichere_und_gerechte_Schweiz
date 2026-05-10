@@ -222,7 +222,7 @@ function setupIntroBounce() {
   const MAX = 90;
 
   function spring() {
-    card.style.transition = 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    card.style.transition = 'transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
     card.style.transform = '';
     offset = 0;
   }
@@ -235,7 +235,7 @@ function setupIntroBounce() {
     offset = Math.max(-MAX, Math.min(MAX, offset));
     card.style.transform = `translateY(${offset}px)`;
     clearTimeout(resetTimer);
-    resetTimer = setTimeout(spring, 200);
+    resetTimer = setTimeout(spring, 40);
   }, { passive: false });
 
   let touchStartY = 0;
