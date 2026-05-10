@@ -132,6 +132,27 @@ function incrementRunCount() {
   localStorage.setItem(LS_RUN_COUNT, String(getCompletedRuns() + 1));
 }
 
+function updateUnlockMessage() {
+  const completed = getCompletedRuns();
+  const card = $('unlock-message');
+  if (!card) return;
+  const titleEl = card.querySelector('.unlock-title');
+  const bodyEl = card.querySelector('.unlock-body');
+  if (completed === 1) {
+    const newCount = allHotspots.filter(h => (h.minRun || 1) === 2).length;
+    titleEl.textContent = 'Neue Events freigeschaltet!';
+    bodyEl.textContent = `Im nächsten Durchlauf warten ${newCount} neue Hotspots auf dich.`;
+    card.classList.remove('hidden');
+  } else if (completed === 2) {
+    const newCount = allHotspots.filter(h => (h.minRun || 1) === 3).length;
+    titleEl.textContent = 'Alle Events freigeschaltet!';
+    bodyEl.textContent = `Im nächsten Durchlauf hast du Zugriff auf alle ${newCount} verbleibenden Hotspots in Helvetingen.`;
+    card.classList.remove('hidden');
+  } else {
+    card.classList.add('hidden');
+  }
+}
+
 function updateRunIndicator() {
   const run = getCurrentRun();
   const indicator = $('run-indicator');
@@ -1042,6 +1063,7 @@ function showTransition(key, callback) {
 function showEndScreen() {
   fadeOutMusic(2500);
   incrementRunCount();
+  updateUnlockMessage();
   showScreen('end');
   topBar.classList.add('hidden');
 
