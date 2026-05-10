@@ -1305,8 +1305,8 @@ function showBGRNotification(points, detail = '') {
   $('bgr-notif-label').textContent = detail || (pos ? 'Bundesamt für Gerechtigkeit' : 'Registriert durch BGR');
 
   const icon = $('bgr-notif-icon');
-  icon.src = pos ? '../website_material/Logo_Sozialkredit.png' : 'assets/icon_camera.svg';
-  icon.alt = pos ? 'Sozialkredit-Logo' : 'Überwachungskamera';
+  icon.src = '../website_material/Logo_Sozialkredit.png';
+  icon.alt = 'Sozialkredit-Logo';
 
   // Force reflow then show
   bgrNotif.classList.remove('show');
