@@ -1071,7 +1071,7 @@ body.placement-mode .hotspot-tooltip { opacity: 1; }
 .unlock-card {
   margin-bottom: 16px;
   padding: 12px 18px;
-  background: var(--red-dark);
+  background: var(--red);
   color: var(--white);
   border-radius: 8px;
   font-size: 14px;
