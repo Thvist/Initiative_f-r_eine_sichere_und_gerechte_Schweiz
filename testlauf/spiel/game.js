@@ -162,6 +162,9 @@ function updateRunIndicator() {
   if (text) {
     lblEl.textContent = text;
     indicator.classList.remove('hidden');
+    lblEl.style.animation = 'none';
+    void lblEl.offsetWidth;
+    lblEl.style.animation = '';
   } else {
     lblEl.textContent = '';
     indicator.classList.add('hidden');
