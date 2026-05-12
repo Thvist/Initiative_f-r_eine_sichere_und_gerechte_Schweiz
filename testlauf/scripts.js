@@ -89,6 +89,66 @@ wireAccordion('.flat-acc-btn');    // flat top-level (initiative)
 wireAccordion('.sub-acc-btn');     // nested sub-sections
 wireAccordion('.table-acc-btn');   // Vorteile & Chancen rows
 
+// ============== PRIVACY MODAL (auto-injected) ==============
+(function () {
+  const m = document.createElement('div');
+  m.className = 'modal-overlay';
+  m.id = 'privacy-modal';
+  m.setAttribute('role', 'dialog');
+  m.setAttribute('aria-modal', 'true');
+  m.innerHTML = `
+    <div class="modal" style="max-width: 720px;">
+      <div class="modal-header">
+        <div>
+          <div class="section-label">Rechtliches</div>
+          <h2 style="margin-bottom:0;">Datenschutzerklärung</h2>
+        </div>
+        <button class="modal-close" aria-label="Schliessen">×</button>
+      </div>
+      <div style="font-size: 0.9375rem; color: var(--grey-700); line-height: 1.6;">
+        <p style="font-size: 0.8125rem; color: var(--grey-500); margin-bottom: 1.25rem;">Stand: November 2026</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">1. Verantwortliche Stelle</h3>
+        <p style="margin-bottom:1rem;">Verantwortlich ist das Initiativkomitee Sozialkredit-Initiative Schweiz, Schweizerplatz 0, 0000 Helvetingen, kontakt@sozialkredit-initiative.ch.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">2. Erhebung personenbezogener Daten</h3>
+        <p style="margin-bottom:1rem;">Wir bearbeiten Daten, die Sie uns über unsere Online-Formulare (Unterschriftensammlung, Spenden, Kontaktanfragen) zur Verfügung stellen. Erfasst werden insbesondere Name, Adresse, E-Mail-Adresse, Geburtsdatum und weitere für den jeweiligen Zweck erforderliche Angaben.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">3. Zweck der Bearbeitung</h3>
+        <p style="margin-bottom:1rem;">Die Daten werden ausschliesslich für die Bearbeitung Ihres Anliegens verwendet: Validierung von Unterschriften, Abwicklung von Spenden, Beantwortung von Anfragen sowie Kommunikation rund um die Initiative.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">4. Weitergabe an Dritte</h3>
+        <p style="margin-bottom:1rem;">Eine Weitergabe erfolgt nur, soweit gesetzlich vorgeschrieben (z.B. an die Bundeskanzlei zur Beglaubigung der Unterschriften). Eine kommerzielle Weitergabe findet nicht statt.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">5. Speicherdauer</h3>
+        <p style="margin-bottom:1rem;">Ihre Daten werden nur so lange gespeichert, wie es für den jeweiligen Zweck erforderlich oder gesetzlich vorgeschrieben ist.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">6. Ihre Rechte</h3>
+        <p style="margin-bottom:1rem;">Sie haben jederzeit das Recht auf Auskunft, Berichtigung und Löschung der bei uns gespeicherten Daten. Wenden Sie sich dazu an die oben genannte Adresse.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">7. Cookies</h3>
+        <p style="margin-bottom:1rem;">Unsere Website verwendet ausschliesslich technisch notwendige Cookies. Es findet kein Tracking zu Werbezwecken statt.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">8. Datensicherheit</h3>
+        <p style="margin-bottom:1rem;">Wir treffen geeignete technische und organisatorische Massnahmen zum Schutz Ihrer Daten vor unbefugtem Zugriff oder Verlust. Alle Daten werden in der Schweiz gehostet.</p>
+        <h3 style="margin:0 0 0.4rem; font-size:1rem;">9. Änderungen</h3>
+        <p style="margin-bottom:1.25rem;">Wir behalten uns vor, diese Datenschutzerklärung an gesetzliche Entwicklungen oder Anpassungen unserer Dienste anzupassen. Die jeweils aktuelle Fassung ist auf dieser Seite abrufbar.</p>
+      </div>
+      <div class="form-actions" style="margin-top:1rem;">
+        <button type="button" class="btn btn-primary modal-close" style="flex:1;">Schliessen</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(m);
+})();
+
+const privacyModal = document.getElementById('privacy-modal');
+
+document.querySelectorAll('[data-modal="privacy"]').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    if (privacyModal) privacyModal.classList.add('open');
+  });
+});
+
+if (privacyModal) {
+  privacyModal.addEventListener('click', e => {
+    if (e.target === privacyModal) privacyModal.classList.remove('open');
+  });
+}
+
 // ============== SIGNATURE MODAL ==============
 const sigModal = document.getElementById('signature-modal');
 
@@ -148,6 +208,7 @@ document.querySelectorAll('.modal-close').forEach(btn => {
     if (sigModal) sigModal.classList.remove('open');
     if (checkoutModal) checkoutModal.classList.remove('open');
     if (contactModal) contactModal.classList.remove('open');
+    if (privacyModal) privacyModal.classList.remove('open');
   });
 });
 
@@ -163,6 +224,7 @@ document.addEventListener('keydown', e => {
     if (sigModal) sigModal.classList.remove('open');
     if (checkoutModal) checkoutModal.classList.remove('open');
     if (contactModal) contactModal.classList.remove('open');
+    if (privacyModal) privacyModal.classList.remove('open');
   }
 });
 
