@@ -206,10 +206,8 @@ function updateCheckoutPrice() {
 
 document.querySelectorAll('.modal-close').forEach(btn => {
   btn.addEventListener('click', () => {
-    if (sigModal) sigModal.classList.remove('open');
-    if (checkoutModal) checkoutModal.classList.remove('open');
-    if (contactModal) contactModal.classList.remove('open');
-    if (privacyModal) privacyModal.classList.remove('open');
+    const overlay = btn.closest('.modal-overlay');
+    if (overlay) overlay.classList.remove('open');
   });
 });
 
@@ -221,12 +219,14 @@ if (checkoutModal) {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    if (sigModal) sigModal.classList.remove('open');
-    if (checkoutModal) checkoutModal.classList.remove('open');
-    if (contactModal) contactModal.classList.remove('open');
-    if (privacyModal) privacyModal.classList.remove('open');
+  if (e.key !== 'Escape') return;
+  if (privacyModal && privacyModal.classList.contains('open')) {
+    privacyModal.classList.remove('open');
+    return;
   }
+  if (sigModal) sigModal.classList.remove('open');
+  if (checkoutModal) checkoutModal.classList.remove('open');
+  if (contactModal) contactModal.classList.remove('open');
 });
 
 const checkoutForm = document.getElementById('checkout-form');
