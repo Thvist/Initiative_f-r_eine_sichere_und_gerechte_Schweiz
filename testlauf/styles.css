@@ -114,6 +114,11 @@ img { max-width: 100%; display: block; }
 
 section { padding: 4rem 0; }
 section.bg-off-white { background: var(--off-white); }
+
+.game-promo { position: relative; overflow: hidden; }
+.game-promo-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.game-promo > .container { position: relative; z-index: 1; }
+.cursor-deco { position: absolute; color: rgba(0, 0, 0, 0.07); }
 section.bg-red { background: var(--red); color: var(--white); }
 section.bg-dark { background: var(--grey-900); color: var(--white); }
 
