@@ -106,7 +106,7 @@ wireAccordion('.table-acc-btn');   // Vorteile & Chancen rows
         <button class="modal-close" aria-label="Schliessen">×</button>
       </div>
       <div style="font-size: 0.9375rem; color: var(--grey-700); line-height: 1.6;">
-        <p style="font-size: 0.8125rem; color: var(--grey-500); margin-bottom: 1.25rem;">Stand: November 2026</p>
+        <p style="font-size: 0.8125rem; color: var(--grey-500); margin-bottom: 1.25rem;">Stand: Mai 2026</p>
         <h3 style="margin:0 0 0.4rem; font-size:1rem;">1. Verantwortliche Stelle</h3>
         <p style="margin-bottom:1rem;">Verantwortlich ist das Initiativkomitee Sozialkredit-Initiative Schweiz, Schweizerplatz 0, 0000 Helvetingen, kontakt@sozialkredit-initiative.ch.</p>
         <h3 style="margin:0 0 0.4rem; font-size:1rem;">2. Erhebung personenbezogener Daten</h3>
