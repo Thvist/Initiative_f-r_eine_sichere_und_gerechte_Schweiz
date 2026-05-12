@@ -120,10 +120,16 @@ section.bg-off-white { background: var(--off-white); }
 .game-promo > .container { position: relative; z-index: 1; }
 .cursor-deco { position: absolute; opacity: 0.08; height: auto; pointer-events: none; }
 
-.game-promo-content {
+.game-promo-content { position: relative; }
+
+.game-promo-content .section-label,
+.game-promo-content h2,
+.game-promo-content .lead {
   position: relative;
+  width: fit-content;
+  max-width: 100%;
   background: var(--off-white);
-  box-shadow: 0 0 80px 50px var(--off-white);
+  box-shadow: 0 0 40px 25px var(--off-white);
   border-radius: 4px;
 }
 section.bg-red { background: var(--red); color: var(--white); }
