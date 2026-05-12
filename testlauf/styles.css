@@ -861,6 +861,7 @@ strong { font-weight: 700; }
   border-left: 4px solid var(--red);
 }
 .verfassung-article .art-label { font-size: 0.75rem; font-weight: 700; color: var(--grey-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.25rem; }
+.verfassung-article .art-label .art-num-letter { text-transform: lowercase; }
 .verfassung-article h3 { font-size: 1.125rem; margin-bottom: 1rem; color: var(--grey-900); }
 .verfassung-article ol { counter-reset: verfassung-counter; padding-left: 0; }
 .verfassung-article > ol > li { list-style: none; position: relative; padding-left: 2rem; margin-bottom: 0.875rem; font-size: 0.9375rem; color: var(--grey-700); counter-increment: verfassung-counter; }
