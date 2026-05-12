@@ -119,6 +119,13 @@ section.bg-off-white { background: var(--off-white); }
 .game-promo-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
 .game-promo > .container { position: relative; z-index: 1; }
 .cursor-deco { position: absolute; opacity: 0.08; height: auto; pointer-events: none; }
+
+.game-promo-content {
+  position: relative;
+  background: var(--off-white);
+  box-shadow: 0 0 80px 50px var(--off-white);
+  border-radius: 4px;
+}
 section.bg-red { background: var(--red); color: var(--white); }
 section.bg-dark { background: var(--grey-900); color: var(--white); }
 
