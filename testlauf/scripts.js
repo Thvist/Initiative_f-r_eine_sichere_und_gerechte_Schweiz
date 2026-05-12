@@ -127,11 +127,12 @@ wireAccordion('.table-acc-btn');   // Vorteile & Chancen rows
         <p style="margin-bottom:1.25rem;">Wir behalten uns vor, diese Datenschutzerklärung an gesetzliche Entwicklungen oder Anpassungen unserer Dienste anzupassen. Die jeweils aktuelle Fassung ist auf dieser Seite abrufbar.</p>
       </div>
       <div class="form-actions" style="margin-top:1rem;">
-        <button type="button" class="btn btn-primary modal-close" style="flex:1;">Schliessen</button>
+        <button type="button" class="btn btn-primary" data-privacy-close style="flex:1;">Schliessen</button>
       </div>
     </div>
   `;
   document.body.appendChild(m);
+  m.querySelector('[data-privacy-close]').addEventListener('click', () => m.classList.remove('open'));
 })();
 
 const privacyModal = document.getElementById('privacy-modal');

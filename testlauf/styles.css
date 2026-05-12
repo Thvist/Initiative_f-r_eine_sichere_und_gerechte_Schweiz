@@ -984,15 +984,15 @@ strong { font-weight: 700; }
 .form-textarea { resize: vertical; min-height: 80px; }
 
 .form-checkbox {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
+  display: block;
+  position: relative;
+  padding-left: 1.65rem;
   font-size: 0.875rem;
   color: var(--grey-700);
   cursor: pointer;
   line-height: 1.5;
 }
-.form-checkbox input { margin-top: 2px; flex-shrink: 0; accent-color: var(--red); }
+.form-checkbox input { position: absolute; left: 0; top: 0.25em; accent-color: var(--red); }
 
 .signature-area {
   width: 100%;
