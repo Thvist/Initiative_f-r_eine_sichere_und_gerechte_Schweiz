@@ -1357,7 +1357,7 @@ function renderLeaderboardFromData(all, currentScore, justSubmittedName) {
   }
 
   grid.appendChild(renderCol(positive, 'Unsere Musterbürger:innen', 'positive'));
-  grid.appendChild(renderCol(negative, 'Die hartnäckigsten Widerständler:innen', 'negative'));
+  grid.appendChild(renderCol(negative, 'Die hartnäckigsten Nonkonformist:innen', 'negative'));
 }
 
 // ============================================================
