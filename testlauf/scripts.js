@@ -105,6 +105,32 @@ if (sigModal) {
   });
 }
 
+// ============== CONTACT MODAL ==============
+const contactModal = document.getElementById('contact-modal');
+
+document.querySelectorAll('[data-modal="contact"]').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    if (contactModal) contactModal.classList.add('open');
+  });
+});
+
+if (contactModal) {
+  contactModal.addEventListener('click', e => {
+    if (e.target === contactModal) contactModal.classList.remove('open');
+  });
+}
+
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (contactModal) contactModal.classList.remove('open');
+    contactForm.reset();
+    showToast('Vielen Dank! Wir melden uns innerhalb der nächsten Tage bei Ihnen.');
+  });
+}
+
 // ============== CHECKOUT MODAL ==============
 const checkoutModal = document.getElementById('checkout-modal');
 let checkoutUnitPrice = 0;
@@ -121,6 +147,7 @@ document.querySelectorAll('.modal-close').forEach(btn => {
   btn.addEventListener('click', () => {
     if (sigModal) sigModal.classList.remove('open');
     if (checkoutModal) checkoutModal.classList.remove('open');
+    if (contactModal) contactModal.classList.remove('open');
   });
 });
 
@@ -135,6 +162,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (sigModal) sigModal.classList.remove('open');
     if (checkoutModal) checkoutModal.classList.remove('open');
+    if (contactModal) contactModal.classList.remove('open');
   }
 });
 

@@ -231,8 +231,8 @@
     <div style="text-align: center; padding: 2rem; background: var(--off-white); border-radius: var(--radius); margin-top: 1rem;">
       <p style="color: var(--grey-700); margin-bottom: 1.25rem;">Noch Fragen offen? Kontaktieren Sie uns oder unterschreiben Sie jetzt die Initiative.</p>
       <div class="btn-group" style="justify-content: center;">
+        <a href="#" class="btn btn-outline" data-modal="contact">Jetzt kontaktieren</a>
         <a href="#" class="btn btn-primary" data-modal="signature">Jetzt unterschreiben</a>
-        <a href="spenden.html" class="btn btn-outline">Jetzt Spenden</a>
       </div>
     </div>
 
@@ -295,6 +295,30 @@
       <div class="form-actions">
         <button type="submit" class="btn btn-primary" style="flex:1;">Unterschrift einreichen</button>
         <button type="button" class="btn btn-outline modal-close">Abbrechen</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modal-header">
+      <div><div class="section-label">Kontakt</div><h2 style="margin-bottom:0;">Frage stellen</h2></div>
+      <button class="modal-close" aria-label="Schliessen" data-modal-target="contact">×</button>
+    </div>
+    <form id="contact-form">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label" for="con-vorname">Vorname</label><input class="form-input" id="con-vorname" type="text" required placeholder="Maria"></div>
+        <div class="form-group"><label class="form-label" for="con-nachname">Nachname</label><input class="form-input" id="con-nachname" type="text" required placeholder="Muster"></div>
+        <div class="form-group full"><label class="form-label" for="con-email">E-Mail</label><input class="form-input" id="con-email" type="email" required placeholder="maria.muster@beispiel.ch"></div>
+        <div class="form-group full"><label class="form-label" for="con-betreff">Betreff</label><input class="form-input" id="con-betreff" type="text" required placeholder="Frage zur Initiative"></div>
+        <div class="form-group full"><label class="form-label" for="con-nachricht">Ihre Frage</label><textarea class="form-textarea" id="con-nachricht" required placeholder="Schreiben Sie hier Ihre Frage..." style="min-height:120px;"></textarea></div>
+        <div class="form-group full"><label class="form-checkbox"><input type="checkbox" required> Ich nehme die Datenschutzerklärung zur Kenntnis.</label></div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" style="flex:1;">Frage einreichen</button>
+        <button type="button" class="btn btn-outline modal-close" data-modal-target="contact" style="padding:0.75rem 2rem;">Abbrechen</button>
       </div>
     </form>
   </div>
