@@ -120,7 +120,10 @@ section.bg-off-white { background: var(--off-white); }
 .game-promo > .container { position: relative; z-index: 1; }
 .cursor-deco { position: absolute; opacity: 0.08; height: auto; pointer-events: none; }
 
-.game-promo-content { position: relative; }
+.game-promo-content {
+  position: relative;
+  z-index: 1;
+}
 
 .game-promo-content .section-label,
 .game-promo-content h2,
@@ -128,9 +131,18 @@ section.bg-off-white { background: var(--off-white); }
   position: relative;
   width: fit-content;
   max-width: 100%;
+}
+
+.game-promo-content .section-label::before,
+.game-promo-content h2::before,
+.game-promo-content .lead::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--off-white);
   box-shadow: 0 0 40px 25px var(--off-white);
   border-radius: 4px;
+  z-index: -1;
 }
 section.bg-red { background: var(--red); color: var(--white); }
 section.bg-dark { background: var(--grey-900); color: var(--white); }
